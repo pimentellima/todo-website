@@ -5,14 +5,17 @@ import { Container } from './styles';
 import { Context } from '../board/index'
 
 const List = ({ section, data, listIndex }) => {    
-    const { addTodo } = useContext(Context)
+    const { addTodo, dragStart, dragEnter, dragging, drop } = useContext(Context)
 
 
     return (
-            <Container>
+            <Container section={ section }
+                        draggable={dragging.toString()}
+                        onDragOver={e => e.preventDefault()}
+                        onDrop={ e => drop(e, listIndex) }>
                 <header>
                     <h2>{section}</h2>
-                    <button onClick={() => addTodo(listIndex)}>+</button>
+                    { section == "Tarefas" ? <button onClick={() => addTodo(listIndex)}>+</button> : <></>}
                 </header>
                 <ul>
                 {data.map((todo, index) => 
@@ -20,6 +23,7 @@ const List = ({ section, data, listIndex }) => {
                         todo={todo} 
                         index={index}
                         listIndex={listIndex}
+                        section={section}
                         key={todo.id} 
                     />
                 )}

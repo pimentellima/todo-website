@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, createContext, useContext } from 'react';
+import React, { useState, useRef, useEffect, createContext } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -28,27 +28,19 @@ const Board = () => {
                 todoInput.current.focus()
             }    
         })    
-        
-        const move = (to, from, toList, fromList) => {
-            const copySections = [...sections]
-            const fromSection = copySections[fromList]
-            const toSection = copySections[toList]
-            const fromItem = fromSection.data[from]
-            const toItem = toSection.data[to]
-            toSection.data.splice(to, 1, fromItem)
-            fromSection.data.splice(from, 1, toItem)
-            copySections.splice(fromList, 1, fromSection)
-            copySections.splice(toList, 1, toSection)
-            setSections(copySections)
-        }    
 
-        const editTodo = () => {
+        const editTodo = (params) => {
+            setEditingItem({todo: params.todo, listIndex: params.listIndex, index: params.index});
+            setEditing(true);
+        }
+
+        const saveTodo = (todoName) => {
             const copySections = [...sections]
             const todo = editingItem.todo
             const index = editingItem.index
             const listIndex = editingItem.listIndex
             const section = copySections[listIndex]
-            const editedTodo = {...todo, name: todoInput.current.value}
+            const editedTodo = {...todo, name: todoName}
             section.data.splice(index, 1, editedTodo)
             copySections.splice(listIndex, 1, section)
             setEditing(false)
@@ -82,20 +74,50 @@ const Board = () => {
         const dragEnter = (e, params) => {
             e.preventDefault()
             const newItem = {...dragItem, index: params.index, listIndex: params.listIndex}
-            move(params.index, dragItem.index, params.listIndex, dragItem.listIndex)
+            const copySections = [...sections]
+            const fromSection = copySections[dragItem.listIndex]
+            const fromItem = dragItem.todo
+            const toSection = copySections[params.listIndex]
+            const toItem = toSection.data[params.index]
+
+            if(params.listIndex == dragItem.listIndex) {
+                toSection.data.splice(params.index, 1, fromItem)
+                fromSection.data.splice(dragItem.index, 1, toItem)
+            }
+            else {
+                toSection.data.splice(params.index, 0, fromItem)
+                fromSection.data.splice(dragItem.index, 1)
+            }
+            copySections.splice(dragItem.listIndex, 1, fromSection)
+            copySections.splice(params.listIndex, 1, toSection)
             setDragItem(newItem)
+            setSections(copySections)
         }    
-    
+        
+        const drop = (e, listIndex) => {
+            if(dragItem.listIndex != listIndex) {
+                const copySections = [...sections]
+                const fromSection = copySections[dragItem.listIndex]
+                const toSection = copySections[listIndex]
+                const fromItem = dragItem.todo
+                fromSection.data.splice(dragItem.index, 1)
+                toSection.data.push(fromItem)
+                copySections.splice(dragItem.listIndex, 1, fromSection)
+                copySections.splice(listIndex, 1, toSection)
+                setSections(copySections)                
+            }
+        }
+        
         const dragEnd = () => {
             dragNode.current.removeEventListener('dragend', dragEnd)
             dragNode.current = null;
             setDragItem(null)
             setDragging(false)
         }    
-    
+
     return (
         <Context.Provider 
-            value={{ editTodo, addTodo, dragStart, dragEnter, dragging, editing, editingItem, todoInput, dragItem }}>
+            value={{ editTodo, saveTodo, addTodo, dragStart, dragEnter, dragging, editing, editingItem, todoInput, dragItem, drop }}>
             <Container>
                 {sections.map((content, index) => 
                     <List  

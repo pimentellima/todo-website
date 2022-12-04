@@ -6,6 +6,7 @@ export const Container = styled.div`
     flex: 0 0 360px;
     border-left: 1px solid rgba(0, 0, 0, 0.05);
     padding: 0 15px;
+    opacity: ${ props => props.section == "Finalizadas" ? 0.6 : 1 };
 
     header {
         display: flex;
