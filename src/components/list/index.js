@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 
 import Card from "../card";
 import { Container } from './styles';
-import { Context } from '../board/index'
+import { SectionContext } from '../../contexts/SectionContext';
 
 const List = ({ section, data, listIndex }) => {    
-    const { addTodo, dragStart, dragEnter, dragging, drop } = useContext(Context)
-
+    const { addTodo, dragging, drop } = useContext(SectionContext)
 
     return (
             <Container section={ section }
@@ -14,7 +13,7 @@ const List = ({ section, data, listIndex }) => {
                         onDragOver={e => e.preventDefault()}
                         onDrop={ e => drop(e, listIndex) }>
                 <header>
-                    <h2>{section}</h2>
+                    <p>{section}</p>
                     { section == "Tarefas" ? <button onClick={() => addTodo(listIndex)}>+</button> : <></>}
                 </header>
                 <ul>

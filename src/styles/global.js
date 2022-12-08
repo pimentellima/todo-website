@@ -11,6 +11,14 @@ export default createGlobalStyle`
   #root {
     height: 100%;
   }
+  ul {
+    list-style: none;
+  }
+
+  p {
+    color: #101820;
+  }
+
   body {
     background: #ecf1f8;
     color: #333;

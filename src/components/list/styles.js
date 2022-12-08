@@ -14,9 +14,9 @@ export const Container = styled.div`
         justify-content: space-between;
         height: 40px;
 
-        h2 {
+        p {
             font-weight: 600;
-            font-size: 16px;
+            font-size: 18px;
             padding: 0 10px;
         }
     }
@@ -24,7 +24,7 @@ export const Container = styled.div`
     button {
         width: 42px;
         height: 42px;
-        background-color: #336600;
+        background-color: #3b5bfd;
         border-radius: 20px;
         border: 0;
         color: white;
@@ -33,6 +33,7 @@ export const Container = styled.div`
 
         :hover {
             opacity: 90%;
+            cursor: pointer;
         }
     }
 

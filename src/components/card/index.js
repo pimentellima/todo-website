@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
+
 import { Container } from './styles'
-import { Context } from '../board/index'
+import { SectionContext } from '../../contexts/SectionContext';
 
 const Card = ( { todo, index, listIndex, section } ) => {
-    const { editTodo, saveTodo, dragStart, dragEnter, dragging, editing, editingItem, todoInput, dragItem } = useContext(Context)
+    const { editTodo, saveTodo, dragStart, dragEnter, dragging, editing, editingItem, todoInput, dragItem } = useContext(SectionContext)
 
     const handleKeyDown = (e) => {
         if(e.keyCode == 13) handleSaveTodo()

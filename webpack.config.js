@@ -15,6 +15,33 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(jpe?g|png|gif|svg)$/i, 
+        loader: 'file-loader',
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
+        test: /\.(sass|less|css)$/,
+        use: 
+          [{loader: 'style-loader'}, 
+         { loader: 'css-loader'},
+         { loader:'less-loader'}
+        ]
+      },  
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"]
+      },
+       {
+          test: /\.jsx?$/,
+          loader: "babel-loader",
+          exclude: /node_modules/,
+       },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
