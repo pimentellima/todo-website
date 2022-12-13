@@ -1,45 +1,47 @@
 import React, { useContext } from 'react';
 
-import { Container } from './styles'
+import * as C from './styles'
 import { SectionContext } from '../../contexts/SectionContext';
+import { GrTextAlignLeft, GrCalendar } from "react-icons/gr";
 
-const Card = ( { todo, index, listIndex, section } ) => {
-    const { editTodo, saveTodo, dragStart, dragEnter, dragging, editing, editingItem, todoInput, dragItem } = useContext(SectionContext)
-
-    const handleKeyDown = (e) => {
-        if(e.keyCode == 13) handleSaveTodo()
-    }
-
-    const handleSaveTodo = () => {
-        let todoName = todo.name
-        if(todoInput.current.value != '') {
-            todoName = todoInput.current.value
-        } 
-        saveTodo(todoName)
-    }
-
-    const handleEditTodo = () => {
-        if(section == "Finalizadas") return
-        editTodo({ todo, listIndex, index })
-    }
+const Card = ( { card, index, listIndex } ) => {
+    const { dragStart, dragEnter, dragging, dragItem } = useContext(SectionContext)
 
     return (
-            editing && editingItem.todo.id == todo.id ? 
-                <Container isBeingDragged={ false }>
-                        <input onKeyDown={e => handleKeyDown(e)} onBlur={handleSaveTodo} placeholder={todo.name} ref={todoInput} type='text'/>
-                </Container>
-                : 
-                <Container isBeingDragged={ dragging && listIndex == dragItem.listIndex && index == dragItem.index }
-                            draggable
-                            onDragStart={e => dragStart(e, { todo, index, listIndex })}
-                            onDragEnter={e => {dragEnter(e, { todo, index, listIndex }); e.stopPropagation()}}
-                            onDragOver={e => e.preventDefault()}
-                            onDrop={e => e.preventDefault()}
-                            onDoubleClick={handleEditTodo}>
-
-                    <p>{todo.name}</p>
-
-                </Container>
+            <C.Container 
+                isBeingDragged={ dragging && listIndex == dragItem.listIndex && index == dragItem.index }
+                draggable
+                onDragStart={e => dragStart(e, { card, index, listIndex })}
+                onDragEnter={e => {dragEnter(e, { card, index, listIndex }); e.stopPropagation()}}
+                onDragOver={e => e.preventDefault()}
+                onDrop={e => e.preventDefault()}>
+                <C.Header>
+                    {card.priority ? <C.PriorityLabel priority={card.priority}>{card.priority}</C.PriorityLabel> : <></>}
+                </C.Header>
+                <C.Content>
+                    <C.Title>{card.title}</C.Title>
+                    {card.description ? 
+                        <C.PropertyContent>
+                            <C.PropertyHeader> 
+                                <GrTextAlignLeft/> 
+                                <C.PropertyLabel>{'DESCRIÇÃO'}</C.PropertyLabel>
+                            </C.PropertyHeader>
+                            <C.PropertySpan>{card.description}</C.PropertySpan>
+                        </C.PropertyContent> 
+                        : 
+                        <></>}
+                        {card.deadline ? 
+                        <C.PropertyContent>
+                            <C.PropertyHeader> 
+                                <GrCalendar/> 
+                                <C.PropertyLabel>{'PRAZO'}</C.PropertyLabel>
+                            </C.PropertyHeader>
+                            <C.PropertySpan>{card.deadline}</C.PropertySpan>
+                        </C.PropertyContent> 
+                        : 
+                        <></>}
+                </C.Content>
+            </C.Container>
     )
 }
 

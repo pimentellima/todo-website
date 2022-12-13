@@ -11,20 +11,12 @@ export default createGlobalStyle`
   #root {
     height: 100%;
   }
-  ul {
-    list-style: none;
-  }
+  
 
-  p {
-    color: #101820;
-  }
 
   body {
+    font-family: sans-serif;
     background: #ecf1f8;
-    color: #333;
-  }
-  body, input {
-    font: 14px 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased !important;
   }
 `;

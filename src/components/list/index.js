@@ -1,33 +1,40 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Card from "../card";
-import { Container } from './styles';
+import * as C from './styles';
 import { SectionContext } from '../../contexts/SectionContext';
+import { CardPopup } from '../card-popup';
 
 const List = ({ section, data, listIndex }) => {    
-    const { addTodo, dragging, drop } = useContext(SectionContext)
+    const { dragging, drop } = useContext(SectionContext)
+    const [ cardOpen, setCardOpen ] = useState(false)
 
     return (
-            <Container section={ section }
-                        draggable={dragging.toString()}
-                        onDragOver={e => e.preventDefault()}
-                        onDrop={ e => drop(e, listIndex) }>
-                <header>
-                    <p>{section}</p>
-                    { section == "Tarefas" ? <button onClick={() => addTodo(listIndex)}>+</button> : <></>}
-                </header>
+            <C.Container 
+                section={section}
+                draggable={dragging.toString()}
+                onDragOver={e => e.preventDefault()}
+                onDrop={e => drop(e, listIndex)}>
+                <C.SectionHeader>
+                    {section}
+                    <C.PopupButton onClick={() => setCardOpen(true)}>+</C.PopupButton>
+                    <CardPopup
+                        setCardOpen={setCardOpen} 
+                        open={cardOpen}
+                        listIndex={listIndex}
+                        />
+                </C.SectionHeader>
                 <ul>
-                {data.map((todo, index) => 
+                {data.map((card, index) => 
                     <Card 
-                        todo={todo} 
+                        card={card} 
                         index={index}
                         listIndex={listIndex}
                         section={section}
-                        key={todo.id} 
-                    />
-                )}
+                        key={card.id}
+                        />)}
                 </ul>
-            </Container>
+            </C.Container>
         )
 }
 

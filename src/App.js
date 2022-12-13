@@ -14,8 +14,8 @@ const App = () => {
             <GlobalStyle/>
             <Routes>
                 <Route path="/*" element={<Signin/>} />
-                <Route path='/signup' element={<Signup/>}/>
                 <Route path='/user' element={<User/>}/>
+                <Route path='/signup' element={<Signup/>}/>
             </Routes>
         </UserProvider>
     )

@@ -1,87 +1,79 @@
 import React, { useContext, useRef, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { Container } from './styles'
+import { Link, useNavigate } from "react-router-dom";
+import * as C from './styles'
 
 import { IoIosArrowForward } from "react-icons/io";
-import { AiOutlineUser } from "react-icons/ai";
-import { RxLockClosed } from 'react-icons/rx'
+
+import Input from '../../components/input'
 
 import { UserContext } from "../../contexts/UserContext";
 
 const Signup = () => {
-    const [error, setError] = useState('')
+    const [usernameError, setUsernameError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
+    const [confirmPasswordError, setConfirmPasswordError] = useState('')
+
     const { signup } = useContext(UserContext)
     
     const navigate = useNavigate();
+
     const userRef = useRef()
     const passwordRef = useRef()
-    const passwordConfirmRef = useRef()
+    const confirmPasswordRef = useRef()
 
     const handleSignup = (e) => {
         e.preventDefault()
         const username = userRef.current.value
         const password = passwordRef.current.value
-        const confirmPassword = passwordConfirmRef.current.value
-        const error = signup(username, password, confirmPassword)
-        userRef.current.value = null
-        passwordRef.current.value = null        
-        passwordConfirmRef.current.value = null        
+        const confirmPassword = confirmPasswordRef.current.value
+
+        if (!username) setUsernameError('Não pode ser vazio')
+        if (!password) setPasswordError('Não pode ser vazio')
+        if (!confirmPassword) setConfirmPasswordError('Não pode ser vazio')
+        if(!password || !username || !confirmPassword) return
+
+        const error = signup(username, password)
 
         if(error) {
-            setError(error)
-            return
+            setUsernameError(error);
+            return;
         }
-            
-        else {
-            setError('')
-            navigate('/login')
-        }
+        navigate('/login')
     }
 
     return (
-        <>
-        <Container>
-            <header>
-                <p className="logo">mathasks</p>
-            </header>
-            <div className="center-section">
-                <form className="login">
-                    <p className='main-text'>Cadastrar conta</p>
-                    <div className="input-boxes">
-                        <div className='label'>
-                            <div className="icon">
-                                <AiOutlineUser/>
-                            </div>
-                            <input ref={userRef} placeholder='nome de usuário'></input>
-                        </div>
-                        <div className='label'>
-                            <div className="icon">
-                                <RxLockClosed/>
-                            </div>
-                            <input ref={passwordRef} type="password" placeholder='senha'/>
-                        </div>
-                        <div className='label'>
-                            <div className="icon">
-                                <RxLockClosed/>
-                            </div>
-                            <input ref={passwordConfirmRef} type="password" placeholder='confirme a senha'/>
-                        </div>
-                    </div>
-                    <div className="login-button">
-                        <Link to='/user'>
-                            <button onClick={e => handleSignup(e)}>Cadastrar-se<IoIosArrowForward/></button>
-                        </Link>
-                    </div>
-                </form>
-                <div className='error'>{error}</div>
-                <div className="signin">
-                    <Link to='/signin'>
-                        <p>Fazer login</p>
-                    </Link>
-                </div>
-            </div>
-        </Container>
-        </>
+        <C.Container>
+        <C.Header>mathasks</C.Header>
+        <C.Form onSubmit={(e => handleSignup(e))}>
+            <C.TitleLabel>Criar conta</C.TitleLabel>
+            <Input
+                inputRef={userRef} 
+                handler={() => setUsernameError('')}
+                placeholder={'nome de usuário'}
+                isInvalid={!!usernameError}
+                type='username'/>
+            <C.LabelError>{usernameError}</C.LabelError>
+            <Input
+                inputRef={passwordRef} 
+                handler={() => setPasswordError('')}
+                placeholder={'senha'}
+                isInvalid={!!passwordError}
+                type='password'/>
+            <C.LabelError>{passwordError}</C.LabelError> 
+            <Input
+                inputRef={confirmPasswordRef} 
+                handler={() => setConfirmPasswordError('')}
+                placeholder={'confirme a senha'}
+                isInvalid={!!confirmPasswordError}
+                type='password'/>
+            <C.LabelError>{confirmPasswordError}</C.LabelError>
+            <C.Button onClick={e => handleSignup(e)}>Cadastrar-se<IoIosArrowForward/></C.Button>
+        </C.Form>
+        <C.SignupLabel>
+            Já é cadastrado?
+            <Link to='/signin'>Fazer login</Link>
+        </C.SignupLabel>
+    </C.Container>
     )
 }
 
