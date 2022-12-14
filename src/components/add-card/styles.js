@@ -1,25 +1,36 @@
 import styled, { css } from 'styled-components';
 import Popup from 'reactjs-popup';
 
+
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 540px;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+`
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+`
+
 export const TitleLabel = styled.label`
     color: #101820;
     font-size: 22px;
-    margin-bottom: 25px;
+    margin-bottom: 30px ;
 `
 
 export const Input = styled.input`
     height: 50px;
     padding-left: 10px;
-    border: none;
     width: 100%;
     font-size: 15px;
     color: black;
     border: 1px solid;
     transition: border-color 0.2s ease-in;
-
-    & {
-        margin-top: 15px;
-    }
 
     ${props => props.isInvalid ? 
         css`
@@ -39,25 +50,8 @@ export const Input = styled.input`
         color: #849aac;
     }
 `
-
-
-export const PopupButton = styled.button`
-    width: 30px;
-    height: 30px;
-    background-color: #3b5bfd;
-    border-radius: 20px;
-    border: 0;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-
-    :hover {
-        opacity: 90%;
-        cursor: pointer;
-    }
-`
-export const Select = styled.select`
-    margin-top: 10px;
+export const PrioritySelect = styled.select`
+    width: 100%;
     border-color: #c0d0e6;
     height: 50px;
     transition: border-color 0.2s ease-in;
@@ -76,7 +70,7 @@ export const Select = styled.select`
     }
 `
 
-export const Option = styled.option`
+export const PriorityOption = styled.option`
     color: black;
     
 `
@@ -88,8 +82,8 @@ export const SubmitButton = styled.button`
     border-radius: 5px;
     color: white;
     font-size: 16px;
-    margin-top: 15px;
     transition: opacity 0.15s linear;
+    margin-top: 15px;
 
     :hover {
         opacity: 85%;
@@ -104,26 +98,7 @@ export const Error = styled.p`
     color: #e04a31;
 `
 
-export const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    width: 40vw;
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 1px 4px 0 rgba(192, 208, 230, 0.8);
-    `
-export const CalendarPopup = styled(Popup)`
-    max-width: 350px;
-
-`
-
-export const CardPopup = styled(Popup)`
-    // fazer animações
-
-`
 export const CalendarLabel = styled.label`
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     color: #849aac;
@@ -151,6 +126,8 @@ export const CalendarContainer = styled.div`
   background-color: white;
   padding: 8px 4px;
   border: 1px solid #c0d0e6;
+  width: 300px;
+  height: 300px;
   border-radius: 3px;
   box-shadow: 0 1px 4px 0 rgba(192, 208, 230, 0.8);
   
@@ -158,11 +135,14 @@ export const CalendarContainer = styled.div`
   .react-calendar__navigation {
       display: flex;
       .react-calendar__navigation__label {
-          font-weight: bold;
+            color: #4d6673;
+            font-weight: bold;
+            font-size: 15px;
         }
-    .react-calendar__navigation__arrow {
-        flex-grow: 0.333;
-    }
+
+        .react-calendar__navigation__arrow {
+            flex-grow: 0.333;
+        }
 }
 /* ~~~ label styles ~~~ */
     .react-calendar__month-view__weekdays {
@@ -180,18 +160,19 @@ export const CalendarContainer = styled.div`
     margin: 2px;
     padding: 8px;
     background-color: white;
-    font-weight: 600;
+    font-weight: 600;   
     border: none;
     border-radius: 15px;
     color: #232323;
     transition: background-color 0.15s linear;
     
     &:hover {
-      background-color: #e9f1ff;
-      cursor: pointer;
+        background-color: #e9f1ff;
+        cursor: pointer;
     }
     &:active {
-      background-color: #b5c9d8;
+        color: white;
+        background-color: #b5c9d8;
     }
   }
   /* ~~~ day grid styles ~~~ */
@@ -204,6 +185,7 @@ export const CalendarContainer = styled.div`
     }
     .react-calendar__tile--range {
         background-color: #0b66ff;
+        color: white;
     }
   }
   /* ~~~ neighboring month & weekend styles ~~~ */

@@ -67,40 +67,36 @@ export const SectionProvider = ({ children }) => {
     
     const dragEnter = (e, params) => {
         e.preventDefault()
-        const newItem = {...dragItem, index: params.index, listIndex: params.listIndex}
+
+        if(params.index === dragItem.index && params.listIndex === dragItem.listIndex) return
+
         const copySections = [...sections]
         const fromSection = copySections[dragItem.listIndex]
-        const fromItem = dragItem.card
         const toSection = copySections[params.listIndex]
-        const toItem = toSection.data[params.index]
+        const fromItem = fromSection.data[dragItem.index]
 
-        if(params.listIndex == dragItem.listIndex) {
-            toSection.data.splice(params.index, 1, fromItem)
-            fromSection.data.splice(dragItem.index, 1, toItem)
-        }
-        else {
-            toSection.data.splice(params.index, 0, fromItem)
-            fromSection.data.splice(dragItem.index, 1)
-        }
+        fromSection.data.splice(dragItem.index, 1)
+        toSection.data.splice(params.index, 0, fromItem)
+
         copySections.splice(dragItem.listIndex, 1, fromSection)
         copySections.splice(params.listIndex, 1, toSection)
-        setDragItem(newItem)
-        setSections(copySections)
+        
+        const newDragItem = {...dragItem, index: params.index, listIndex: params.listIndex}
+        setSections(copySections)   
+        setDragItem(newDragItem)    
     }    
     
     const drop = (e, listIndex) => {
-        if(dragItem.listIndex != listIndex) {
-            const copySections = [...sections]
-            const fromSection = copySections[dragItem.listIndex]
-            const toSection = copySections[listIndex]
-            const fromItem = dragItem.card
-            fromSection.data.splice(dragItem.index, 1)
-            toSection.data.push(fromItem)
-            copySections.splice(dragItem.listIndex, 1, fromSection)
-            copySections.splice(listIndex, 1, toSection)
-            setSections(copySections)
-             
-        }
+        if (listIndex == dragItem.listIndex) return
+        const copySections = [...sections]
+        const fromSection = copySections[dragItem.listIndex]
+        const toSection = copySections[listIndex]
+        const fromItem = dragItem.card
+        fromSection.data.splice(dragItem.index, 1)
+        toSection.data.push(fromItem)
+        copySections.splice(dragItem.listIndex, 1, fromSection)
+        copySections.splice(listIndex, 1, toSection)
+        setSections(copySections)
     }
     
     const dragEnd = () => {

@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 
 import Card from "../card";
+import { AddCard } from '../add-card';
 import * as C from './styles';
 import { SectionContext } from '../../contexts/SectionContext';
-import { CardPopup } from '../card-popup';
+import Popup from 'reactjs-popup';
 
 const List = ({ section, data, listIndex }) => {    
     const { dragging, drop } = useContext(SectionContext)
@@ -18,11 +19,17 @@ const List = ({ section, data, listIndex }) => {
                 <C.SectionHeader>
                     {section}
                     <C.PopupButton onClick={() => setCardOpen(true)}>+</C.PopupButton>
-                    <CardPopup
-                        setCardOpen={setCardOpen} 
-                        open={cardOpen}
-                        listIndex={listIndex}
-                        />
+                    {cardOpen ? 
+                        <C.HideScreen>
+                            <Popup 
+                                nested
+                                open={cardOpen} 
+                                role="dialog" 
+                                onClose={() => setCardOpen(false)}>
+                                <AddCard listIndex={listIndex} setCardOpen={setCardOpen}/>
+                            </Popup>
+                        </C.HideScreen>
+                        : <></>}
                 </C.SectionHeader>
                 <ul>
                 {data.map((card, index) => 
