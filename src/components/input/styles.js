@@ -11,12 +11,11 @@ export const Input = styled.input`
         color: #849aac;
     }
 `
-
 export const Content = styled.label`
     display: flex;
     border: 1px solid;
     height: 50px;
-    transition: border-color 0.2s ease-in;
+    transition: border-color 0.15s linear;
     
     ${props => props.isInvalid ? 
         css`

@@ -2,19 +2,18 @@ import React, { useState, useRef, createContext, useContext } from 'react';
 
 import { UserContext } from './UserContext';
 
-import { v4 as uuidv4 } from 'uuid';
 
 export const SectionContext = createContext()
 
 export const SectionProvider = ({ children }) => {
     const { user, setUser } = useContext(UserContext);
     const sections = user.sections;
-    
+
+    const [cardEditing, setCardEditing] = useState()
+
     const [dragging, setDragging] = useState(false)
-    const [dragItem, setDragItem] = useState()
-    const [editing, setEditing] = useState(false)
-    const [editingItem, setEditingItem] = useState()
     
+    const dragItem = useRef()
     const dragNode = useRef()
 
     const setSections = ( newSections ) => {
@@ -26,25 +25,6 @@ export const SectionProvider = ({ children }) => {
         setUser(newUser)
     }
 
-/*     const editCard = (params) => {
-        setEditingItem({card: params.card, listIndex: params.listIndex, index: params.index});
-        setEditing(true);
-    }
-
-    const saveCard = (cardName) => {
-        const copySections = [...sections]
-        const card = editingItem.card
-        const index = editingItem.index
-        const listIndex = editingItem.listIndex
-        const section = copySections[listIndex]
-        const editedcard = {...card, name: cardName}
-        section.data.splice(index, 1, editedcard)
-        copySections.splice(listIndex, 1, section)
-        setEditing(false)
-        setEditingItem(null)
-        setSections(copySections)
-    } */
-
     const addCard = (card, listIndex) => {
         const copySections = [...sections]
         const section = copySections[listIndex]
@@ -53,10 +33,18 @@ export const SectionProvider = ({ children }) => {
         setSections(copySections)
     }
 
+    const editCard = (card, index, listIndex) => {
+        const copySections = [...sections]
+        const section = copySections[listIndex]
+        section.data.splice(index, 1, card)
+        copySections.splice(listIndex, 1, section)
+        setSections(copySections)
+    }
+
     const dragStart = (e, params) => {
         dragNode.current = e.target
         
-        setDragItem(params)
+        dragItem.current = params
 
         dragNode.current.addEventListener('dragend', dragEnd)
 
@@ -68,33 +56,33 @@ export const SectionProvider = ({ children }) => {
     const dragEnter = (e, params) => {
         e.preventDefault()
 
-        if(params.index === dragItem.index && params.listIndex === dragItem.listIndex) return
+        if(params.index === dragItem.current.index && params.listIndex === dragItem.current.listIndex) return
 
         const copySections = [...sections]
-        const fromSection = copySections[dragItem.listIndex]
+        const fromSection = copySections[dragItem.current.listIndex]
         const toSection = copySections[params.listIndex]
-        const fromItem = fromSection.data[dragItem.index]
+        const fromItem = fromSection.data[dragItem.current.index]
 
-        fromSection.data.splice(dragItem.index, 1)
+        fromSection.data.splice(dragItem.current.index, 1)
         toSection.data.splice(params.index, 0, fromItem)
 
-        copySections.splice(dragItem.listIndex, 1, fromSection)
+        copySections.splice(dragItem.current.listIndex, 1, fromSection)
         copySections.splice(params.listIndex, 1, toSection)
         
-        const newDragItem = {...dragItem, index: params.index, listIndex: params.listIndex}
+        const newDragItem = {...dragItem.current, index: params.index, listIndex: params.listIndex}
         setSections(copySections)   
-        setDragItem(newDragItem)    
+        dragItem.current = newDragItem    
     }    
     
     const drop = (e, listIndex) => {
-        if (listIndex == dragItem.listIndex) return
+        if (listIndex == dragItem.current.listIndex) return
         const copySections = [...sections]
-        const fromSection = copySections[dragItem.listIndex]
+        const fromSection = copySections[dragItem.current.listIndex]
         const toSection = copySections[listIndex]
-        const fromItem = dragItem.card
-        fromSection.data.splice(dragItem.index, 1)
+        const fromItem = dragItem.current.card
+        fromSection.data.splice(dragItem.current.index, 1)
         toSection.data.push(fromItem)
-        copySections.splice(dragItem.listIndex, 1, fromSection)
+        copySections.splice(dragItem.current.listIndex, 1, fromSection)
         copySections.splice(listIndex, 1, toSection)
         setSections(copySections)
     }
@@ -102,21 +90,23 @@ export const SectionProvider = ({ children }) => {
     const dragEnd = () => {
         dragNode.current.removeEventListener('dragend', dragEnd)
         dragNode.current = null;
-        setDragItem(null)
+        dragItem.current = null;
         setDragging(false)
     }    
 
     return (
-            <SectionContext.Provider value={
-                { sections: user.sections,
+            <SectionContext.Provider value={{ 
+                sections: user.sections,
+                dragItem: dragItem.current, 
                 dragging, 
-                editing, 
-                editingItem, 
-                dragItem, 
+                cardEditing,
+                setCardEditing,
                 addCard, 
+                editCard,
                 dragStart, 
                 dragEnter, 
-                drop }}>
+                drop
+                }}>
                 { children }
             </SectionContext.Provider>
         )

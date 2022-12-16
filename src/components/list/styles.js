@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const PopupButton = styled.button`
     width: 30px;
@@ -18,11 +18,12 @@ export const PopupButton = styled.button`
 `
 
 export const HideScreen  = styled.div`
-   top:0; left: 0;
-   width: 100%;
-   height: 100%;
-   position: fixed;
-   background: rgb(119,126,131, 0.5);
+    top:0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgb(119,126,131, 0.5);
 `
 
 export const SectionHeader = styled.header`
@@ -37,7 +38,7 @@ export const SectionHeader = styled.header`
     color: #101820;
 `
 
-export const Container = styled.div`
+export const Content = styled.div`
     display: flex;
     flex-direction: column;
     flex: 0 0 300px;

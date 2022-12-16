@@ -6,7 +6,7 @@ export const Container = styled.div`
     width: 100vw;
 `
 
-export const Content = styled.div`
+export const SectionsContent = styled.div`
     padding: 30px 10px;
     width: 100vw;
     display: flex;
@@ -40,4 +40,20 @@ export const Button = styled.button`
     :hover {
         cursor: pointer;
     }   
+`
+
+export const CardMenuContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 540px;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    p {
+        color: #101820;
+        font-size: 22px;
+        margin-bottom: 30px ;
+    }
 `

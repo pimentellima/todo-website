@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
-import Popup from 'reactjs-popup';
 
-
-export const Content = styled.div`
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 540px;
@@ -30,7 +28,7 @@ export const Input = styled.input`
     font-size: 15px;
     color: black;
     border: 1px solid;
-    transition: border-color 0.2s ease-in;
+    transition: border-color 0.15s linear;
 
     ${props => props.isInvalid ? 
         css`
@@ -54,7 +52,7 @@ export const PrioritySelect = styled.select`
     width: 100%;
     border-color: #c0d0e6;
     height: 50px;
-    transition: border-color 0.2s ease-in;
+    transition: border-color 0.15s linear;
     font-size: 15px;
     text-indent: 7px;
     ${props => props.selectChanged ? 
@@ -98,7 +96,7 @@ export const Error = styled.p`
     color: #e04a31;
 `
 
-export const CalendarLabel = styled.label`
+export const CalendarLabel = styled.label`  
     display: flex;
     flex-direction: column;
     color: #849aac;
@@ -106,7 +104,7 @@ export const CalendarLabel = styled.label`
     border: 1px solid #c0d0e6;
     height: 50px;
     background-color: white;
-    transition: border-color 0.2s ease-in;
+    transition: border-color 0.15s linear;
     font-size: 15px;
     text-indent: 10px;
     

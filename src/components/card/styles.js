@@ -1,6 +1,22 @@
 import styled, { css } from 'styled-components'
 
-export const Container = styled.div`
+export const CardMenuContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 540px;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    p {
+        color: #101820;
+        font-size: 22px;
+        margin-bottom: 30px ;
+    }
+`
+
+export const CardContainer = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 75px;
