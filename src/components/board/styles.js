@@ -41,6 +41,16 @@ export const Button = styled.button`
         cursor: pointer;
     }   
 `
+export const HideScreen  = styled.div`
+    position: relative;
+    top:0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgb(119,126,131, 0.5);
+    z-index: -999;
+`
 
 export const CardMenuContent = styled.div`
     display: flex;
@@ -50,6 +60,7 @@ export const CardMenuContent = styled.div`
     border-radius: 5px;
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 999999;
 
     p {
         color: #101820;

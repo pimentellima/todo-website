@@ -16,14 +16,15 @@ export const PopupButton = styled.button`
         cursor: pointer;
     }
 `
-
 export const HideScreen  = styled.div`
+    position: relative;
     top:0; 
     left: 0;
     width: 100%;
     height: 100%;
     position: fixed;
     background: rgb(119,126,131, 0.5);
+    z-index: -999;
 `
 
 export const SectionHeader = styled.header`

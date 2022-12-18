@@ -1,4 +1,4 @@
-import React, { useState, useRef, createContext, useContext } from 'react';
+import React, { useEffect, useState, useRef, createContext, useContext } from 'react';
 
 import { UserContext } from './UserContext';
 
@@ -8,8 +8,6 @@ export const SectionContext = createContext()
 export const SectionProvider = ({ children }) => {
     const { user, setUser } = useContext(UserContext);
     const sections = user.sections;
-
-    const [cardEditing, setCardEditing] = useState()
 
     const [dragging, setDragging] = useState(false)
     
@@ -25,15 +23,19 @@ export const SectionProvider = ({ children }) => {
         setUser(newUser)
     }
 
-    const addCard = (card, listIndex) => {
+    const addCard = (params) => {
+        const listIndex = params.listIndex 
         const copySections = [...sections]
         const section = copySections[listIndex]
-        section.data.push(card)
+        section.data.push(params.card)
         copySections.splice(listIndex, 1, section)
         setSections(copySections)
     }
 
-    const editCard = (card, index, listIndex) => {
+    const editCard = (params) => {
+        const listIndex = params.listIndex 
+        const index = params.index
+        const card = params.card
         const copySections = [...sections]
         const section = copySections[listIndex]
         section.data.splice(index, 1, card)
@@ -99,10 +101,7 @@ export const SectionProvider = ({ children }) => {
                 sections: user.sections,
                 dragItem: dragItem.current, 
                 dragging, 
-                cardEditing,
-                setCardEditing,
-                addCard, 
-                editCard,
+                addCard,
                 dragStart, 
                 dragEnter, 
                 drop

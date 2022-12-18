@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import List from '../list'
 import * as C from './styles'
-import Popup from 'reactjs-popup';
 import { SectionContext } from '../../contexts/SectionContext';
 import { UserContext } from '../../contexts/UserContext';
-import { CardMenu } from '../card-add';
 
 const Board = () => {
     const { logout } = useContext(UserContext)
@@ -17,6 +15,7 @@ const Board = () => {
         logout()
         navigate('/login')
     }
+
 
     return (
         <C.Container>
@@ -32,16 +31,6 @@ const Board = () => {
                         listIndex={index} 
                         key={index}/>)}
             </C.SectionsContent>
-            <Popup 
-                nested
-                open={!!cardEditing} 
-                role="dialog" 
-                onClose={() => setCardEditing(null)}
-                >
-                <C.CardMenuContent>
-                    <CardMenu cardEditing={cardEditing} />
-                </C.CardMenuContent>
-            </Popup>
         </C.Container>
     );
 };

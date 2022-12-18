@@ -6,11 +6,9 @@ import { SectionProvider } from '../../contexts/SectionContext';
 
 const User = () => {
     return (
-        <Fragment>
-            <SectionProvider>
-                <Board/>
-            </SectionProvider>
-        </Fragment>
+        <SectionProvider>
+            <Board/>
+        </SectionProvider>
     );
 };
 

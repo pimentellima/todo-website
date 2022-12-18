@@ -9,79 +9,178 @@ export const Container = styled.div`
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
-export const Form = styled.form`
+
+export const FieldOptions = styled.div`
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 `
 
-export const TitleLabel = styled.label`
+export const Title = styled.p`
+    font-size: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);;
+`
+
+export const InputLabel = styled.div`
+    display: flex;
     color: #101820;
-    font-size: 22px;
-    margin-bottom: 30px ;
+    font-size: 15px;
+    margin: 15px 0 15px 0;
+`
+
+export const OptionsContainer = styled.div`
+    padding: 4px 8px;
+    border: 1px solid #c0d0e6;
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-top: 20px;
+`
+
+export const RemoveFieldButton = styled.button` 
+    padding: 7px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: white;
+    transition: background-color 0.1s ease-out, color 0.1s ease-out;
+
+    :hover {
+        background-color: #e8f2fa;
+        cursor: pointer;
+        color: #3b5bfd;
+    }
+`
+
+export const InputDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+`
+
+export const OptionsMenu = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+`
+
+export const OptionsButton = styled.button`
+    margin-left: auto;
+    color: #101820;
+    padding: 4px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    transition: background-color 0.1s ease-out;
+
+    :hover {
+        background-color: #e8f2fa;
+        cursor: pointer;
+    }
+
+    ${props => props.active && 
+        css`
+            color: #0b66ff;
+            background-color: #e8f2fa;
+        `
+    } 
 `
 
 export const Input = styled.input`
-    height: 50px;
-    padding-left: 10px;
-    width: 100%;
-    font-size: 15px;
-    color: black;
-    border: 1px solid;
-    transition: border-color 0.15s linear;
+    font-size: 16px;
+    padding: 13px 10px;
+    border: 1px solid #eef2f8;
+    border-radius: 4px;
+    background-color: #eef2f8;
+    transition: border-color 0.1s ease-out ;
 
     ${props => props.isInvalid ? 
         css`
-            border-color: #f00;
-        ` 
+            border-color: #f00 ;
+        `
         :
         css`
-            border-color: #c0d0e6;
-            
-            :focus-within {
-                border-color: rgba(0,0,0,0.3);
+            :hover, :focus, :active {
+                border-color: #3b5bfd;
             }
         `
-    };
+    }
+
+    :hover, :focus, :active {
+        background-color: white;
+    }
     
     ::placeholder {
-        color: #849aac;
+        font-size: 15px;
+        font-weight: normal;
+        color: #849aac; 
     }
 `
+
+export const AddFieldButton = styled.button`
+    padding: 4px 6px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #c0d0e6;
+    border-radius: 8px;
+    color: #849aac;
+    font-size: 15px;
+    transition: border-color 0.1s ease-out, color 0.1s ease-out;
+
+    :hover {
+        border-color: #3b5bfd;
+        color: #3b5bfd;
+        cursor: pointer;
+    }
+`
+
+
+export const Content = styled.div`
+    width: 540px;
+    padding: 25px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 999999;
+`
+
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    /* transition: height 0.2s linear; */
+`
+
 export const PrioritySelect = styled.select`
-    width: 100%;
     border-color: #c0d0e6;
+    border-radius: 6px;
     height: 50px;
-    transition: border-color 0.15s linear;
     font-size: 15px;
     text-indent: 7px;
-    ${props => props.selectChanged ? 
-        css`
-            color: black;
-        ` :
-        css`
-            color: #849aac;
-        `}
+    transition: border-color 0.1s ease-out;
+    color: #849aac;
     
-    :focus {
-        border-color: rgba(0,0,0,0.3);
+    :hover, :active {
+        background-color: white;
+        border-color: #3b5bfd;
+        cursor: pointer;
     }
 `
 
 export const PriorityOption = styled.option`
     color: black;
-    
 `
 export const SubmitButton = styled.button`
+    height: 45px;
     width: 100%;
-    height: 50px;
     background-color: #3b5bfd;
     border: none;
-    border-radius: 5px;
+    padding: 4px;
+    border-radius: 3px;
     color: white;
     font-size: 16px;
     transition: opacity 0.15s linear;
-    margin-top: 15px;
+    margin-top: 25px;
 
     :hover {
         opacity: 85%;
@@ -96,31 +195,36 @@ export const Error = styled.p`
     color: #e04a31;
 `
 
-export const CalendarLabel = styled.label`  
+export const CalendarButton = styled.button`  
     display: flex;
     flex-direction: column;
     color: #849aac;
     justify-content: center;
     border: 1px solid #c0d0e6;
+    border-radius: 6px;
     height: 50px;
     background-color: white;
     transition: border-color 0.15s linear;
     font-size: 15px;
     text-indent: 10px;
+
+    ${props => props.active &&
+        css`
+            background-color: white;
+            border-color: #3b5bfd;
+        `
+    }
     
     :hover {
+        background-color: white;
+        border-color: #3b5bfd;
         cursor: pointer;
-    }
-
-    :focus {
-        border-color: rgba(0,0,0,0.3);
     }
 
 `
 
 export const CalendarContainer = styled.div`
   /* ~~~ container styles ~~~ */
-  margin-top: 20px;
   background-color: white;
   padding: 8px 4px;
   border: 1px solid #c0d0e6;
