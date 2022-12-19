@@ -1,10 +1,11 @@
-import React, { useEffect } from "react"
-import { createContext, useState } from "react"
+import React, { useEffect, createContext, useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState()
+    const navigate = useNavigate()
 
     useEffect(() => {
         const userLoggedIn = JSON.parse(localStorage.getItem("userLoggedIn"))
@@ -46,6 +47,7 @@ export const UserProvider = ({ children }) => {
     }
 
     const logout = () => {
+        navigate('/login')
         localStorage.removeItem('userLoggedIn')
         setUser(null)
     }

@@ -37,28 +37,34 @@ export const CardMenuContent = styled.div`
     }
 `
 
-export const CardContainer = styled.div`
+export const DraggingBox = styled.div`
+    min-height: 75px;
+    background-color: grey;
+`
+
+export const CardItem = styled.li`
     display: flex;
     flex-direction: column;
     min-height: 75px;
-    margin-bottom: 20px;
     word-break: break-all;
     border-radius: 5px;
     box-shadow: 0 1px 4px 0 rgba(192, 208, 230, 0.8);
     background: #FFF;
     cursor: pointer;
-    ${props => props.isBeingDragged ? 
-        css`
-            opacity: 0%;
-        ` 
-        :
-        css`
-            :hover{
-                opacity: 80%;
-            }
-        `
-    }
+
+    ${props => props.isBeingDragged && css`
+        opacity: 0%;
+    `}
 `
+
+export const Container = styled.div`
+    ${props => props.isBeingDragged && css`
+        height: 140px;
+        background-color: #f5f7fb;
+        border-radius: 5px;
+    `}
+`
+
 export const Content = styled.div`
     display: flex;
     flex-direction: column;

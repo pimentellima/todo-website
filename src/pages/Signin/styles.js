@@ -55,6 +55,7 @@ export const Form = styled.form`
     width: 400px;
     border-radius: 5px;
     background-color: white;
+    gap: 4px;
 `
 
 export const SignupLabel = styled.label`

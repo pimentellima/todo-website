@@ -20,7 +20,7 @@ export const Header = styled.div`
     display: flex;
     padding: 0 10px 0 10px;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
     letter-spacing: -1px;
     color: #101820;
     font-weight: 600;

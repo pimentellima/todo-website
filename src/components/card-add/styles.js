@@ -1,6 +1,11 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    `
+
+export const Content = styled.div`
     display: flex;
     flex-direction: column;
     width: 540px;
@@ -10,80 +15,21 @@ export const Container = styled.div`
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
-export const FieldOptions = styled.div`
-    display: flex;
-    gap: 5px;
-`
-
 export const Title = styled.p`
     font-size: 20px;
+    margin-bottom: 18px;
     padding-bottom: 18px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 `
-
-export const InputLabel = styled.div`
+export const Label = styled.label`
     display: flex;
     color: #101820;
     font-size: 15px;
-    margin: 15px 0 15px 0;
-`
+    margin: 12px 0 8px 0;
 
-export const OptionsContainer = styled.div`
-    padding: 4px 8px;
-    border: 1px solid #c0d0e6;
-    border-radius: 3px;
-    background-color: white;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    margin-top: 20px;
-`
-
-export const RemoveFieldButton = styled.button` 
-    padding: 7px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: white;
-    transition: background-color 0.1s ease-out, color 0.1s ease-out;
-
-    :hover {
-        background-color: #e8f2fa;
-        cursor: pointer;
-        color: #3b5bfd;
+    :hover >:nth-child(1) {
+        visibility: visible; 
     }
-`
-
-export const InputDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-`
-
-export const OptionsMenu = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-`
-
-export const OptionsButton = styled.button`
-    margin-left: auto;
-    color: #101820;
-    padding: 4px;
-    font-size: 14px;
-    border: none;
-    border-radius: 8px;
-    background-color: white;
-    transition: background-color 0.1s ease-out;
-
-    :hover {
-        background-color: #e8f2fa;
-        cursor: pointer;
-    }
-
-    ${props => props.active && 
-        css`
-            color: #0b66ff;
-            background-color: #e8f2fa;
-        `
-    } 
 `
 
 export const Input = styled.input`
@@ -116,8 +62,13 @@ export const Input = styled.input`
         color: #849aac; 
     }
 `
+export const AddFieldDiv = styled.div`
+    display: flex;
+    margin-top: 15px;
+    gap: 6px;
+`
 
-export const AddFieldButton = styled.button`
+export const AddButton = styled.button`
     padding: 4px 6px;
     text-align: center;
     background-color: white;
@@ -134,24 +85,7 @@ export const AddFieldButton = styled.button`
     }
 `
 
-
-export const Content = styled.div`
-    width: 540px;
-    padding: 25px;
-    border-radius: 5px;
-    background-color: white;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    z-index: 999999;
-`
-
-export const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 18px;
-    /* transition: height 0.2s linear; */
-`
-
-export const PrioritySelect = styled.select`
+export const Select = styled.select`
     border-color: #c0d0e6;
     border-radius: 6px;
     height: 50px;
@@ -166,8 +100,7 @@ export const PrioritySelect = styled.select`
         cursor: pointer;
     }
 `
-
-export const PriorityOption = styled.option`
+export const Option = styled.option`
     color: black;
 `
 export const SubmitButton = styled.button`

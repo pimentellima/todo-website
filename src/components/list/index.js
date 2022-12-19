@@ -1,16 +1,14 @@
-import React, { Fragment, useContext, useState, useEffect } from 'react';
-
+import React, {  useState, useContext } from 'react';
 import Card from "../card";
 import * as C from './styles';
-import { SectionContext } from '../../contexts/SectionContext';
 import { CardMenu } from '../card-add';
 import Popup from 'reactjs-popup';
+import { useDrag } from '../../hooks/useDrag';
 
 const List = ({ section, data, listIndex }) => {    
-    const { dragging, drop } = useContext(SectionContext)
+    const { drop, dragging } = useDrag()
 
-    const[creating, setCreating] = useState(false)
-
+    const [creating, setCreating] = useState(false)
 
     return (
         <C.Content 
@@ -21,7 +19,6 @@ const List = ({ section, data, listIndex }) => {
                 {section}
                 <C.PopupButton onClick={() => setCreating(true)}>+</C.PopupButton>
             </C.SectionHeader>
-            <ul>
             <Popup 
                 nested
                 open={creating} 
@@ -30,6 +27,7 @@ const List = ({ section, data, listIndex }) => {
                 <C.HideScreen onClick={() => setCreating(false)}/>
                 <CardMenu setCreating={setCreating} listIndex={listIndex}/>
             </Popup>
+            <ul>
             {data.map((card, index) => 
                 <Card 
                     card={card} 

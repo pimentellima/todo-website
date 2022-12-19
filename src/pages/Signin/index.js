@@ -6,7 +6,7 @@ import { UserContext } from '../../contexts/UserContext';
 
 import { IoIosArrowForward } from "react-icons/io";
 
-import Input from '../../components/input'
+import { Input } from '../../components/input/styles';
 
 const Signin = () => {
     const [usernameError, setUsernameError] = useState('')
@@ -48,16 +48,16 @@ const Signin = () => {
             <C.Form onSubmit={(e) => handleLogin(e)}>
                 <C.TitleLabel>Entre na sua conta</C.TitleLabel>
                 <Input
-                    inputRef={userRef} 
-                    handler={() => setUsernameError('')}
+                    ref={userRef} 
+                    onChange={() => setUsernameError('')}
                     placeholder={'nome de usuário'}
                     isInvalid={!!usernameError}
                     type='username'
                 />
                 <C.LabelError>{usernameError}</C.LabelError>
                 <Input
-                    inputRef={passwordRef} 
-                    handler={() => setPasswordError('')}
+                    ref={passwordRef} 
+                    onChange={() => setPasswordError('')}
                     placeholder={'senha'}
                     isInvalid={!!passwordError}
                     type='password'

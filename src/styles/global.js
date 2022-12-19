@@ -12,8 +12,6 @@ export default createGlobalStyle`
     height: 100%;
   }
   
-
-
   body {
     font-family: sans-serif;
     background: #ecf1f8;

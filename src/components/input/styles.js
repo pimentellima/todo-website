@@ -1,46 +1,31 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from "styled-components";
 
 export const Input = styled.input`
-    padding-left: 10px;
-    border: none;
-    width: 100%;
-    font-size: 15px;
-    color: black;
-    
-    ::placeholder {
-        color: #849aac;
-    }
-`
-export const Content = styled.label`
-    display: flex;
-    border: 1px solid;
-    height: 50px;
-    transition: border-color 0.15s linear;
-    
+    font-size: 16px;
+    padding: 13px 10px;
+    border: 1px solid #eef2f8;
+    border-radius: 4px;
+    background-color: #eef2f8;
+    transition: border-color 0.1s ease-out ;
+
     ${props => props.isInvalid ? 
         css`
-            border-color: #f00;
-        ` 
+            border-color: #f00 ;
+        `
         :
         css`
-            border-color: #c0d0e6;
-            
-            :focus-within {
-                border-color: rgba(0,0,0,0.3);
+            :hover, :focus, :active {
+                border-color: #3b5bfd;
             }
         `
-    };
+    }
 
-    & {
-        margin-top: 15px;
+    :hover, :focus, :active {
+        background-color: white;
+    }
+    
+    ::placeholder {
+        font-size: 15px;
+        color: #849aac; 
     }
 `
-
-export const InputIcon = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
-    background-color: #ecf1f8;
-`
-
