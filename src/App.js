@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import GlobalStyle from './styles/global'
 
-import { DataProvider } from './contexts/DataContext'
+import { DataProvider } from './context/DataContext'
 
 import Login from './pages/login'
 import Signup from './pages/signup'

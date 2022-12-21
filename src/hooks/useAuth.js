@@ -1,8 +1,6 @@
-import { useEffect } from "react";
-
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
-import { DataContext } from "../contexts/DataContext";
+import { DataContext } from '../context/DataContext'
 
 export const useAuth = () => {
     const { setUser } = useContext(DataContext)
