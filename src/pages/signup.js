@@ -1,6 +1,8 @@
 import React from "react";
 
-import { SignupForm, SignContainer, Header } from '../features/authentication/index'
+import { SignupForm } from '../features/authentication/index'
+import Header from '../components/header/header'
+import SignContainer from '../components/sign-container/signContainer'
 import FooterLink from "../components/footer-link/footerLink";
 
 const Signup = () => {
