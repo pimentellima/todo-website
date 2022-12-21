@@ -13,7 +13,7 @@ const Calendar = ({ open, setOpen, date, setDate }) => {
     }   
 
     return (
-        <>
+        <div>
             <S.Button type='button' onClick={() => setOpen(true)}>
                 {date.toLocaleDateString()}
             </S.Button>
@@ -28,7 +28,7 @@ const Calendar = ({ open, setOpen, date, setDate }) => {
                     <ReactCalendar onClickDay={(value) => handleClickDay(value)} value={date}/>
                 </S.Container>
             </Popup> 
-        </>
+        </div>
     )
 }
 
