@@ -45,7 +45,7 @@ export const useAuth = () => {
     }
 
     const logout = () => {
-            navigate('/login')
+        navigate('/login')
         localStorage.removeItem('userLoggedIn')
         setUser(null)
     }
