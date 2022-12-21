@@ -1,23 +1,26 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom'
 
 import GlobalStyle from './styles/global'
-import Signin from './pages/Signin'
-import Signup from './pages/Signup'
-import User from './pages/User'
-import { Routes, Route } from 'react-router-dom'
-import { UserProvider } from './contexts/UserContext';
+
+import { DataProvider } from './contexts/DataContext'
+
+import Login from './pages/login'
+import Signup from './pages/signup'
+import User from './pages/user'
 
 const App = () => {
 
     return (
-        <UserProvider>
+        <DataProvider>
             <GlobalStyle/>
             <Routes>
-                <Route path="/*" element={<Signin/>} />
+                <Route path="/*" element={<Login/>} />
+                <Route path="/login" element={<Login/>} />
                 <Route path='/user' element={<User/>}/>
                 <Route path='/signup' element={<Signup/>}/>
             </Routes>
-        </UserProvider>
+        </DataProvider>
     )
 }
 
