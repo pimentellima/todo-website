@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useData } from '../../../../hooks/useData';
 
-import TodoSection from '../todo-section/todoSection';
+import Section from '../section/section';
 
-import * as S from './boardStyles';
+import * as S from './styles';
 
 const Board = () => {
 
@@ -13,7 +13,7 @@ const Board = () => {
     return (
         <S.Content>
             {todos.map((section, index) =>
-                <TodoSection  
+                <Section  
                     title={section.name} 
                     content={section.content} 
                     sectionIndex={index} 

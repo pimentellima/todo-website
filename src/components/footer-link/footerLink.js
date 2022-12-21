@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as S from './footerLinkStyles'
+import * as S from './styles'
 
 const FooterLink = ({ children, link, label }) => {
     

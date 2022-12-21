@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import * as S from './loginFormStyles'
+import * as S from './styles'
 
 import TextField from '../text-field/textField'
 import LoginButton from '../login-button/loginButton'

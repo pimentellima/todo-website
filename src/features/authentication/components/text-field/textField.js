@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as S from './textFieldStyles';
+import * as S from './styles';
 
 const TextField = ({ inputRef, onChange, placeholder, isInvalid, type }) => {
 

@@ -1,12 +1,12 @@
 import React from "react";
 
-import * as S from './fieldStyles'
+import * as S from './styles'
 
 import { HiDotsVertical } from 'react-icons/hi';
 
 import Popup from "reactjs-popup";
 
-const Field = ({ label, onRemove, children, hidden }) => {
+const TodoFormField = ({ label, onRemove, children, hidden }) => {
 
     return (
         <div hidden={hidden}>
@@ -27,4 +27,4 @@ const Field = ({ label, onRemove, children, hidden }) => {
     )
 }
 
-export default Field;
+export default TodoFormField;

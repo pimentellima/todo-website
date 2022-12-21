@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as S from './loginButtonStyles'
+import * as S from './styles'
 
 const LoginButton = ({ children }) => {
 

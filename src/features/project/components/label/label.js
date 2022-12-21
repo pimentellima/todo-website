@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as S from './labelStyles'
+import * as S from './styles'
 
 import { GrTextAlignLeft, GrCalendar } from "react-icons/gr";
 

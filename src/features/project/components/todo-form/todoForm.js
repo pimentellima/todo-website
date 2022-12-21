@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { useData } from '../../../../hooks/useData'
 
-import * as S from './todoFormStyles'
+import * as S from './styles'
 
-import Calendar from './calendar';
-import Field from './field';
+import Calendar from '../calendar/calendar';
+import TodoFormField from '../todo-form-field/todoFormField';
 
 const TodoForm = ({ sectionIndex, handleCloseModal }) => {
     const [calendarOpen, setCalendarOpen] = useState(false);
@@ -59,29 +59,29 @@ const TodoForm = ({ sectionIndex, handleCloseModal }) => {
                 isInvalid={!!error} 
                 />
             <S.Error>{error}</S.Error>
-            <Field hidden={!description} label={'Descrição'} onRemove={() => setDescription(false)}>
+            <TodoFormField hidden={!description} label={'Descrição'} onRemove={() => setDescription(false)}>
                 <S.TextField
                     autoFocus
                     ref={descriptionRef}
                     onKeyDown={e => e.key === 'Enter' && handleSubmit(e)}
                     placeholder= {'Digite aqui ...'}
                     /> 
-            </Field>
-            <Field hidden={!deadline} label={'Prazo'} onRemove={() => setDeadline(false)}> 
+            </TodoFormField>
+            <TodoFormField hidden={!deadline} label={'Prazo'} onRemove={() => setDeadline(false)}> 
                <Calendar
                     open={calendarOpen}
                     setOpen={setCalendarOpen}
                     date={date}
                     setDate={setDate}
                     />
-            </Field>
-            <Field hidden={!priority} label={'Prioridade'} onRemove={() => setPriority(false)}>
+            </TodoFormField>
+            <TodoFormField hidden={!priority} label={'Prioridade'} onRemove={() => setPriority(false)}>
                 <S.Select id='priority' ref={priorityRef}>
                     <option value='Baixa'>Baixa</option>    
                     <option value='Media'>Média</option>
                     <option value='Alta'>Alta</option>
                 </S.Select>
-            </Field>
+            </TodoFormField>
             <S.ButtonsContainer>
                 <S.AddButton type='button' hidden={description} onClick={() => setDescription(true)}>
                     + adicionar descrição

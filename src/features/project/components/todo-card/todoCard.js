@@ -1,8 +1,8 @@
 import React from 'react';
 
-import * as S from './todoCardStyles'
+import * as S from './styles'
 
-import Label from './label';
+import Label from '../label/label';
 
 import { useDrag } from '../../hooks/useDrag';
 

@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { IoIosArrowForward } from "react-icons/io";
-import * as S from './signupFormStyles'
+import * as S from './styles'
 
 import TextField from "../text-field/textField";
 import LoginButton from '../login-button/loginButton'

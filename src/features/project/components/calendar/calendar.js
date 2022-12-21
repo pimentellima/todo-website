@@ -1,7 +1,7 @@
 import React from "react";
 import { Calendar as ReactCalendar } from "react-calendar";
 
-import * as S from './calendarStyles'
+import * as S from './styles'
 
 import Popup from "reactjs-popup";
 

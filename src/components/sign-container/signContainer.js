@@ -1,21 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 
-const StyledContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-`
+import * as S from './styles';
 
 const SignContainer = ({ children }) => {
     return(
-        <StyledContainer>
+        <S.Container>
             {children}
-        </StyledContainer>
+        </S.Container>
     )
 }
 

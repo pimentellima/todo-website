@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 import { useDrag } from '../../hooks/useDrag';
 
-import TodoCard from '../todo-card/todoCard'
-import ControlledModal from '../controlled-modal/controlledModal';
+import TodoCard from '../todo-card/todoCard';
 import TodoForm from '../todo-form/todoForm'
+import Modal from '../modal/modal';
 
-import * as S from './todoSectionStyles';
+import * as S from './styles';
 
-const TodoSection = ({ title, content, sectionIndex }) => {    
+const Section = ({ title, content, sectionIndex }) => {    
     const { drop, dragging } = useDrag()
     
     const [openForm, setOpenForm] = useState(false)
@@ -21,9 +21,9 @@ const TodoSection = ({ title, content, sectionIndex }) => {
             <S.Header>
                 {title}
                 <S.FormButton onClick={() => setOpenForm(true)}>+</S.FormButton>
-                <ControlledModal open={openForm} handleCloseModal={() => setOpenForm(false)}>
+                <Modal open={openForm} handleCloseModal={() => setOpenForm(false)}>
                     <TodoForm handleCloseModal={() => setOpenForm(false)} sectionIndex={sectionIndex}/>
-                </ControlledModal>
+                </Modal>
             </S.Header>
             {content.map((todo, index) =>
                 <TodoCard
@@ -37,4 +37,4 @@ const TodoSection = ({ title, content, sectionIndex }) => {
     )
 }
 
-export default TodoSection;
+export default Section;
