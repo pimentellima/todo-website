@@ -1,6 +1,6 @@
 import styled, { css} from "styled-components";
 
-export const Wrapper = styled.div`
+export const Label = styled.label`
     display: flex;
     color: #101820;
     font-size: 15px;

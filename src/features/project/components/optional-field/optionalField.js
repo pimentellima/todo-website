@@ -10,7 +10,7 @@ const OptionalField = ({ labelText, onRemoveField, children }) => {
     
     return (
         <S.Container>
-            <S.Wrapper >
+            <S.Label htmlFor="">
                 {labelText} 
                 <Popup 
                     nested 
@@ -21,7 +21,7 @@ const OptionalField = ({ labelText, onRemoveField, children }) => {
                         <S.RemoveButton onClick={onRemoveField}>Remover campo</S.RemoveButton>
                     </S.MenuContent>
                 </Popup>
-            </S.Wrapper>
+            </S.Label>
             {children}
         </S.Container>
     )
