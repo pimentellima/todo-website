@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './styles'
 
-import Label from '../label/label';
+import CardLabel from '../card-label/cardLabel';
 
 import { useDrag } from '../../hooks/useDrag';
 
@@ -31,18 +31,18 @@ const TodoCard = ({ todo, index, sectionIndex }) => {
                         {todo.title}
                     </S.Title>
                     {todo.description && 
-                        <Label icon={'description'} text={'DESCRIÇÃO'}>
+                        <CardLabel icon={'description'} text={'DESCRIÇÃO'}>
                             <S.Span>
                                 {todo.description}
                             </S.Span>
-                        </Label>
+                        </CardLabel>
                     }
                     {todo.deadline &&
-                        <Label icon={'deadline'} text={'PRAZO'}>
+                        <CardLabel icon={'deadline'} text={'PRAZO'}>
                             <S.Span>
                                 {todo.deadline}
                             </S.Span>
-                        </Label>
+                        </CardLabel>
                     }
                 </S.Content>
             </S.Wrapper>
