@@ -2,11 +2,10 @@ import React from "react";
 
 import { useAuth } from "../../../../hooks/useAuth";
 
-import * as S from './styles'
+import * as S from './styles';
 
 const Header = () => {
-
-    const { logout } = useAuth()    
+    const { logout } = useAuth();
 
     return(
         <S.StyledHeader>

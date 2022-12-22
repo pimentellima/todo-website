@@ -13,5 +13,4 @@ export const HideScreen  = styled.div`
 export const Content = styled.div`
     display: flex;
     z-index: 9999;
-    background-color: red;
 `

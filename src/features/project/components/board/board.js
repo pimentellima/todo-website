@@ -7,8 +7,7 @@ import Section from '../section/section';
 import * as S from './styles';
 
 const Board = () => {
-
-    const { todos } = useData()
+    const { todos } = useData();
 
     return (
         <S.Content>

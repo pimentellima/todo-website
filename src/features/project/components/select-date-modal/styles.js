@@ -12,6 +12,7 @@ export const Button = styled.button`
   transition: border-color 0.15s linear;
   font-size: 15px;
   text-indent: 10px;
+  width: 100%;
 
   :focus-within {
     background-color: white;
@@ -24,7 +25,8 @@ export const Button = styled.button`
       cursor: pointer;
   }
 `
-export const Container = styled.div`
+
+export const Content = styled.div`
   background-color: white;
   padding: 8px 4px;
   border: 1px solid #c0d0e6;

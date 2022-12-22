@@ -9,9 +9,9 @@ import Modal from '../modal/modal';
 import * as S from './styles';
 
 const Section = ({ title, content, sectionIndex }) => {    
-    const { drop, dragging } = useDrag()
-    
     const [openForm, setOpenForm] = useState(false)
+    
+    const { drop, dragging } = useDrag()
 
     return (
         <S.Container 
@@ -21,8 +21,8 @@ const Section = ({ title, content, sectionIndex }) => {
             <S.Header>
                 {title}
                 <S.FormButton onClick={() => setOpenForm(true)}>+</S.FormButton>
-                <Modal open={openForm} handleCloseModal={() => setOpenForm(false)}>
-                    <TodoForm handleCloseModal={() => setOpenForm(false)} sectionIndex={sectionIndex}/>
+                <Modal open={openForm} closeModal={() => setOpenForm(false)}>
+                    <TodoForm closeModal={() => setOpenForm(false)} sectionIndex={sectionIndex}/>
                 </Modal>
             </S.Header>
             {content.map((todo, index) =>

@@ -1,49 +1,33 @@
-import React, { useRef, useState } from 'react';
-
-import { v4 as uuidv4 } from 'uuid';
-
-import { useData } from '../../../../hooks/useData'
+import React from 'react';
 
 import * as S from './styles'
 
-import Calendar from '../calendar/calendar';
-import TodoFormField from '../todo-form-field/todoFormField';
+import SelectDateModal from '../select-date-modal/selectDateModal';
+import OptionalField from '../optional-field/optionalField';
+import { useTodoForm } from '../../hooks/useForm';
 
-const TodoForm = ({ sectionIndex, handleCloseModal }) => {
-    const [calendarOpen, setCalendarOpen] = useState(false);
-    const [priority, setPriority] = useState(false);
-    const [description, setDescription] = useState(false);
-    const [deadline, setDeadline] = useState(false);
-    const [error, setError] = useState('');
-    const [date, setDate] = useState(new Date());
-
-    const { todos, setTodos } = useData();
-    
-    const titleRef = useRef();
-    const descriptionRef = useRef();
-    const priorityRef = useRef();
+const TodoForm = ({ sectionIndex, closeModal }) => {
+   const {
+        priority,
+        description,
+        deadline,
+        error,
+        date,
+        titleRef,
+        descriptionRef,
+        priorityRef,
+        setPriority,
+        setDescription,
+        setDeadline,
+        setError,
+        setDate,
+        addTodo
+    } = useTodoForm()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if(titleRef.current.value === '') {
-            setError('Não pode ser vazio');
-            return;
-        } 
-
-        const todo = new Object();
-        todo.title = titleRef.current.value;
-        todo.description = description ? descriptionRef.current.value : '';
-        todo.priority = priority ? priorityRef.current.value : '';
-        todo.deadline = deadline ? date.toLocaleDateString() : '';
-        todo.id = uuidv4();
-
-        const newTodos = [...todos];
-        const section = newTodos[sectionIndex];
-        section.content.push(todo);
-        newTodos.splice(sectionIndex, 1, section);
-        setTodos(newTodos);
-        handleCloseModal();
+        const added = addTodo(sectionIndex);
+        if (added) closeModal()
     }
 
     return (
@@ -59,30 +43,31 @@ const TodoForm = ({ sectionIndex, handleCloseModal }) => {
                 isInvalid={!!error} 
                 />
             <S.Error>{error}</S.Error>
-            <TodoFormField hidden={!description} label={'Descrição'} onRemove={() => setDescription(false)}>
-                <S.TextField
-                    autoFocus
-                    ref={descriptionRef}
-                    onKeyDown={e => e.key === 'Enter' && handleSubmit(e)}
-                    placeholder= {'Digite aqui ...'}
-                    /> 
-            </TodoFormField>
-            <TodoFormField hidden={!deadline} label={'Prazo'} onRemove={() => setDeadline(false)}> 
-               <Calendar
-                    open={calendarOpen}
-                    setOpen={setCalendarOpen}
-                    date={date}
-                    setDate={setDate}
-                    />
-            </TodoFormField>
-            <TodoFormField hidden={!priority} label={'Prioridade'} onRemove={() => setPriority(false)}>
-                <S.Select id='priority' ref={priorityRef}>
-                    <option value='Baixa'>Baixa</option>    
-                    <option value='Media'>Média</option>
-                    <option value='Alta'>Alta</option>
-                </S.Select>
-            </TodoFormField>
-            <S.ButtonsContainer>
+            {description && 
+                <OptionalField labelText={'Descrição'} onRemoveField={() => setDescription(false)}>
+                    <S.TextField
+                        autoFocus
+                        ref={descriptionRef}
+                        onKeyDown={e => e.key === 'Enter' && handleSubmit(e)}
+                        placeholder= {'Digite aqui ...'}
+                        /> 
+                </OptionalField>
+            }
+            {deadline && 
+                <OptionalField labelText={'Prazo'} onRemoveField={() => setDeadline(false)}> 
+                    <SelectDateModal date={date} setDate={setDate}/>
+                </OptionalField>
+            }
+            {priority && 
+                <OptionalField labelText={'Prioridade'} onRemoveField={() => setPriority(false)}>
+                    <S.Select id='priority' ref={priorityRef}>
+                        <option value='Baixa'>Baixa</option>    
+                        <option value='Media'>Média</option>
+                        <option value='Alta'>Alta</option>
+                    </S.Select>
+                </OptionalField>
+            }
+            <S.AddFieldsSection>
                 <S.AddButton type='button' hidden={description} onClick={() => setDescription(true)}>
                     + adicionar descrição
                 </S.AddButton>
@@ -92,7 +77,7 @@ const TodoForm = ({ sectionIndex, handleCloseModal }) => {
                 <S.AddButton type='button' hidden={priority} onClick={() => setPriority(true)}>
                     + adicionar prioridade
                 </S.AddButton>
-            </S.ButtonsContainer>
+            </S.AddFieldsSection>
             <S.SubmitButton onClick={(e) => handleSubmit(e)}>Finalizar</S.SubmitButton>
         </S.Form>
     )

@@ -10,7 +10,15 @@ export const Form = styled.form`
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `
 
+export const Title = styled.p`
+    font-size: 20px;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+`
+
 export const TextField = styled.input`
+    width: 100%;
     font-size: 16px;
     padding: 13px 10px;
     border: 1px solid #eef2f8;
@@ -40,11 +48,11 @@ export const TextField = styled.input`
     }
 `
 
-export const Title = styled.p`
-    font-size: 20px;
-    margin-bottom: 18px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+export const Error = styled.p`
+    display: flex;
+    text-align: start;
+    font-size: 12px;
+    color: #e04a31;
 `
 
 export const Label = styled.label`
@@ -58,14 +66,24 @@ export const Label = styled.label`
     }
 `
 
-export const Error = styled.p`
-    display: flex;
-    text-align: start;
-    font-size: 12px;
-    color: #e04a31;
+export const Select = styled.select`
+    border-color: #c0d0e6;
+    border-radius: 6px;
+    height: 50px;
+    font-size: 15px;
+    text-indent: 7px;
+    transition: border-color 0.1s ease-out;
+    color: #849aac;
+    width: 100%;
+    
+    :hover, :active {
+        background-color: white;
+        border-color: #3b5bfd;
+        cursor: pointer;
+    }
 `
 
-export const ButtonsContainer = styled.div`
+export const AddFieldsSection = styled.section`
     display: flex;
     margin-top: 15px;
     gap: 6px;
@@ -87,21 +105,7 @@ export const AddButton = styled.button`
         cursor: pointer;
     }
 `
-export const Select = styled.select`
-    border-color: #c0d0e6;
-    border-radius: 6px;
-    height: 50px;
-    font-size: 15px;
-    text-indent: 7px;
-    transition: border-color 0.1s ease-out;
-    color: #849aac;
-    
-    :hover, :active {
-        background-color: white;
-        border-color: #3b5bfd;
-        cursor: pointer;
-    }
-`
+
 
 export const SubmitButton = styled.button`
     height: 45px;
