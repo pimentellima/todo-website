@@ -19,3 +19,12 @@ export const Label = styled.label`
     color: #48626f;
 `
 
+export const Span = styled.span`
+    text-indent: 20px;
+    cursor: pointer;
+    font-size: 11px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+`

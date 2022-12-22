@@ -32,16 +32,12 @@ const TodoCard = ({ todo, index, sectionIndex }) => {
                     </S.Title>
                     {todo.description && 
                         <CardLabel icon={'description'} text={'DESCRIÇÃO'}>
-                            <S.Span>
-                                {todo.description}
-                            </S.Span>
+                            {todo.description}
                         </CardLabel>
                     }
                     {todo.deadline &&
                         <CardLabel icon={'deadline'} text={'PRAZO'}>
-                            <S.Span>
-                                {todo.deadline}
-                            </S.Span>
+                            {todo.deadline}
                         </CardLabel>
                     }
                 </S.Content>

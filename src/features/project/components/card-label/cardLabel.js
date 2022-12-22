@@ -19,7 +19,9 @@ const CardLabel = ({ children, icon, text }) => {
                     {text}
                 </S.Label>
             </S.Header>
-            {children}
+            <S.Span>
+                {children}
+            </S.Span>
         </S.Content> 
     )
 }

@@ -49,16 +49,6 @@ export const Header = styled.header`
     height: 20px;
 `
 
-export const Span = styled.span`
-    text-indent: 20px;
-    cursor: pointer;
-    font-size: 11px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-`
-
 export const Title = styled.h1`
     cursor: pointer;    
     font-size: 15px;
