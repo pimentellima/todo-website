@@ -6,7 +6,6 @@ const Header = ({ children }) => {
 
     return(
         <S.Header>
-            mathasks
             {children}
         </S.Header>
     )

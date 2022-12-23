@@ -9,7 +9,9 @@ const LoginPage = () => {
 
     return (
         <SignContainer>
-            <Header/>
+            <Header>
+                mathasks
+            </Header>
             <LoginForm/>
             <FooterLink link='/signup' label={'Cadastrar-se'}>
                 Ainda não tem uma conta?
