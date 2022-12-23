@@ -3,16 +3,16 @@ import { Routes, Route } from 'react-router-dom'
 
 import GlobalStyle from './styles/global'
 
-import { DataProvider } from './context/DataContext'
+import { CurrentUserProvider } from './context/current-user-context';
 
-import Login from './pages/login'
-import Signup from './pages/signup'
-import User from './pages/user'
+import Login from './pages/login-page'
+import Signup from './pages/signup-page'
+import User from './pages/user-page'
 
 const App = () => {
 
     return (
-        <DataProvider>
+        <CurrentUserProvider>
             <GlobalStyle/>
             <Routes>
                 <Route path="/*" element={<Login/>} />
@@ -20,7 +20,7 @@ const App = () => {
                 <Route path='/user' element={<User/>}/>
                 <Route path='/signup' element={<Signup/>}/>
             </Routes>
-        </DataProvider>
+        </CurrentUserProvider>
     )
 }
 
