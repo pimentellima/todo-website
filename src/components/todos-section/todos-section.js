@@ -19,7 +19,7 @@ const TodosSection = ({ title, content, sectionIndex }) => {
         <S.Container>
             <S.Header>
                 {title}  {'(' + content.length + ')'} 
-                {title === 'Tarefas' ?
+                {sectionIndex === 0 ?
                     <TodoFormModal sectionIndex={sectionIndex}/>
                     :
                     <PopupMenu options={[{label: 'Remover seção', handler: () => removeSection(sectionIndex)}]}/>
