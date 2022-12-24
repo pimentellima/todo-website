@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useDragTodo } from '../../hooks/use-drag-todo';
+import PopupMenu from '../../ui/popup-menu/popup-menu';
+
+import {useRemoveSection} from '../../hooks/use-remove-section'
 
 import TodoCard from '../todo-card/todo-card/todo-card'
 import TodoFormModal from '../todo-form-modal/todo-form-modal/todo-form-modal';
@@ -8,16 +11,18 @@ import TodoFormModal from '../todo-form-modal/todo-form-modal/todo-form-modal';
 import * as S from './styles';
 
 const TodosSection = ({ title, content, sectionIndex }) => {    
-    const [modalOpen, setModalOpen] = useState(false)
-    
+    const { removeSection } = useRemoveSection()
+
     const { onDragEnterSection, dragging } = useDragTodo()
 
     return (
         <S.Container>
             <S.Header>
                 {title}  {'(' + content.length + ')'} 
-                {title === 'Tarefas' &&
-                    <S.CreateTodoButton onClick={() => setModalOpen(true)}>+</S.CreateTodoButton>
+                {title === 'Tarefas' ?
+                    <TodoFormModal sectionIndex={sectionIndex}/>
+                    :
+                    <PopupMenu options={[{label: 'Remover seção', handler: () => removeSection(sectionIndex)}]}/>
                 }
             </S.Header>
             <S.Content 
@@ -25,12 +30,6 @@ const TodosSection = ({ title, content, sectionIndex }) => {
                 onDragEnter={e => onDragEnterSection(e, sectionIndex)}
                 onDragOver={e => e.preventDefault()}
                 onDrop={(e) => e.preventDefault()}>
-                {modalOpen && 
-                    <TodoFormModal 
-                        setModalOpen={setModalOpen}
-                        sectionIndex={sectionIndex}
-                        />
-                }
                 {content.map((todo, index) =>
                     <TodoCard
                         todo={todo} 

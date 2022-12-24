@@ -13,7 +13,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    min-height: calc(100% - 30px);
+    height: calc(100% - 30px);
     border: 1px solid rgba(0, 0, 0, 0.03);
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.01);
@@ -53,22 +53,7 @@ export const Header = styled.header`
     padding: 0 10px;
     margin-bottom: 10px;
     color: #101820;
-`
 
-export const CreateTodoButton = styled.button`
-    width: 30px;
-    height: 30px;
-    background-color: #3b5bfd;
-    border-radius: 20px;
-    border: 0;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-    transition: opacity 0.15s linear;
-    :hover {
-        opacity: 85%;
-        cursor: pointer;
-    }
 `
 
 

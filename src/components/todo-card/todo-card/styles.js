@@ -1,10 +1,9 @@
 import styled, { css } from 'styled-components'
 
 export const DragShadow = styled.div`
-    
     ${props => props.isBeingDragged && 
         css`
-            height: 140px;
+            min-height: 140px;
             background-color: rgba(0, 0, 0, 0.03);
             border-radius: 5px;
             margin-bottom: 10px;
@@ -20,7 +19,10 @@ export const Wrapper = styled.div`
     border-radius: 5px;
     box-shadow: 0 1px 4px 0 rgba(192, 208, 230, 0.8);
     background: #FFF;
-    cursor: pointer;
+
+    :hover {
+        cursor: pointer;
+    }
     
     ${props => props.isBeingDragged && 
         css`
@@ -50,14 +52,16 @@ export const Header = styled.header`
 `
 
 export const Title = styled.h1`
-    cursor: pointer;    
     font-size: 15px;
     margin-bottom: 3px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 `
 
 export const Priority = styled.div`
     display: flex;
-    cursor: pointer;
     font-weight: 600;
     font-size: 11px;
     padding: 2px 5px 2px 5px;

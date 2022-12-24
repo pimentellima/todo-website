@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Popup from 'reactjs-popup';
 
 import * as S from './styles'
 
-import RemovableField from '../removable-field/removable-field';
 import CalendarField from '../calendar-field/calendar-field'
 import { useCreateTodo } from '../../../hooks/use-create-todo';
+import PopupMenu from '../../../ui/popup-menu/popup-menu';
 
-const TodoFormModal = ({ setModalOpen, sectionIndex }) => {
+const TodoFormModal = ({ sectionIndex }) => {
+    const [open, setOpen] = useState(false)
+
     const {
         priority,
         description,
@@ -29,64 +31,76 @@ const TodoFormModal = ({ setModalOpen, sectionIndex }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const added = addTodo(sectionIndex);
-        if (added) setModalOpen(false)
+        if (added) setOpen(false)
     }
 
     return (
         <Popup 
             nested
-            open={true}
+            open={open}
+            offsetX={5}
+            offsetY={5}
+            trigger=<S.ModalButton>+</S.ModalButton>
+            onOpen={() => setOpen(true)}
             arrow={false}
             closeOnDocumentClick={false}
             >
-            <S.HideScreen onClick={() => setModalOpen(false)}/>
+            <S.HideScreen onClick={() => setOpen(false)}/>
             <S.Form autoComplete='off' onSubmit={e => handleSubmit(e)}>
                 <S.Title>Nova tarefa</S.Title>
-                <S.Label htmlFor=''>*Título da tarefa</S.Label>
-                <S.TextField
-                    autoFocus
-                    ref={titleRef}
-                    onChange={() => setError('')}
-                    onKeyDown={e => e.key === 'Enter' && handleSubmit(e)}
-                    placeholder= "Digite aqui ..."
-                    isInvalid={!!error} 
-                    />
-                <S.Error>{error}</S.Error>
-                {description && 
-                    <RemovableField labelText={'Descrição'} onRemoveField={() => setDescription(false)}>
-                        <S.TextField
-                            autoFocus
-                            ref={descriptionRef}
-                            onKeyDown={e => e.key === 'Enter' && handleSubmit(e)}
-                            placeholder= {'Digite aqui ...'}
-                            /> 
-                    </RemovableField>
-                }
-                {deadline && 
-                    <RemovableField labelText={'Prazo'} onRemoveField={() => setDeadline(false)}> 
-                        <CalendarField date={date} setDate={setDate}/>
-                    </RemovableField>
-                }
-                {priority && 
-                    <RemovableField labelText={'Prioridade'} onRemoveField={() => setPriority(false)}>
-                        <S.Select id='priority' ref={priorityRef}>
-                            <option value='Baixa'>Baixa</option>    
-                            <option value='Media'>Média</option>
-                            <option value='Alta'>Alta</option>
-                        </S.Select>
-                    </RemovableField>
-                }
-                <S.AddFieldsSection>
-                    <S.AddButton type='button' hidden={description} onClick={() => setDescription(true)}>
+                <div>
+                    <S.Label htmlFor=''>*Título da tarefa</S.Label>
+                    <S.TextField
+                        autoFocus
+                        ref={titleRef}
+                        onChange={() => setError('')}
+                        onKeyDown={e => e.key === 'Enter' && handleSubmit(e)}
+                        placeholder= "Digite aqui ..."
+                        isInvalid={!!error} 
+                        />
+                    <S.Error>{error}</S.Error>
+                </div>
+                <div hidden={!description}>
+                    <S.Label htmlFor=''>
+                        Descrição
+                        <PopupMenu options={ [{label:'Remover campo', handler: () => setDescription(false)}] }/>
+                    </S.Label>
+                    <S.TextField
+                        autoFocus
+                        ref={descriptionRef}
+                        onKeyDown={e => e.key === 'Enter' && handleSubmit(e)}
+                        placeholder= {'Digite aqui ...'}
+                        /> 
+                </div>
+                <div hidden={!deadline}>
+                    <S.Label htmlFor=''>
+                        Prazo
+                        <PopupMenu options={ [{label:'Remover campo', handler: () => setDeadline(false)}] }/>
+                    </S.Label>
+                    <CalendarField date={date} setDate={setDate}/>
+                </div>
+                <div hidden={!priority}>
+                    <S.Label htmlFor=''>
+                        Prioridade
+                        <PopupMenu options={ [{label:'Remover campo', handler: () => setPriority(false)}] }/>
+                    </S.Label>
+                    <S.Select id='priority' ref={priorityRef}>
+                        <option value='Baixa'>Baixa</option>    
+                        <option value='Media'>Média</option>
+                        <option value='Alta'>Alta</option>
+                    </S.Select>
+                </div>
+                <S.AddFieldsDiv>
+                    <S.AddFieldButton type='button' hidden={description} onClick={() => setDescription(true)}>
                         + adicionar descrição
-                    </S.AddButton>
-                    <S.AddButton type='button' hidden={deadline} onClick={() => setDeadline(true)}>
+                    </S.AddFieldButton>
+                    <S.AddFieldButton type='button' hidden={deadline} onClick={() => setDeadline(true)}>
                         + adicionar prazo
-                    </S.AddButton>
-                    <S.AddButton type='button' hidden={priority} onClick={() => setPriority(true)}>
+                    </S.AddFieldButton>
+                    <S.AddFieldButton type='button' hidden={priority} onClick={() => setPriority(true)}>
                         + adicionar prioridade
-                    </S.AddButton>
-                </S.AddFieldsSection>
+                    </S.AddFieldButton>
+                </S.AddFieldsDiv>
                 <S.SubmitButton onClick={(e) => handleSubmit(e)}>Finalizar</S.SubmitButton>
                 </S.Form>
         </Popup>

@@ -10,6 +10,21 @@ export const Form = styled.form`
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     z-index: 9999;
 `
+export const ModalButton = styled.button`
+    width: 26px;
+    height: 26px;
+    background-color: #3b5bfd;
+    border-radius: 6px;
+    border: 0;
+    color: white;
+    font-size: 20px;
+    transition: opacity 0.15s linear;
+    
+    :hover {
+        opacity: 85%;
+        cursor: pointer;
+    }
+`
 
 export const Title = styled.p`
     font-size: 20px;
@@ -58,13 +73,10 @@ export const Error = styled.p`
 
 export const Label = styled.label`
     display: flex;
+    justify-content: space-between;
     color: #101820;
     font-size: 15px;
     margin: 12px 0 8px 0;
-
-    :hover >:nth-child(1) {
-        visibility: visible; 
-    }
 `
 
 export const Select = styled.select`
@@ -84,13 +96,13 @@ export const Select = styled.select`
     }
 `
 
-export const AddFieldsSection = styled.section`
+export const AddFieldsDiv = styled.div`
     display: flex;
     margin-top: 15px;
     gap: 6px;
 `
 
-export const AddButton = styled.button`
+export const AddFieldButton = styled.button`
     padding: 4px 6px;
     text-align: center;
     background-color: white;

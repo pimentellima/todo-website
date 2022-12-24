@@ -8,13 +8,12 @@ export const useDragTodo = () => {
     const { dragItem, dragNode, dragging, setDragging } = useContext(DragTodoContext)
 
     const onDragStart = (e, params) => {  
-        e.target.scrollIntoView();
         dragNode.current = e.target;
-
+        
         dragItem.current = params;
         
         dragNode.current.addEventListener('dragend', onDragEnd);
-
+        
         setTimeout(() => {
             setDragging(true)
         }, 0);
