@@ -14,7 +14,7 @@ const UserPage = () => {
     return (
         <DragTodoProvider>
             <Header>
-                mathasks             
+                To do app             
                 <LogoutButton onClick={logout}>Sair</LogoutButton>
             </Header>
             <SectionsBoard/>

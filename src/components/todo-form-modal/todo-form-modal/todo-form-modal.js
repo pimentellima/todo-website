@@ -8,7 +8,7 @@ import RemovableField from '../removable-field/removable-field';
 import CalendarField from '../calendar-field/calendar-field'
 import { useCreateTodo } from '../../../hooks/use-create-todo';
 
-const TodoFormModal = ({ modalOpen, setModalOpen, sectionIndex }) => {
+const TodoFormModal = ({ setModalOpen, sectionIndex }) => {
     const {
         priority,
         description,
@@ -35,8 +35,8 @@ const TodoFormModal = ({ modalOpen, setModalOpen, sectionIndex }) => {
     return (
         <Popup 
             nested
+            open={true}
             arrow={false}
-            open={modalOpen}
             closeOnDocumentClick={false}
             >
             <S.HideScreen onClick={() => setModalOpen(false)}/>

@@ -10,7 +10,7 @@ const SignupPage = () => {
     return (
         <SignContainer>
             <Header>
-                mathasks
+                To do app
             </Header>
             <SignupForm/>
             <FooterLink link='/login' label={'Fazer login'}>

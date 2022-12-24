@@ -13,24 +13,33 @@ const TodosSection = ({ title, content, sectionIndex }) => {
     const { onDragEnterSection, dragging } = useDragTodo()
 
     return (
-        <S.Container 
-            draggable={dragging.toString()}
-            onDragEnter={e => onDragEnterSection(e, sectionIndex)}
-            onDragOver={e => e.preventDefault()}
-            onDrop={(e) => e.preventDefault()}>
+        <S.Container>
             <S.Header>
-                {title}
-                <S.FormButton onClick={() => setModalOpen(true)}>+</S.FormButton>
-                <TodoFormModal modalOpen={modalOpen} setModalOpen={setModalOpen} sectionIndex={sectionIndex}/>
+                {title}  {'(' + content.length + ')'} 
+                {title === 'Tarefas' &&
+                    <S.CreateTodoButton onClick={() => setModalOpen(true)}>+</S.CreateTodoButton>
+                }
             </S.Header>
-            {content.map((todo, index) =>
-                <TodoCard
-                    todo={todo} 
-                    key={todo.id}
-                    index={index}
-                    sectionIndex={sectionIndex}
-                    />
-            )}
+            <S.Content 
+                draggable={dragging.toString()}
+                onDragEnter={e => onDragEnterSection(e, sectionIndex)}
+                onDragOver={e => e.preventDefault()}
+                onDrop={(e) => e.preventDefault()}>
+                {modalOpen && 
+                    <TodoFormModal 
+                        setModalOpen={setModalOpen}
+                        sectionIndex={sectionIndex}
+                        />
+                }
+                {content.map((todo, index) =>
+                    <TodoCard
+                        todo={todo} 
+                        key={todo.id}
+                        index={index}
+                        sectionIndex={sectionIndex}
+                        />
+                )}
+            </S.Content>
         </S.Container>
     )
 }

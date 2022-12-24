@@ -30,7 +30,6 @@ export const useUserAuth = () => {
         const newUser = { name: name, password: password, 
             todos:  [ {name: "Tarefas", content:[]},
             {name: "Em Andamento", content:[]},
-            {name: "Pausadas", content:[]},
             {name: "Finalizadas", content:[]} ] }
 
         if(!usersStorage) {

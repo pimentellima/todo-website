@@ -5,7 +5,7 @@ export const DragShadow = styled.div`
     ${props => props.isBeingDragged && 
         css`
             height: 140px;
-            background-color: #f5f7fb;
+            background-color: rgba(0, 0, 0, 0.03);
             border-radius: 5px;
             margin-bottom: 10px;
          `
