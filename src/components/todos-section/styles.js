@@ -55,8 +55,4 @@ export const Header = styled.header`
     color: #101820;
 `
 
-export const Title = styled.p`
-`
-
-
 
