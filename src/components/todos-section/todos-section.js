@@ -18,7 +18,7 @@ const TodosSection = ({ title, content, sectionIndex }) => {
     return (
         <S.Container>
             <S.Header>
-                {title}  {'(' + content.length + ')'} 
+                {title} {'(' + content.length + ')'} 
                 {sectionIndex === 0 ?
                     <TodoFormModal sectionIndex={sectionIndex}/>
                     :

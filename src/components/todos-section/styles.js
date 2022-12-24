@@ -53,7 +53,9 @@ export const Header = styled.header`
     padding: 0 10px;
     margin-bottom: 10px;
     color: #101820;
+`
 
+export const Title = styled.p`
 `
 
 
