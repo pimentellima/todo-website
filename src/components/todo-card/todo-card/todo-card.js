@@ -7,15 +7,15 @@ import CardProperty from '../card-property/card-property'
 import { useDragTodo } from '../../../hooks/use-drag-todo';
 
 const TodoCard = ({ todo, index, sectionIndex }) => {
-    const { dragItem, dragStart, dragEnter, dragging } = useDragTodo()
+    const { dragItem, onDragStart, onDragEnterCard, dragging } = useDragTodo()
 
     return (
         <S.DragShadow
             isBeingDragged={ dragging && dragItem.current.index === index && dragItem.current.sectionIndex === sectionIndex }>
             <S.Wrapper
                 draggable
-                onDragStart={e => dragStart(e, {index, sectionIndex})}
-                onDragEnter={e => dragEnter(e, {index, sectionIndex})}
+                onDragStart={e => onDragStart(e, {index, sectionIndex})}
+                onDragEnter={e => onDragEnterCard(e, {index, sectionIndex})}
                 onDragOver={e => e.preventDefault()}
                 onDrop={e => e.preventDefault()} 
                 isBeingDragged={ dragging && dragItem.current.index === index && dragItem.current.sectionIndex === sectionIndex } >

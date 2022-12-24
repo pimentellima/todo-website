@@ -13,6 +13,8 @@ export default createGlobalStyle`
   }
   
   body {
+    margin: 0;
+    padding: 0;
     font-family: sans-serif;
     background: #ecf1f8;
     -webkit-font-smoothing: antialiased !important;

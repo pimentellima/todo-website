@@ -8,6 +8,7 @@ export const Form = styled.form`
     border-radius: 5px;
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 9999;
 `
 
 export const Title = styled.p`
@@ -123,6 +124,15 @@ export const SubmitButton = styled.button`
         opacity: 85%;
         cursor: pointer;
     }
+`
+export const HideScreen  = styled.div`
+    position: fixed;
+    top:0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(119,126,131, 0.5);
+    z-index: -999;
 `
 
 

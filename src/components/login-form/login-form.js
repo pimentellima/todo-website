@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import * as S from './styles'
 
-import TextField from '../text-field/text-field'
-import SignButton from '../sign-button/sign-button'
+import TextField from '../../ui/text-field/text-field'
+import SignButton from '../../ui/sign-button/sign-button'
 
 import { useUserAuth } from "../../hooks/use-user-auth";
 import { useUserData } from '../../hooks/use-user-data';

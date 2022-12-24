@@ -7,19 +7,19 @@ export const useDragTodo = () => {
 
     const { dragItem, dragNode, dragging, setDragging } = useContext(DragTodoContext)
 
-    const dragStart = (e, params) => {  
+    const onDragStart = (e, params) => {  
         dragNode.current = e.target;
 
         dragItem.current = params;
         
-        dragNode.current.addEventListener('dragend', dragEnd);
+        dragNode.current.addEventListener('dragend', onDragEnd);
 
         setTimeout(() => {
             setDragging(true)
         }, 0);
     }    
     
-    const dragEnter = (e, params) => {
+    const onDragEnterCard = (e, params) => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -46,7 +46,10 @@ export const useDragTodo = () => {
         dragItem.current = params;
     }    
 
-    const drop = (toSectionIndex) => {
+    const onDragEnterSection = (e, toSectionIndex) => {
+        e.preventDefault();
+        e.stopPropagation();
+
         const fromIndex = dragItem.current.index
         const fromSectionIndex = dragItem.current.sectionIndex
 
@@ -63,15 +66,17 @@ export const useDragTodo = () => {
         newTodos.splice(fromSectionIndex, 1, fromSection);
         newTodos.splice(toSectionIndex, 1, toSection);
 
+        dragItem.current = {index: toSection.content.length - 1, sectionIndex: toSectionIndex}
+
         setTodos(newTodos)
-    }
+    } 
     
-    const dragEnd = () => {
-        dragNode.current.removeEventListener('dragend', dragEnd);
+    const onDragEnd = () => {
+        dragNode.current.removeEventListener('dragend', onDragEnd);
         dragNode.current = null;
         dragItem.current = null;
         setDragging(false);
     }    
 
-    return { dragItem, dragging, dragStart, dragEnter, drop }
+    return { dragItem, dragging, onDragStart, onDragEnterCard, onDragEnterSection }
 }

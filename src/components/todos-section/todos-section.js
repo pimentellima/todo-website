@@ -3,27 +3,25 @@ import React, { useState } from 'react';
 import { useDragTodo } from '../../hooks/use-drag-todo';
 
 import TodoCard from '../todo-card/todo-card/todo-card'
-import TodoFormModal from '../todo-form-modal/todo-form-modal'
-import CreateTodoForm from '../create-todo-form/create-todo-form/create-todo-form'
+import TodoFormModal from '../todo-form-modal/todo-form-modal/todo-form-modal';
 
 import * as S from './styles';
 
 const TodosSection = ({ title, content, sectionIndex }) => {    
-    const [openForm, setOpenForm] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
     
-    const { drop, dragging } = useDragTodo()
+    const { onDragEnterSection, dragging } = useDragTodo()
 
     return (
         <S.Container 
             draggable={dragging.toString()}
+            onDragEnter={e => onDragEnterSection(e, sectionIndex)}
             onDragOver={e => e.preventDefault()}
-            onDrop={() => drop(sectionIndex)}>
+            onDrop={(e) => e.preventDefault()}>
             <S.Header>
                 {title}
-                <S.FormButton onClick={() => setOpenForm(true)}>+</S.FormButton>
-                <TodoFormModal open={openForm} closeModal={() => setOpenForm(false)}>
-                    <CreateTodoForm closeModal={() => setOpenForm(false)} sectionIndex={sectionIndex}/>
-                </TodoFormModal>
+                <S.FormButton onClick={() => setModalOpen(true)}>+</S.FormButton>
+                <TodoFormModal modalOpen={modalOpen} setModalOpen={setModalOpen} sectionIndex={sectionIndex}/>
             </S.Header>
             {content.map((todo, index) =>
                 <TodoCard

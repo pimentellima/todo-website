@@ -15,7 +15,7 @@ export const useCreateTodo = () => {
     const descriptionRef = useRef();
     const priorityRef = useRef();
 
-    const { todos, setTodos } = useData();
+    const { todos, setTodos } = useUserData();
 
     const addTodo = (sectionIndex) => {
         if(titleRef.current.value === '') {
@@ -37,7 +37,6 @@ export const useCreateTodo = () => {
         setTodos(newTodos);
         return true
     }
-
 
     return {
         priority,
