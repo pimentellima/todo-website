@@ -2,8 +2,9 @@ import { useRef, useState } from 'react'
 
 import {useUserData} from './use-user-data'
 
-export const useCreateSection = () => {
+export const useAddSection = () => {
     const { todos, setTodos } = useUserData()
+
     const [creating, setCreating] = useState(false)
 
     const titleRef = useRef()
@@ -20,5 +21,5 @@ export const useCreateSection = () => {
         setTodos(newTodos)
     }
 
-    return { titleRef, addSection, creating, setCreating }
+    return { titleRef, creating, setCreating, addSection }
 }

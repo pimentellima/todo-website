@@ -22,11 +22,11 @@ const PopupMenu = ({ options }) => {
             onOpen={() => setOpen(true)}
             arrow={false}
             position='bottom right'>
-            <S.MenuContent>
+            <S.Content>
                 {options.map((option, index) => 
                     <S.OptionButton onClick={() => onOptionClick(option)} key={index}>{option.label}</S.OptionButton>)
                 }
-            </S.MenuContent>
+            </S.Content>
         </Popup>
     )
 }

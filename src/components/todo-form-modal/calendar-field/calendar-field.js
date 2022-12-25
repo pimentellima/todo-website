@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import Calendar from "react-calendar";
 
 import * as S from './styles';
 
 import Popup from "reactjs-popup";
 
-const CalendarField = ({ date, setDate }) => {
+const DeadlineField = ({ handleInputChange }) => {
+    const date = new Date()
 
     return (
-        <div>
+        <div name='deadline' onClick={e => console.log(e.currentTarget.name)}>
             <Popup 
                 nested 
                 position="top" 
@@ -16,11 +17,15 @@ const CalendarField = ({ date, setDate }) => {
                 trigger={<S.Button type='button'>{date.toLocaleDateString()}</S.Button>}
                 >
                 <S.Content>
-                    <Calendar onClickDay={(value) => setDate(value)} value={date}/>
+                    <Calendar 
+                        name='deadline'
+                        onChange={e => {}}
+                        defaultValue={date}
+                        />
                 </S.Content>
             </Popup> 
         </div>
     )
 }
 
-export default CalendarField;
+export default DeadlineField;

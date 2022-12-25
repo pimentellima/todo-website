@@ -1,5 +1,6 @@
-import React from 'react';
-import { useCreateSection } from '../../hooks/use-create-section';
+import React, { useState } from 'react';
+
+import {useAddSection} from '../../hooks/use-add-section'
 
 import { useUserData } from '../../hooks/use-user-data';
 
@@ -9,7 +10,10 @@ import * as S from './styles';
 
 const SectionsBoard = () => {
     const { todos } = useUserData();
-    const { titleRef, addSection, creating, setCreating } = useCreateSection()
+
+    const { titleRef, addSection } = useAddSection();
+
+    const [creating, setCreating] = useState(false)
 
     return (
         <S.Content>

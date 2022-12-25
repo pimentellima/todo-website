@@ -5,15 +5,18 @@ import PopupMenu from '../popup-menu/popup-menu';
 
 import {useRemoveSection} from '../../hooks/use-remove-section'
 
-import TodoCard from '../todo-card/todo-card/todo-card'
 import TodoFormModal from '../todo-form-modal/todo-form-modal/todo-form-modal';
+import TodoCard from '../todo-card/todo-card/todo-card'
 
 import * as S from './styles';
+import { useRemoveContent } from '../../hooks/use-remove-content';
 
 const TodosSection = ({ title, content, sectionIndex }) => {    
-    const { removeSection } = useRemoveSection()
+    const { removeSection } = useRemoveSection();
+    
+    const { removeContent } = useRemoveContent();
 
-    const { onDragEnterSection, dragging } = useDragTodo()
+    const { onDragEnterSection, dragging } = useDragTodo();
 
     return (
         <S.Container>
@@ -22,7 +25,11 @@ const TodosSection = ({ title, content, sectionIndex }) => {
                 {sectionIndex === 0 ?
                     <TodoFormModal sectionIndex={sectionIndex}/>
                     :
-                    <PopupMenu options={[{label: 'Remover seção', handler: () => removeSection(sectionIndex)}]}/>
+                    <PopupMenu 
+                        options={[
+                            {label: 'Remover seção', handler: () => removeSection(sectionIndex)}, 
+                            {label: 'Remover tarefas', handler: () => removeContent(sectionIndex)}]}
+                        />
                 }
             </S.Header>
             <S.Content 

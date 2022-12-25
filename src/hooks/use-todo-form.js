@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { useUserData } from "./use-user-data";
 
-export const useCreateTodo = () => {
+export const useTodoForm = (sectionIndex, onSubmit) => {
     const [priority, setPriority] = useState(false);
     const [description, setDescription] = useState(false);
     const [deadline, setDeadline] = useState(false);
@@ -17,7 +17,8 @@ export const useCreateTodo = () => {
 
     const { todos, setTodos } = useUserData();
 
-    const addTodo = (sectionIndex) => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         if(titleRef.current.value === '') {
             setError('Não pode ser vazio');
             return;
@@ -35,7 +36,7 @@ export const useCreateTodo = () => {
         section.content.push(todo);
         newTodos.splice(sectionIndex, 1, section);
         setTodos(newTodos);
-        return true
+        onSubmit()
     }
 
     return {
@@ -52,6 +53,6 @@ export const useCreateTodo = () => {
         setDeadline,
         setError,
         setDate,
-        addTodo
+        handleSubmit
     }
 }

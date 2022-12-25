@@ -2,20 +2,16 @@ import styled from "styled-components";
 
 export const PopupButton = styled.button`
     color: #101820;
-    padding: 4px;
-    font-size: 16px;
     border: none;
-    border-radius: 8px;
-    transition: background-color 0.1s ease-out;
     background: inherit;
 
     :hover {
         cursor: pointer;
+        color: #3b5bfd;
     }
-
 `
 
-export const MenuContent = styled.div`
+export const Content = styled.div`
     display: flex;
     flex-direction: column;
     padding: 3px 7px;

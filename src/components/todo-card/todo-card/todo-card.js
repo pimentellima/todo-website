@@ -2,12 +2,17 @@ import React from 'react';
 
 import * as S from './styles'
 
+import { useRemoveTodo } from '../../../hooks/use-remove-todo'
+
+import PopupMenu from '../../popup-menu/popup-menu'
+
 import CardProperty from '../card-property/card-property'
 
 import { useDragTodo } from '../../../hooks/use-drag-todo';
 
 const TodoCard = ({ todo, index, sectionIndex }) => {
     const { dragItem, onDragStart, onDragEnterCard, dragging } = useDragTodo()
+    const { removeTodo } = useRemoveTodo()
 
     return (
         <S.DragShadow
@@ -20,6 +25,7 @@ const TodoCard = ({ todo, index, sectionIndex }) => {
                 onDrop={e => e.preventDefault()} 
                 isBeingDragged={ dragging && dragItem.current.index === index && dragItem.current.sectionIndex === sectionIndex } >
                 <S.Header>
+                    <PopupMenu options={[{label:'Remover tarefa', handler: () => removeTodo(index, sectionIndex)}]}/>
                     {todo.priority && 
                         <S.Priority priority={todo.priority}>
                             {todo.priority}

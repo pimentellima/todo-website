@@ -5,7 +5,7 @@ import Popup from 'reactjs-popup';
 import * as S from './styles'
 
 import CalendarField from '../calendar-field/calendar-field'
-import { useCreateTodo } from '../../../hooks/use-create-todo';
+import { useTodoForm } from '../../../hooks/use-todo-form';
 import PopupMenu from '../../popup-menu/popup-menu'
 
 const TodoFormModal = ({ sectionIndex }) => {
@@ -16,7 +16,7 @@ const TodoFormModal = ({ sectionIndex }) => {
         description,
         deadline,
         error,
-        date,
+        date,   
         titleRef,
         descriptionRef,
         priorityRef,
@@ -25,14 +25,11 @@ const TodoFormModal = ({ sectionIndex }) => {
         setDeadline,
         setError,
         setDate,
-        addTodo
-    } = useCreateTodo()
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const added = addTodo(sectionIndex);
-        if (added) setOpen(false)
-    }
+        handleSubmit
+    } = useTodoForm(
+            sectionIndex,
+            () => setOpen(false)
+        )
 
     return (
         <Popup 
@@ -101,7 +98,7 @@ const TodoFormModal = ({ sectionIndex }) => {
                         + adicionar prioridade
                     </S.AddFieldButton>
                 </S.AddFieldsDiv>
-                <S.SubmitButton onClick={(e) => handleSubmit(e)}>Finalizar</S.SubmitButton>
+                <S.SubmitButton type='button' onClick={(e) => handleSubmit(e)}>Finalizar</S.SubmitButton>
                 </S.Form>
         </Popup>
     )
