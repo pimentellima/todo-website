@@ -6,7 +6,7 @@ import * as S from './styles'
 
 import CalendarField from '../calendar-field/calendar-field'
 import { useCreateTodo } from '../../../hooks/use-create-todo';
-import PopupMenu from '../../../ui/popup-menu/popup-menu';
+import PopupMenu from '../../popup-menu/popup-menu'
 
 const TodoFormModal = ({ sectionIndex }) => {
     const [open, setOpen] = useState(false)

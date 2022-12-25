@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useDragTodo } from '../../hooks/use-drag-todo';
-import PopupMenu from '../../ui/popup-menu/popup-menu';
+import PopupMenu from '../popup-menu/popup-menu';
 
 import {useRemoveSection} from '../../hooks/use-remove-section'
 

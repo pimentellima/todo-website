@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
 
-import GlobalStyle from './styles/global'
+import GlobalStyle from './global-styles/global'
 
 import { CurrentUserProvider } from './context/current-user-context';
 
