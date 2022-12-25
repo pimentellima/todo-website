@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {useAddSection} from '../../hooks/use-add-section'
 
@@ -11,9 +11,11 @@ import * as S from './styles';
 const SectionsBoard = () => {
     const { todos } = useUserData();
 
-    const { titleRef, addSection } = useAddSection();
-
-    const [creating, setCreating] = useState(false)
+    const { 
+        titleRef, 
+        addSection, 
+        creating, 
+        setCreating } = useAddSection();
 
     return (
         <S.Content>
@@ -36,7 +38,11 @@ const SectionsBoard = () => {
                     onBlur={addSection}
                     />
                 :
-                <S.CreateSectionButton onClick={() => setCreating(true)}>Nova seção</S.CreateSectionButton>
+                <S.CreateSectionButton 
+                    onClick={() => setCreating(true)}
+                    >
+                    Nova seção
+                </S.CreateSectionButton>
             }
         </S.Content>
     )

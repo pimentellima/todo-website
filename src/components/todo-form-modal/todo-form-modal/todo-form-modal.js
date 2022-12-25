@@ -1,105 +1,129 @@
 import React, { useState } from 'react';
 
-import Popup from 'reactjs-popup';
+import Calendar from 'react-calendar';
 
 import * as S from './styles'
-
-import CalendarField from '../calendar-field/calendar-field'
+import Popup from 'reactjs-popup';
 import { useTodoForm } from '../../../hooks/use-todo-form';
-import PopupMenu from '../../popup-menu/popup-menu'
+import FormField from '../form-field/form-field';
 
 const TodoFormModal = ({ sectionIndex }) => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
 
-    const {
-        priority,
-        description,
-        deadline,
-        error,
-        date,   
-        titleRef,
-        descriptionRef,
-        priorityRef,
-        setPriority,
-        setDescription,
-        setDeadline,
-        setError,
-        setDate,
-        handleSubmit
-    } = useTodoForm(
-            sectionIndex,
+    const { 
+            fields, 
+            handleChangeField, 
+            handleHideField, 
+            handleSubmit } = useTodoForm(
+            sectionIndex, 
             () => setOpen(false)
-        )
+        );
+
+    const { title, description, deadline, priority } = fields;
 
     return (
         <Popup 
             nested
             open={open}
-            offsetX={5}
-            offsetY={5}
+            position='right top'
             trigger=<S.ModalButton>+</S.ModalButton>
             onOpen={() => setOpen(true)}
             arrow={false}
-            closeOnDocumentClick={false}
             >
             <S.HideScreen onClick={() => setOpen(false)}/>
             <S.Form autoComplete='off' onSubmit={e => handleSubmit(e)}>
                 <S.Title>Nova tarefa</S.Title>
-                <div>
-                    <S.Label htmlFor=''>*Título da tarefa</S.Label>
+                <S.Label>*Título da tarefa</S.Label>
+                <S.TextField
+                    autoFocus
+                    value={title.value}
+                    onChange={e => handleChangeField(e.target.value, 'title')}
+                    placeholder= "Digite aqui ..."
+                    />
+                <S.Error>{title.error}</S.Error>
+                <FormField
+                    label='Descrição'
+                    hidden={description.hidden}
+                    onHideField={() => handleHideField('description', true)}
+                    >
                     <S.TextField
                         autoFocus
-                        ref={titleRef}
-                        onChange={() => setError('')}
-                        onKeyDown={e => e.key === 'Enter' && handleSubmit(e)}
-                        placeholder= "Digite aqui ..."
-                        isInvalid={!!error} 
-                        />
-                    <S.Error>{error}</S.Error>
-                </div>
-                <div hidden={!description}>
-                    <S.Label htmlFor=''>
-                        Descrição
-                        <PopupMenu options={ [{label:'Remover campo', handler: () => setDescription(false)}] }/>
-                    </S.Label>
-                    <S.TextField
-                        autoFocus
-                        ref={descriptionRef}
-                        onKeyDown={e => e.key === 'Enter' && handleSubmit(e)}
-                        placeholder= {'Digite aqui ...'}
-                        /> 
-                </div>
-                <div hidden={!deadline}>
-                    <S.Label htmlFor=''>
-                        Prazo
-                        <PopupMenu options={ [{label:'Remover campo', handler: () => setDeadline(false)}] }/>
-                    </S.Label>
-                    <CalendarField date={date} setDate={setDate}/>
-                </div>
-                <div hidden={!priority}>
-                    <S.Label htmlFor=''>
-                        Prioridade
-                        <PopupMenu options={ [{label:'Remover campo', handler: () => setPriority(false)}] }/>
-                    </S.Label>
-                    <S.Select id='priority' ref={priorityRef}>
-                        <option value='Baixa'>Baixa</option>    
-                        <option value='Media'>Média</option>
-                        <option value='Alta'>Alta</option>
+                        hidden={description.hidden}
+                        value={description.value}
+                        placeholder='Digite aqui ...'
+                        onChange={e => 
+                            handleChangeField(e.target.value, 'description')
+                        }/> 
+                </FormField>
+                <FormField
+                    label='Prazo'
+                    hidden={deadline.hidden}
+                    onHideField={() => handleHideField('deadline', true)}
+                    >
+                    <S.CalendarPopup 
+                        nested 
+                        position="top" 
+                        arrow={false}
+                        trigger=
+                            <S.Button type='button'>
+                                {deadline.value ? 
+                                    deadline.value 
+                                    : 
+                                    'Selecione a data'
+                                }
+                            </S.Button>
+                        >
+                        <Calendar   
+                            defaultValue={new Date()}
+                            onClickDay={date => 
+                                handleChangeField(
+                                    date.toLocaleDateString(),
+                                    'deadline'
+                                    )}/>
+                    </S.CalendarPopup> 
+                </FormField>
+                <FormField
+                    label='Prioridade'
+                    hidden={priority.hidden}
+                    onHideField={()=> handleHideField('priority', true)}
+                    >
+                    <S.Select 
+                        onChange={e => 
+                            handleChangeField(e.target.value, 'priority')
+                        }>
+                        <option value= ''>Selecione a prioridade</option>
+                        <option>Baixa</option>    
+                        <option>Media</option>
+                        <option>Alta</option>
                     </S.Select>
-                </div>
+                </FormField>
                 <S.AddFieldsDiv>
-                    <S.AddFieldButton type='button' hidden={description} onClick={() => setDescription(true)}>
+                    <S.AddFieldButton 
+                        type='button' 
+                        hidden={!description.hidden} 
+                        onClick={() => handleHideField('description', false)}
+                        >
                         + adicionar descrição
                     </S.AddFieldButton>
-                    <S.AddFieldButton type='button' hidden={deadline} onClick={() => setDeadline(true)}>
+                    <S.AddFieldButton
+                        type='button' 
+                        hidden={!deadline.hidden} 
+                        onClick={() => handleHideField('deadline', false)}
+                        >
                         + adicionar prazo
                     </S.AddFieldButton>
-                    <S.AddFieldButton type='button' hidden={priority} onClick={() => setPriority(true)}>
+                    <S.AddFieldButton 
+                        type='button' 
+                        hidden={!priority.hidden} 
+                        onClick={() => handleHideField('priority', false)}
+                        >
                         + adicionar prioridade
                     </S.AddFieldButton>
                 </S.AddFieldsDiv>
-                <S.SubmitButton type='button' onClick={(e) => handleSubmit(e)}>Finalizar</S.SubmitButton>
-                </S.Form>
+                <S.SubmitButton type='button' onClick={(e) => handleSubmit(e)}>
+                    Finalizar
+                </S.SubmitButton>
+            </S.Form>
         </Popup>
     )
 };
