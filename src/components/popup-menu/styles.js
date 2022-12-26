@@ -1,40 +1,41 @@
 import styled from "styled-components";
 
 export const PopupButton = styled.button`
-    color: #101820;
+    color:${({theme}) => theme.colors.grey.dark};
     border: none;
     background: inherit;
 
     :hover {
         cursor: pointer;
-        color: #3b5bfd;
+        color: ${({theme}) => theme.colors.blue.default};
     }
 `
 
 export const Content = styled.div`
+    border: 1px solid ${({theme}) => theme.colors.border.default};
+    background-color: ${({theme}) => theme.colors.white};
     display: flex;
     flex-direction: column;
     padding: 3px 7px;
-    border: 1px solid #c0d0e6;
     border-radius: 3px;
-    background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin-top: 10px;
 `
 
-export const OptionButton = styled.button` 
+export const OptionButton = styled.button`
+    font-size: ${({theme}) => theme.fontSizes.smallMedium};
+    border-radius: ${({theme}) => theme.borderRadius.small};
+    color: ${({theme}) => theme.colors.fontColors.primary};
+    background-color: ${({theme}) => theme.colors.white};
     padding: 7px 20px;
     border: none;
     width: 150px;
-    font-size: 13px;
-    border-radius: 2px;
-    background-color: white;
-    transition: background-color 0.1s ease-out, color 0.1s ease-out;
+    transition: ${({theme}) => theme.transitions.buttonHover};
 
     :hover {
-        background-color: #e8f2fa;
+        background-color: ${({theme}) => theme.colors.blue.default};;
+        color: ${({theme}) => theme.colors.white};
         cursor: pointer;
-        color: #3b5bfd;
     }
 `
 

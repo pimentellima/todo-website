@@ -1,30 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useDragTodo } from '../../hooks/use-drag-todo';
+
 import PopupMenu from '../popup-menu/popup-menu';
+import Popup from 'reactjs-popup';
+import TodoForm from '../todo-form/todo-form/todo-form'
+import TodoCard from '../todo-card/todo-card';
 
-import {useRemoveSection} from '../../hooks/use-remove-section'
-
-import TodoFormModal from '../todo-form-modal/todo-form-modal/todo-form-modal';
-
-import TodoCard from '../todo-card/todo-card/todo-card';
-
-import * as S from './styles';
+import { useRemoveSection } from '../../hooks/use-remove-section'
 import { useRemoveContent } from '../../hooks/use-remove-content';
 
-const TodosSection = ({ title, content, sectionIndex }) => {    
-    const { removeSection } = useRemoveSection();
-    
-    const { removeContent } = useRemoveContent();
+import * as S from './styles';
 
+const TodosSection = ({ title, content, sectionIndex }) => {    
+    const [formOpen, setFormOpen] = useState(false);
+    
     const { onDragEnterSection, dragging } = useDragTodo();
+    const { removeSection } = useRemoveSection();
+    const { removeContent } = useRemoveContent();
 
     return (
         <S.Container>
             <S.Header>
                 {title} {'(' + content.length + ')'} 
                 {sectionIndex === 0 ?
-                    <TodoFormModal sectionIndex={sectionIndex}/>
+                    <Popup 
+                        nested
+                        open={formOpen}
+                        position='right top'
+                        trigger=<S.ModalButton>+</S.ModalButton>
+                        onOpen={() => setFormOpen(true)}
+                        arrow={false}
+                        >
+                        <TodoForm 
+                            sectionIndex={sectionIndex}
+                            onSubmit={() => setFormOpen(false)} 
+                            />
+                    </Popup>
                     :
                     <PopupMenu 
                         position='bottom right'

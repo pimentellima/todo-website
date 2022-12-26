@@ -1,22 +1,22 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+    border-right: 1px solid ${({ theme }) => theme.colors.border.dark};
     display: flex;
     flex-direction: column;
     flex: 0 0 300px;
     padding: 0 15px;
-    border-right: 1px solid rgba(0, 0, 0, 0.05);    
 `
 
 export const Content = styled.div`
+    border-right: 1px solid ${({ theme }) => theme.colors.border.default};
+    background-color: ${({ theme }) => theme.colors.grey.default};
+    border-radius: ${({ theme }) => theme.borderRadius.medium};
     padding: 10px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     height: calc(100% - 30px);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.01);
 
     ::-webkit-scrollbar {
         width: 6px;
@@ -42,8 +42,24 @@ export const Content = styled.div`
     }
 `
 
+export const ModalButton = styled.button`
+    background-color: ${({ theme }) => theme.colors.blue.default};
+    border-radius: ${({ theme }) => theme.borderRadius.medium};
+    color: ${({ theme }) => theme.colors.white};
+    transition: ${({ theme }) => theme.transitions.buttonHover};
+    border: none;
+    width: 26px;
+    height: 26px;
+    font-size: ${({ theme }) => theme.fontSizes.veryLarge};
+    
+    :hover {
+        background-color: ${({theme}) => theme.colors.blue.dark};
+        cursor: pointer;
+    }   
+`
 
 export const Header = styled.header`
+    color: ${({ theme }) => theme.colors.fontColors.primary};
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -52,7 +68,6 @@ export const Header = styled.header`
     font-size: 16px;
     padding: 0 10px;
     margin-bottom: 10px;
-    color: #101820;
 `
 
 

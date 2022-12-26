@@ -31,35 +31,36 @@ export const Content = styled.div`
 `
 
 export const CreateSectionButton = styled.button`
+    border: ${({theme}) => theme.colors.border.default};
+    background-color: ${({theme}) => theme.colors.blue.default};
+    color: ${({theme}) => theme.colors.white};
+    font-size: ${({theme}) => theme.fontSizes.large};
+    border-radius: ${({theme}) => theme.borderRadius.medium};
     min-width: 200px;
     height: 40px;
-    background-color: #3b5bfd;    
     padding: 0 20px 0 20px;
     text-align: center;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    font-size: 18px;    
-    color: white;
     margin-left: 25px;
+    transition: ${({theme}) => theme.transitions.buttonHover};
 
     :hover {
+        background-color: ${({theme}) => theme.colors.blue.dark};
         cursor: pointer;
-        opacity: 90%;
     }   
 `
 
 export const TextInput = styled.input`
-    border: none;
+    color: ${({theme}) => theme.colors.textColor};
+
     background-color: #ecf1f8;
+    font-size: 16px;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 40px;
     font-weight: 600;
-    font-size: 16px;
     padding: 0 10px;
     margin-bottom: 10px;
-    color: #101820;
     text-indent: 14px;
 `
