@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import * as S from './styles'
 
-import TextField from '../../ui/text-field/text-field'
+import TextInput from '../../ui/text-input/text-input'
 import SignButton from '../../ui/sign-button/sign-button'
 
 import { useUserAuth } from "../../hooks/use-user-auth";
@@ -44,7 +44,7 @@ const SignupForm = () => {
     return (
         <S.Form onSubmit={(e => handleSignup(e))}>
             Criar conta
-            <TextField
+            <TextInput
                 inputRef={userRef} 
                 onChange={() => setUsernameError('')}
                 placeholder={'nome de usuário'}
@@ -52,7 +52,7 @@ const SignupForm = () => {
                 type='username'
                 />
             <S.Error>{usernameError}</S.Error>
-            <TextField
+            <TextInput
                 inputRef={passwordRef} 
                 onChange={() => setPasswordError('')}
                 placeholder={'senha'}
@@ -60,7 +60,7 @@ const SignupForm = () => {
                 type='password'
                 />
             <S.Error>{passwordError}</S.Error> 
-            <TextField
+            <TextInput
                 inputRef={confirmPasswordRef} 
                 onChange={() => setConfirmPasswordError('')}
                 placeholder={'confirme a senha'}

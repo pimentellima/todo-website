@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import * as S from './styles'
 
-import TextField from '../../ui/text-field/text-field'
+import TextInput from '../../ui/text-input/text-input'
 import SignButton from '../../ui/sign-button/sign-button'
 
 import { useUserAuth } from "../../hooks/use-user-auth";
@@ -50,7 +50,7 @@ const LoginForm = () => {
     return (
         <S.Form onSubmit={(e) => handleLogin(e)}>
             Entre na sua conta
-            <TextField
+            <TextInput
                 inputRef={userRef} 
                 onChange={() => setUsernameError('')}
                 placeholder={'nome de usuário'}
@@ -58,7 +58,7 @@ const LoginForm = () => {
                 type='username'
             />
             <S.Error>{usernameError}</S.Error>
-            <TextField
+            <TextInput
                 inputRef={passwordRef} 
                 onChange={() => setPasswordError('')}
                 placeholder={'senha'}

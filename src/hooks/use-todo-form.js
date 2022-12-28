@@ -3,33 +3,40 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 import { useUserData } from "./use-user-data";
+import TodoFormInitialConfig from '../utils/todo-form-initial-config'
 
 export const useTodoForm = (sectionIndex, onSubmit) => {
     const { todos, setTodos } = useUserData();
 
-    const defaultFields = {
-        title: {
-            value: '',
-            hidden: false,
-            error: '',
-        },
-        description: {
-            value: '',
-            hidden: true
-        },
-        deadline: {
-            value: '',
-            hidden: true
-        },
-        priority: {
-            value: '',
-            hidden: true
-        }
-    }
+    const [fields, setFields] = useState(TodoFormInitialConfig);
 
-    const [fields, setFields] = useState(defaultFields);
+    const renderFields = () => {
+        return Object.keys(fields).map(key => {
+            const { renderInput, value, label, hidden, error } = fields[key];
+            return renderInput(
+                value, 
+                label, 
+                hidden, 
+                error, 
+                handleChange, 
+                handleHide
+            );
+        });
+    };
 
-    const handleChangeField = (value, name) => {
+    const renderButtons = () => {
+        return Object.keys(fields).map(key => {
+            const { renderButton, label, buttonLabel, hidden } = fields[key];
+            return renderButton(
+                label, 
+                buttonLabel, 
+                hidden, 
+                handleHide
+            );
+        });
+    ;}
+
+    const handleChange = (value, name) => {
         if(name === 'title') {
             setFields(fields => ({...fields,
             [name]: {...fields[name], value: value, error: ''}})
@@ -43,7 +50,7 @@ export const useTodoForm = (sectionIndex, onSubmit) => {
         );
     }
 
-    const handleHideField = (name, value) => {
+    const handleHide = (name, value) => {
         setFields(fields => ({...fields, 
             [name]: {...fields[name], value:'', hidden: value}
             })
@@ -72,9 +79,9 @@ export const useTodoForm = (sectionIndex, onSubmit) => {
         section.content.push(todo);
         newTodos.splice(sectionIndex, 1, section);
         setTodos(newTodos);
-        setFields(defaultFields)
+        setFields(TodoFormInitialConfig)
         onSubmit();
     }
 
-    return { fields, handleChangeField, handleHideField, handleSubmit }
+    return { renderFields, renderButtons, handleSubmit }
 };

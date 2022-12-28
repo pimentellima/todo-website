@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as S from './styles';
 
-const TextField = ({ inputRef, onChange, placeholder, isInvalid, type }) => {
+const TextInput = ({ inputRef, onChange, placeholder, isInvalid, type }) => {
 
     return(
         <S.Input
@@ -15,4 +15,4 @@ const TextField = ({ inputRef, onChange, placeholder, isInvalid, type }) => {
     )
 }
 
-export default TextField;
+export default TextInput;

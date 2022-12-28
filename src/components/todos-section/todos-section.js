@@ -4,7 +4,7 @@ import { useDragTodo } from '../../hooks/use-drag-todo';
 
 import PopupMenu from '../popup-menu/popup-menu';
 import Popup from 'reactjs-popup';
-import TodoForm from '../todo-form/todo-form/todo-form'
+import TodoForm from '../todo-form/todo-form';
 import TodoCard from '../todo-card/todo-card';
 
 import { useRemoveSection } from '../../hooks/use-remove-section'
