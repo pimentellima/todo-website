@@ -1,5 +1,5 @@
 import React from 'react';
-import PopupMenu from '../../popup-menu/popup-menu'
+import PopupMenu from '../../ui/popup-menu/popup-menu'
 import * as S from './styles'
 
 const PriorityField = (props) => {
@@ -7,7 +7,7 @@ const PriorityField = (props) => {
 
     return(
         <div hidden={hidden}>
-            <S.Label>
+            <S.Label htmlFor=''>
                 Prioridade
                 <PopupMenu 
                     position='bottom right'

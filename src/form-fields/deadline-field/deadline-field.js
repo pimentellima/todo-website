@@ -1,5 +1,5 @@
 import React from "react";
-import PopupMenu from "../../popup-menu/popup-menu";
+import PopupMenu from '../../ui/popup-menu/popup-menu'
 import * as S from './styles'
 import Calendar from "react-calendar";
 
@@ -16,7 +16,7 @@ const DeadlineField = (props) => {
 
     return ( 
         <div hidden={hidden}>
-            <S.Label>
+            <S.Label htmlFor=''>
                 Prazo
                 <PopupMenu 
                     position='bottom right'

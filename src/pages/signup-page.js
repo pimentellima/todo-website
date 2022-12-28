@@ -1,7 +1,7 @@
 import React from "react";
 
 import SignContainer from '../ui/sign-container/sign-container'
-import SignupForm from '../components/signup-form/signup-form'
+import SignupForm from '../modules/auth/signup-form/signup-form'
 import Header from '../ui/header/header'
 import FooterLink from '../ui/footer-link/footer-link'
 

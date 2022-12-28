@@ -4,7 +4,7 @@ import { useCurrentUser } from '../hooks/use-current-user';
 
 import { DragTodoProvider } from '../context/drag-todo-context'
 
-import SectionsBoard from '../components/sections-board/sections-board';
+import SectionsBoard from '../modules/todos/sections-board/sections-board';
 import LogoutButton from '../ui/logout-button/logout-button'
 import Header from '../ui/header/header'
 

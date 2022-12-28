@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { useBoard } from '../../hooks/use-board';
+import { useBoard } from '../../../hooks/use-board';
 
-import { useCurrentUser } from '../../hooks/use-current-user';
+import { useCurrentUser } from '../../../hooks/use-current-user';
 
 import TodosSection from '../todos-section/todos-section';
 

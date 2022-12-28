@@ -1,10 +1,10 @@
 import React from 'react';
 
-import TitleField from '../components/form-fields/title-field/title-field'
-import DescriptionField from '../components/form-fields/description-field/description-field'
-import DeadlineField from '../components/form-fields/deadline-field/deadline-field'
-import PriorityField from '../components/form-fields/priority-field/priority-field'
-import FieldButton from '../components/field-button/field-button'
+import TitleField from '../form-fields/title-field/title-field'
+import DescriptionField from '../form-fields/description-field/description-field'
+import DeadlineField from '../form-fields/deadline-field/deadline-field'
+import PriorityField from '../form-fields/priority-field/priority-field'
+import FieldButton from '../ui/field-button/field-button'
 
 const TodoFormInitialConfig = () => {
     return {

@@ -1,13 +1,13 @@
 import React from "react";
 import * as S from './styles'
-import PopupMenu from "../../popup-menu/popup-menu";
+import PopupMenu from '../../ui/popup-menu/popup-menu'
 
 const DescriptionField = (props) => {
     const  { value, hidden, handleChange, handleHide } = props;
 
     return ( 
         <div hidden={hidden}>
-            <S.Label>
+            <S.Label htmlFor=''>
                 Descrição
                 <PopupMenu 
                     position='bottom right'

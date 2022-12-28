@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import SignForm from '../../ui/sign-form/sign-form';
+import SignForm from '../../../ui/sign-form/sign-form';
+import TextInput from '../../../ui/text-input/text-input'
+import SignButton from '../../../ui/sign-button/sign-button';
 
-import TextInput from '../../ui/text-input/text-input'
-import SignButton from '../../ui/sign-button/sign-button'
-
-import { useCurrentUser } from '../../hooks/use-current-user';
+import { useCurrentUser } from '../../../hooks/use-current-user'
 
 const LoginForm = () => {
     const [usernameError, setUsernameError] = useState('')

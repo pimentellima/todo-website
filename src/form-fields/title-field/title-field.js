@@ -1,13 +1,13 @@
 import React from "react";
 import * as S from './styles'
-import TextInput from "../../../ui/text-input/text-input";
+import TextInput from '../../ui/text-input/text-input'
 
 const TitleField = (props) => {
     const { value, error, handleChange } = props;
     
     return ( 
         <div>
-            <S.Label>*Título da tarefa</S.Label>
+            <S.Label htmlFor="">*Título da tarefa</S.Label>
             <TextInput    
                 type='text'
                 placeholder='Digite aqui ...'

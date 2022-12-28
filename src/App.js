@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
 
-import GlobalStyle from './global-styles/global'
+import GlobalStyle from './global-style';
+import theme from './theme';
 
 import { ThemeProvider } from 'styled-components';
-import theme from './global-styles/theme';
 
 import { CurrentUserProvider } from './context/current-user-context';
 
