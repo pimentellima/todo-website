@@ -31,3 +31,9 @@ export const Input = styled.input`
         color: ${({theme}) => theme.colors.fontColors.placeholder};
     }
 `
+export const Error = styled.p`
+    font-size: ${({theme}) => theme.fontSizes.small};
+    color: ${({theme}) => theme.colors.red};
+    display: flex;
+    text-align: start;
+`

@@ -6,9 +6,8 @@ export const Form = styled.form`
     border-radius: ${({theme}) => theme.borderRadius.medium};
     display: flex;
     flex-direction: column;
-    width: 540px;
+    width: 500px;
     padding: 30px;
-    z-index: 9999;
 `
 
 export const Title = styled.p`
@@ -20,11 +19,9 @@ export const Title = styled.p`
 
 export const AddFieldsDiv = styled.div`
     display: flex;
-    margin-top: 15px;
-    gap: 6px;
+    margin: 15px 0 15px 0;
+    gap: 3px;
 `
-
-
 
 export const SubmitButton = styled.button`
     border-radius: ${({theme}) => theme.borderRadius.medium};
@@ -36,7 +33,6 @@ export const SubmitButton = styled.button`
     width: 100%;
     border: none;
     padding: 4px;
-    margin-top: 25px;
 
     :hover {
         background-color: ${({theme}) => theme.colors.blue.dark};

@@ -2,6 +2,8 @@
 
 const LoginFormInitialConfig = {
     username: {
-        renderInput = ({})
+        renderInput = ({
+
+        })
     }
 } */

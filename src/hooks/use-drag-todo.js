@@ -1,9 +1,10 @@
 import { useContext } from 'react'
+
 import { DragTodoContext } from '../context/drag-todo-context'
-import { useUserData } from './use-user-data'
+import { useCurrentUser } from "./use-current-user";
 
 export const useDragTodo = () => {
-    const { todos, setTodos } = useUserData();
+    const { userTodos, setUserTodos } = useCurrentUser();
 
     const { dragItem, dragNode, dragging, setDragging } = useContext(DragTodoContext)
 
@@ -30,7 +31,7 @@ export const useDragTodo = () => {
 
         if(toIndex === fromIndex && toSectionIndex === fromSectionIndex) return
 
-        const newTodos = [...todos];
+        const newTodos = [...userTodos];
         const fromSection = newTodos[fromSectionIndex];
         const toSection = newTodos[toSectionIndex];
         const fromItem = fromSection.content[fromIndex];
@@ -41,7 +42,7 @@ export const useDragTodo = () => {
         newTodos.splice(fromSectionIndex, 1, fromSection);
         newTodos.splice(toSectionIndex, 1, toSection);
         
-        setTodos(newTodos);
+        setUserTodos(newTodos);
         
         dragItem.current = params;
     }    
@@ -55,7 +56,7 @@ export const useDragTodo = () => {
 
         if (toSectionIndex === fromSectionIndex) return
 
-        const newTodos = [...todos];
+        const newTodos = [...userTodos];
         const fromSection = newTodos[fromSectionIndex]
         const toSection = newTodos[toSectionIndex];
         const fromItem = fromSection.content[fromIndex];
@@ -68,7 +69,7 @@ export const useDragTodo = () => {
 
         dragItem.current = {index: toSection.content.length - 1, sectionIndex: toSectionIndex}
 
-        setTodos(newTodos)
+        setUserTodos(newTodos)
     } 
     
     const onDragEnd = () => {

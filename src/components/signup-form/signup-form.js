@@ -1,19 +1,19 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import * as S from './styles'
-
 import TextInput from '../../ui/text-input/text-input'
 import SignButton from '../../ui/sign-button/sign-button'
 
-import { useUserAuth } from "../../hooks/use-user-auth";
+import SignForm from '../../ui/sign-form/sign-form'
+
+import { useCurrentUser } from '../../hooks/use-current-user';
 
 const SignupForm = () => {
     const [usernameError, setUsernameError] = useState('')
     const [passwordError, setPasswordError] = useState('')
     const [confirmPasswordError, setConfirmPasswordError] = useState('')
 
-    const { signup } = useUserAuth()
+    const { signup } = useCurrentUser()
     
     const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const SignupForm = () => {
     }
 
     return (
-        <S.Form onSubmit={(e => handleSignup(e))}>
+        <SignForm onSubmit={(e => handleSignup(e))}>
             Criar conta
             <TextInput
                 inputRef={userRef} 
@@ -50,28 +50,28 @@ const SignupForm = () => {
                 placeholder={'nome de usuário'}
                 isInvalid={!!usernameError}
                 type='username'
+                error={usernameError}
                 />
-            <S.Error>{usernameError}</S.Error>
             <TextInput
                 inputRef={passwordRef} 
                 onChange={() => setPasswordError('')}
                 placeholder={'senha'}
                 isInvalid={!!passwordError}
                 type='password'
+                error={passwordError}
                 />
-            <S.Error>{passwordError}</S.Error> 
             <TextInput
                 inputRef={confirmPasswordRef} 
                 onChange={() => setConfirmPasswordError('')}
                 placeholder={'confirme a senha'}
                 isInvalid={!!confirmPasswordError}
                 type='password'
+                error={confirmPasswordError}
                 />
-            <S.Error>{confirmPasswordError}</S.Error>
             <SignButton onClick={e => handleSignup(e)}>
                 Cadastrar-se
             </SignButton>
-        </S.Form>
+        </SignForm>
     )
 }
 

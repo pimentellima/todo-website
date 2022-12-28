@@ -7,17 +7,16 @@ import Popup from 'reactjs-popup';
 import TodoForm from '../todo-form/todo-form';
 import TodoCard from '../todo-card/todo-card';
 
-import { useRemoveSection } from '../../hooks/use-remove-section'
-import { useRemoveContent } from '../../hooks/use-remove-content';
+import { useSection } from '../../hooks/use-section';
 
 import * as S from './styles';
 
 const TodosSection = ({ title, content, sectionIndex }) => {    
-    const [formOpen, setFormOpen] = useState(false);
-    
     const { onDragEnterSection, dragging } = useDragTodo();
-    const { removeSection } = useRemoveSection();
-    const { removeContent } = useRemoveContent();
+    
+    const { removeSection, removeContent } = useSection();
+    
+    const [formOpen, setFormOpen] = useState(false);
 
     return (
         <S.Container>

@@ -1,19 +1,12 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react"
+import { CurrentUserContext } from "../context/current-user-context";
 import { useNavigate } from "react-router";
-import { CurrentUserContext } from '../context/current-user-context'
 
-export const useUserAuth = () => {
-    const { setUser } = useContext(CurrentUserContext)
-    const navigate = useNavigate()
+export const useCurrentUser = () => {
+    const { user, setUser } = useContext(CurrentUserContext);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        const userLoggedIn = JSON.parse(localStorage.getItem("userLoggedIn"))
-        const usersStorage = JSON.parse(localStorage.getItem("users"));
-        if(userLoggedIn && usersStorage) {
-            const user = usersStorage.find(item => item.name === userLoggedIn)
-            if(user) setUser(user)
-        } 
-    }, [])
+    const userTodos = user ? user.todos : [];
 
     const login = (name, password) => {
         const usersStorage = JSON.parse(localStorage.getItem("users"));
@@ -49,5 +42,20 @@ export const useUserAuth = () => {
         setUser(null)
     }
 
-    return { login, signup, logout }
+    const setUserTodos = (userTodos) => {
+        const usersStorage = JSON.parse(localStorage.getItem("users"))
+        const newUser = {...user, todos: userTodos}
+        const newStorage = usersStorage.filter(item => item.name != user.name)
+        newStorage.push(newUser)
+        localStorage.setItem("users", JSON.stringify(newStorage))
+        setUser(newUser)
+    }
+
+    return { 
+        userTodos,
+        setUserTodos,
+        login,
+        signup,
+        logout
+    }
 }

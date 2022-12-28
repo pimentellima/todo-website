@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from './styles'
+import TextInput from "../../../ui/text-input/text-input";
 
 const TitleField = (props) => {
     const { value, error, handleChange } = props;
@@ -7,14 +8,14 @@ const TitleField = (props) => {
     return ( 
         <div>
             <S.Label>*Título da tarefa</S.Label>
-            <S.Input    
+            <TextInput    
                 type='text'
                 placeholder='Digite aqui ...'
                 isInvalid={!!error}
                 value={value}
                 onChange={e => handleChange(e.target.value, 'title')}
+                error={error}
                 />
-            <S.Error>{error}</S.Error>
         </div>
     )
 }

@@ -1,20 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import * as S from './styles'
+import SignForm from '../../ui/sign-form/sign-form';
 
 import TextInput from '../../ui/text-input/text-input'
 import SignButton from '../../ui/sign-button/sign-button'
 
-import { useUserAuth } from "../../hooks/use-user-auth";
-import { useUserData } from '../../hooks/use-user-data';
+import { useCurrentUser } from '../../hooks/use-current-user';
 
 const LoginForm = () => {
     const [usernameError, setUsernameError] = useState('')
     const [passwordError, setPasswordError] = useState('')
 
-    const { login } = useUserAuth()
-    const { user } = useUserData()
+    const { user, login } = useCurrentUser()
 
     const navigate = useNavigate()
 
@@ -48,7 +46,7 @@ const LoginForm = () => {
     }
 
     return (
-        <S.Form onSubmit={(e) => handleLogin(e)}>
+        <SignForm onSubmit={(e) => handleLogin(e)}>
             Entre na sua conta
             <TextInput
                 inputRef={userRef} 
@@ -56,20 +54,20 @@ const LoginForm = () => {
                 placeholder={'nome de usuário'}
                 isInvalid={!!usernameError}
                 type='username'
+                error={usernameError}
             />
-            <S.Error>{usernameError}</S.Error>
             <TextInput
                 inputRef={passwordRef} 
                 onChange={() => setPasswordError('')}
                 placeholder={'senha'}
                 isInvalid={!!passwordError}
                 type='password'
+                error={passwordError}
             />
-            <S.Error>{passwordError}</S.Error>
             <SignButton onClick={e => handleLogin(e)}>
                 Entrar
             </SignButton>
-        </S.Form>
+        </SignForm>
     );
 };
 

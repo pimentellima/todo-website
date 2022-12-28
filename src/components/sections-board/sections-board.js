@@ -1,25 +1,25 @@
 import React from 'react';
 
-import {useAddSection} from '../../hooks/use-add-section'
+import { useBoard } from '../../hooks/use-board';
 
-import { useUserData } from '../../hooks/use-user-data';
+import { useCurrentUser } from '../../hooks/use-current-user';
 
 import TodosSection from '../todos-section/todos-section';
 
 import * as S from './styles';
 
 const SectionsBoard = () => {
-    const { todos } = useUserData();
-
+    const { userTodos } = useCurrentUser();
+    
     const { 
         titleRef, 
         addSection, 
         creating, 
-        setCreating } = useAddSection();
+        setCreating } = useBoard();
 
     return (
         <S.Content>
-            {todos.map((section, index) =>
+            {userTodos.map((section, index) =>
                 <TodosSection  
                     title={section.name} 
                     content={section.content} 

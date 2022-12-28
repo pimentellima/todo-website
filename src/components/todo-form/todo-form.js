@@ -14,7 +14,9 @@ const TodoForm = ({ sectionIndex, onSubmit }) => {
         <S.Form autoComplete='off' onSubmit={e => handleSubmit(e)}>
             <S.Title>Nova tarefa</S.Title>
             {renderFields()}
-            {renderButtons()}
+            <S.AddFieldsDiv>
+                {renderButtons()}
+            </S.AddFieldsDiv>
             <S.SubmitButton type='button' onClick={(e) => handleSubmit(e)}>
                 Finalizar
             </S.SubmitButton>
