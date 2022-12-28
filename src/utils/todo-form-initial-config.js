@@ -9,8 +9,8 @@ import FieldButton from '../components/field-button/field-button'
 const TodoFormInitialConfig = () => {
     return {
         title: {
-            renderInput: (value, label, hidden, error, handleChange, handleHide) => {
-               return ( 
+            renderInput: ({ value, label, error, handleChange }) => {
+                return ( 
                     <TitleField
                         key={label}
                         value={value}
@@ -19,7 +19,7 @@ const TodoFormInitialConfig = () => {
                         />
                 )
             },
-            renderButton: (label, buttonLabel, hidden, handleHide) => {
+            renderButton: ({buttonLabel}) => {
                 return(
                     <div key={buttonLabel}/>
                 )
@@ -31,7 +31,7 @@ const TodoFormInitialConfig = () => {
             hidden: null,
         },
         description: {
-            renderInput: (value, label, hidden, error, handleChange, handleHide) => {
+            renderInput: ({value, label, hidden, handleChange, handleHide}) => {
                 return (
                     <DescriptionField
                         key={label}
@@ -42,7 +42,7 @@ const TodoFormInitialConfig = () => {
                         />
                     )
             },
-            renderButton: (label, buttonLabel, hidden, handleHide) => {
+            renderButton: ({label, buttonLabel, hidden, handleHide}) => {
                 return(
                     <FieldButton
                         key={buttonLabel}
@@ -60,7 +60,7 @@ const TodoFormInitialConfig = () => {
             hidden: true,
         },
         deadline: {
-            renderInput: (value, label, hidden, error, handleChange, handleHide) => {
+            renderInput: ({value, label, hidden, handleChange, handleHide}) => {
                 return (
                     <DeadlineField
                         key={label}
@@ -71,7 +71,7 @@ const TodoFormInitialConfig = () => {
                         />
                 )
             },
-            renderButton: (label, buttonLabel, hidden, handleHide) => {
+            renderButton: ({label, buttonLabel, hidden, handleHide}) => {
                 return(
                     <FieldButton
                         key={buttonLabel}
@@ -89,7 +89,7 @@ const TodoFormInitialConfig = () => {
             hidden: true,
         },
         priority: {
-            renderInput: (value, label, hidden, handleChange, handleHide) => {
+            renderInput: ({value, label, hidden, handleChange, handleHide}) => {
                 return (
                     <PriorityField
                         key={label}
@@ -100,7 +100,7 @@ const TodoFormInitialConfig = () => {
                         />
                 )
             },
-            renderButton: (label, buttonLabel, hidden, handleHide) => {
+            renderButton: ({label, buttonLabel, hidden, handleHide}) => {
                 return(
                     <FieldButton
                         key={buttonLabel}

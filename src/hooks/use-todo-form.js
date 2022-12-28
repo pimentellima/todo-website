@@ -14,12 +14,12 @@ export const useTodoForm = (sectionIndex, onSubmit) => {
         return Object.keys(fields).map(key => {
             const { renderInput, value, label, hidden, error } = fields[key];
             return renderInput(
-                value, 
+                {value, 
                 label, 
                 hidden, 
                 error, 
                 handleChange, 
-                handleHide
+                handleHide}
             );
         });
     };
@@ -28,24 +28,17 @@ export const useTodoForm = (sectionIndex, onSubmit) => {
         return Object.keys(fields).map(key => {
             const { renderButton, label, buttonLabel, hidden } = fields[key];
             return renderButton(
-                label, 
+                {label, 
                 buttonLabel, 
                 hidden, 
-                handleHide
+                handleHide}
             );
         });
     ;}
 
     const handleChange = (value, name) => {
-        if(name === 'title') {
-            setFields(fields => ({...fields,
-            [name]: {...fields[name], value: value, error: ''}})
-            );
-            return;
-        }
-        
-        setFields(fields => ({...fields, 
-            [name]: {...fields[name], value: value}
+        setFields(fields =>  ({...fields,
+                [name]: {...fields[name], value, error: ''}
             })
         );
     }
@@ -67,18 +60,18 @@ export const useTodoForm = (sectionIndex, onSubmit) => {
             return;
         } 
 
-        const todo = {
-            title: fields.title.value,
-            description: fields.description.value,
-            priority: fields.priority.value,
-            deadline: fields.deadline.value,
-            id: uuidv4()
-        };
+        const todo = new Object();
+        Object.keys(fields).map(key => {
+            todo[key] = fields[key].value;
+        });
+        todo.id = uuidv4();
+
         const newTodos = [...todos];
         const section = newTodos[sectionIndex];
         section.content.push(todo);
         newTodos.splice(sectionIndex, 1, section);
         setTodos(newTodos);
+
         setFields(TodoFormInitialConfig)
         onSubmit();
     }
