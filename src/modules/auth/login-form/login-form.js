@@ -5,12 +5,12 @@ import SignButton from '../../../ui/sign-button/sign-button';
 import LoginFormConfig from '../../../config/login-form-config';
 import TextInput from '../../../ui/text-input/text-input';
 import { useForm } from '../../../hooks/use-form';
-import { useAuth } from '../../../hooks/use-auth';
+import { useCurrentUser } from '../../../hooks/use-current-user';
 import getUser from '../../../utils//get-user'
 
 const LoginForm = () => {
     const navigate = useNavigate();
-    const { setCurrentUser } = useAuth();
+    const { setCurrentUser } = useCurrentUser();
     const {
         fields,
         handleChange,

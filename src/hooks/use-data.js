@@ -1,8 +1,7 @@
-import { useContext } from "react"
-import { CurrentUserContext } from "../context/current-user-context";
+import { useCurrentUser } from "./use-current-user";
 
 export const useData = () => {
-    const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+    const { currentUser, setCurrentUser } = useCurrentUser();
 
     const userTodos = currentUser ? currentUser.todos : [];
 
