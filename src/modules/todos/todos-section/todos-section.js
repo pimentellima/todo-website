@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import PopupMenu from '../../../ui/popup-menu/popup-menu'
-import { useDragTodo } from '../hooks/use-drag-todo';
+import { useDragTodo } from '../use-drag-todo';
 import { useData } from '../../../hooks/use-data';
-import { v4 as uuidv4 } from 'uuid';
 import Popup from 'reactjs-popup';
 import TodoCard from '../todo-card/todo-card'
 import TodoForm from '../todo-form/todo-form'
@@ -22,7 +21,7 @@ const TodosSection = (props) => {
         Object.keys(data).map(key => {
             todo[key] = data[key].value;
         });
-        todo.id = uuidv4();
+        todo.id = crypto.randomUUID();
         addTodo(todo);
         setFormOpen(false);
     };

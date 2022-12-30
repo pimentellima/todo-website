@@ -4,7 +4,7 @@ import * as S from './styles';
 import { GrTextAlignLeft, GrCalendar } from "react-icons/gr";
 import PopupMenu from '../../../ui/popup-menu/popup-menu'
 
-import { useDragTodo } from '../hooks/use-drag-todo';
+import { useDragTodo } from '../use-drag-todo';
 import { useData } from '../../../hooks/use-data';
 
 const TodoCard = ({ todo, index, sectionIndex }) => {
