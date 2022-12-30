@@ -4,7 +4,7 @@ import * as S from './styles'
 import Calendar from "react-calendar";
 
 const DeadlineField = (props) => {
-    const { value, hidden, handleChange, handleHide } = props;
+    const { value, hidden, onChange, handleHide } = props;
 
     const renderCalendarButton = () => {
         return (
@@ -35,8 +35,7 @@ const DeadlineField = (props) => {
                 >
                 <Calendar 
                     defaultValue={new Date()} 
-                    onClickDay={date => 
-                        handleChange(date.toLocaleDateString(), 'deadline')}
+                    onClickDay={date => onChange('deadline', date.toLocaleDateString())}
                     />
             </S.CalendarPopup> 
         </div>

@@ -1,21 +1,45 @@
 import React from 'react';
-
-import { useTodoForm } from '../../../hooks/use-todo-form'
+import { useForm } from '../../../hooks/use-form'
+import TodoFormConfig from '../../../config/todo-form-config';
+import PriorityField from '../../../form-fields/priority-field/priority-field'
+import DeadlineField from '../../../form-fields/deadline-field/deadline-field'
+import DescriptionField from '../../../form-fields/description-field/description-field'
+import TitleField from '../../../form-fields/title-field/title-field';
 
 import * as S from './styles'
 
-const TodoForm = ({ sectionIndex, onSubmit }) => {
-    const { 
-        renderFields, 
-        renderButtons, 
-        handleSubmit } = useTodoForm(sectionIndex, onSubmit);
+const TodoForm = ({ onSubmit }) => {
+    const { fields, handleChange, handleSubmit } = useForm(TodoFormConfig, onSubmit);
+    const { title, description, deadline, priority } = fields;
 
     return (
         <S.Form autoComplete='off' onSubmit={e => handleSubmit(e)}>
             <S.Title>Nova tarefa</S.Title>
-            {renderFields()}
+            <TitleField 
+                value={title.value}
+                errorMessage={title.errorMessage}
+                onChange={handleChange}
+                />
+            <DescriptionField 
+                value={description.value}
+                errorMessage={description.errorMessage}
+                onChange={handleChange}
+                hidden={false}
+                handlehide={() => {}}
+                />
+            <DeadlineField
+                value={deadline.value}
+                onChange={handleChange}
+                hidden={false}
+                handlehide={() => {}}
+                />
+            <PriorityField
+                value={priority.value}  
+                onChange={handleChange}
+                hidden={false}
+                handlehide={() => {}}
+                />
             <S.AddFieldsDiv>
-                {renderButtons()}
             </S.AddFieldsDiv>
             <S.SubmitButton type='button' onClick={(e) => handleSubmit(e)}>
                 Finalizar

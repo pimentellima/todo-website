@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PopupMenu from '../../ui/popup-menu/popup-menu'
 import * as S from './styles'
 
 const PriorityField = (props) => {
-    const { value, hidden, handleChange, handleHide } = props;
+    const { value, hidden, onChange, handleHide } = props;
 
     return(
         <div hidden={hidden}>
@@ -20,7 +20,7 @@ const PriorityField = (props) => {
             </S.Label>
             <S.PrioritySelect 
                 value={value}
-                onChange={e => handleChange(e.target.value, 'priority')}
+                onChange={(value) => onChange('priority', value)}
                 >
                 <option hidden value= ''>Selecione a prioridade</option>
                 <option>Baixa</option>    

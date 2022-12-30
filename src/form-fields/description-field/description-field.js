@@ -1,9 +1,10 @@
 import React from "react";
 import * as S from './styles'
 import PopupMenu from '../../ui/popup-menu/popup-menu'
+import TextInput from "../../ui/text-input/text-input";
 
 const DescriptionField = (props) => {
-    const  { value, hidden, handleChange, handleHide } = props;
+    const  { value, hidden, onChange, handleHide } = props;
 
     return ( 
         <div hidden={hidden}>
@@ -18,11 +19,12 @@ const DescriptionField = (props) => {
                         }]}
                     />
             </S.Label>
-            <S.Input    
+            <TextInput    
+                label='description'
                 type='text'
                 placeholder='Digite aqui ...'
                 value={value}
-                onChange={e => handleChange(e.target.value, 'description')}
+                onChange={onChange}
                 />
         </div>
     )

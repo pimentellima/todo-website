@@ -2,18 +2,20 @@ import React from 'react';
 
 import * as S from './styles';
 
-const TextInput = ({ inputRef, onChange, placeholder, isInvalid, type, error }) => {
+const TextInput = (props) => {
+    const { label, value, type, placeholder, errorMessage, onChange } = props;
 
     return(
         <>
             <S.Input
-                ref={inputRef}
-                onChange={onChange}
-                placeholder={placeholder}
-                isInvalid={isInvalid}
+                name={label}
+                value={value}
                 type={type}
+                placeholder={placeholder}
+                onChange={e => onChange(label, e.target.value)}
+                isInvalid={!!errorMessage}
             />
-            <S.Error>{error}</S.Error>
+            <S.Error>{errorMessage}</S.Error>
         </>
     )
 }

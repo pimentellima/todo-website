@@ -3,18 +3,19 @@ import * as S from './styles'
 import TextInput from '../../ui/text-input/text-input'
 
 const TitleField = (props) => {
-    const { value, error, handleChange } = props;
+    const { value, errorMessage, onChange } = props;
     
     return ( 
         <div>
             <S.Label htmlFor="">*Título da tarefa</S.Label>
             <TextInput    
+                label='title'
+                value={value}
                 type='text'
                 placeholder='Digite aqui ...'
-                isInvalid={!!error}
-                value={value}
-                onChange={e => handleChange(e.target.value, 'title')}
-                error={error}
+                isInvalid={!!errorMessage}
+                onChange={onChange}
+                errorMessage={errorMessage}
                 />
         </div>
     )

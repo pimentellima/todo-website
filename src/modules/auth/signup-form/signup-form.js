@@ -1,77 +1,60 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-
 import SignForm from '../../../ui/sign-form/sign-form';
 import TextInput from '../../../ui/text-input/text-input'
 import SignButton from '../../../ui/sign-button/sign-button';
-
-import { useCurrentUser } from '../../../hooks/use-current-user'
+import { useForm } from "../../../hooks/use-form";
+import addUser from "../../../utils/add-user";
+import SignupFormConfig from "../../../config/signup-form-config"; 
 
 const SignupForm = () => {
-    const [usernameError, setUsernameError] = useState('')
-    const [passwordError, setPasswordError] = useState('')
-    const [confirmPasswordError, setConfirmPasswordError] = useState('')
-
-    const { signup } = useCurrentUser()
-    
     const navigate = useNavigate();
-
-    const userRef = useRef()
-    const passwordRef = useRef()
-    const confirmPasswordRef = useRef()
-
-    const handleSignup = (e) => {
-        e.preventDefault()
-        const username = userRef.current.value
-        const password = passwordRef.current.value
-        const confirmPassword = confirmPasswordRef.current.value
-
-        if (!username) setUsernameError('Não pode ser vazio')
-        if (!password) setPasswordError('Não pode ser vazio')
-        if (!confirmPassword) setConfirmPasswordError('Não pode ser vazio')
-        if(!password || !username || !confirmPassword) return
-
-        const error = signup(username, password)
-
-        if(error) {
-            setUsernameError(error);
-            return;
-        }
-        navigate('/login')
-    }
+    const { 
+        fields, 
+        handleChange, 
+        handleSubmit 
+    } = useForm(
+            SignupFormConfig, 
+            data => onSubmit(data)
+        );
+    const onSubmit = (data) => {
+        addUser(data.username.value, data.password.value);
+        navigate('/login');
+    };
+    const { username, password, confirmPassword } = fields;
 
     return (
-        <SignForm onSubmit={(e => handleSignup(e))}>
+        <SignForm onSubmit={(e => handleSubmit(e))}>
             Criar conta
-            <TextInput
-                inputRef={userRef} 
-                onChange={() => setUsernameError('')}
-                placeholder={'nome de usuário'}
-                isInvalid={!!usernameError}
-                type='username'
-                error={usernameError}
+            <TextInput 
+                label='username'
+                value={username.value}
+                type='text'
+                placeholder='Nome de usuário'
+                errorMessage={username.errorMessage}
+                onChange={handleChange}
                 />
-            <TextInput
-                inputRef={passwordRef} 
-                onChange={() => setPasswordError('')}
-                placeholder={'senha'}
-                isInvalid={!!passwordError}
+            <TextInput 
+                label='password'
+                value={password.value}
                 type='password'
-                error={passwordError}
+                placeholder='Senha'
+                errorMessage={password.errorMessage}
+                onChange={handleChange}
                 />
-            <TextInput
-                inputRef={confirmPasswordRef} 
-                onChange={() => setConfirmPasswordError('')}
-                placeholder={'confirme a senha'}
-                isInvalid={!!confirmPasswordError}
+            <TextInput 
+                label='confirmPassword'
+                value={confirmPassword.value}
                 type='password'
-                error={confirmPasswordError}
+                placeholder='Confirme a senha'
+                errorMessage={confirmPassword.errorMessage}
+                onChange={handleChange}
                 />
-            <SignButton onClick={e => handleSignup(e)}>
+            <SignButton onClick={e => handleSubmit(e)}>
                 Cadastrar-se
             </SignButton>
         </SignForm>
     )
-}
+};
 
 export default SignupForm;

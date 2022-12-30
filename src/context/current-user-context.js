@@ -1,29 +1,24 @@
 import React, { createContext, useState, useEffect } from "react"
 import { useNavigate } from "react-router";
+import getUserToken from '../utils/get-user-token';
 
-export const CurrentUserContext = createContext()
+export const CurrentUserContext = createContext();
 
 export const CurrentUserProvider = ({ children }) => {
-    const [user, setUser] = useState();
-
-    const navigate = useNavigate()
-
+    const [currentUser, setCurrentUser] = useState();
+    const navigate = useNavigate();
+    
     useEffect(() => {
-        const userLoggedIn = JSON.parse(localStorage.getItem("userLoggedIn"))
-        const usersStorage = JSON.parse(localStorage.getItem("users"));
-        if(userLoggedIn && usersStorage) {
-            const user = usersStorage.find(item => item.name === userLoggedIn)
-            if(user) {
-                setUser(user);
-                navigate('/user')
-            } 
-        } 
-    }, [])
-
+        const user = getUserToken();
+        if(user) {
+            setCurrentUser(user);
+            navigate('/user')
+        };
+    }, []);
 
     return(
-        <CurrentUserContext.Provider value={{ user, setUser }}>
+        <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
             {children}
         </CurrentUserContext.Provider>
-    )
-}
+    );
+};

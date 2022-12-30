@@ -4,12 +4,20 @@ import * as S from './styles';
 import { GrTextAlignLeft, GrCalendar } from "react-icons/gr";
 import PopupMenu from '../../../ui/popup-menu/popup-menu'
 
-import { useRemoveTodo } from '../../../hooks/use-remove-todo';
-import { useDragTodo } from '../../../hooks/use-drag-todo';
+import { useDragTodo } from '../hooks/use-drag-todo';
+import { useData } from '../../../hooks/use-data';
 
 const TodoCard = ({ todo, index, sectionIndex }) => {
     const { dragging, dragItem, onDragStart, onDragEnterCard } = useDragTodo();
-    const { removeTodo } = useRemoveTodo();
+    const { setUserTodos } = useData();
+
+    const removeTodo = (index, sectionIndex) => {
+        const newTodos = [...userTodos];
+        const newSection = newTodos[sectionIndex];
+        newSection.content.splice(index, 1);
+        newTodos.splice(sectionIndex, 1, newSection);
+        setUserTodos(newTodos);
+    };
 
     const isBeingDragged =  
         dragging && 

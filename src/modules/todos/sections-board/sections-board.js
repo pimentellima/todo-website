@@ -1,27 +1,28 @@
-import React from 'react';
-
-import { useBoard } from '../../../hooks/use-board';
-
-import { useCurrentUser } from '../../../hooks/use-current-user';
-
+import React, { useState, useRef } from 'react';
+import { useData } from '../../../hooks/use-data';
 import TodosSection from '../todos-section/todos-section';
-
 import * as S from './styles';
 
 const SectionsBoard = () => {
-    const { userTodos } = useCurrentUser();
+    const { userTodos, setUserTodos } = useData();
+    const [creating, setCreating] = useState(false);
+    const titleRef = useRef();
     
-    const { 
-        titleRef, 
-        addSection, 
-        creating, 
-        setCreating } = useBoard();
+    const handleAddSection = () => {
+        if(titleRef.current.value === '') return
+        const newTodos = [...userTodos];
+        const newSection = {title: titleRef.current.value, content: []};
+        newTodos.push(newSection);
+        setUserTodos(newTodos);
+        titleRef.current.value = '';
+        setCreating(false);
+    };
 
     return (
         <S.Content>
             {userTodos.map((section, index) =>
                 <TodosSection  
-                    title={section.name} 
+                    title={section.title} 
                     content={section.content} 
                     sectionIndex={index} 
                     key={index}
@@ -29,20 +30,20 @@ const SectionsBoard = () => {
                 )
             }
             {creating ? 
-                <S.TextInput 
+                <S.Input 
                     ref={titleRef}
                     autoFocus
                     type='text'
                     placeholder='Digite aqui ...'
-                    onKeyDown={(e) => e.key === 'Enter' && addSection()} 
-                    onBlur={addSection}
+                    onKeyDown={(e) => e.key === 'Enter' && handleAddSection()} 
                     />
                 :
-                <S.CreateSectionButton 
+                <S.Button 
+                    type='button'
                     onClick={() => setCreating(true)}
                     >
                     Nova seção
-                </S.CreateSectionButton>
+                </S.Button>
             }
         </S.Content>
     )

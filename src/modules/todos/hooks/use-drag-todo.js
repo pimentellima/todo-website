@@ -1,10 +1,10 @@
 import { useContext } from 'react'
 
-import { DragTodoContext } from '../context/drag-todo-context'
-import { useCurrentUser } from "./use-current-user";
+import { DragTodoContext } from '../../../context/drag-todo-context'
+import { useData } from '../../../hooks/use-data';
 
 export const useDragTodo = () => {
-    const { userTodos, setUserTodos } = useCurrentUser();
+    const { userTodos, setUserTodos } = useData();
 
     const { dragItem, dragNode, dragging, setDragging } = useContext(DragTodoContext)
 

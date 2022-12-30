@@ -1,24 +1,53 @@
 import React, { useState } from 'react';
-
-import { useDragTodo } from '../../../hooks/use-drag-todo';
-
 import PopupMenu from '../../../ui/popup-menu/popup-menu'
-
+import { useDragTodo } from '../hooks/use-drag-todo';
+import { useData } from '../../../hooks/use-data';
+import { v4 as uuidv4 } from 'uuid';
 import Popup from 'reactjs-popup';
-
 import TodoCard from '../todo-card/todo-card'
 import TodoForm from '../todo-form/todo-form'
 
-import { useSection } from '../../../hooks/use-section';
-
 import * as S from './styles';
 
-const TodosSection = ({ title, content, sectionIndex }) => {    
+const TodosSection = (props) => {    
+    const { title, content, sectionIndex } = props;
+
     const { onDragEnterSection, dragging } = useDragTodo();
-    
-    const { removeSection, removeContent } = useSection();
+    const { userTodos, setUserTodos } = useData();
     
     const [formOpen, setFormOpen] = useState(false);
+
+    const onSubmitTodo = (data) => {
+        const todo = {};
+        Object.keys(data).map(key => {
+            todo[key] = data[key].value;
+        });
+        todo.id = uuidv4();
+        addTodo(todo);
+        setFormOpen(false);
+    };
+    
+    const addTodo = (todoObj) => {
+        const newTodos = [...userTodos];
+        const section = newTodos[sectionIndex];
+        section.content.push(todoObj);
+        newTodos.splice(sectionIndex, 1, section);
+        setUserTodos(newTodos);
+    };
+
+    const removeSection = (sectionIndex) => {
+        const newTodos = [...userTodos];
+        newTodos.splice(sectionIndex, 1);
+        setUserTodos(newTodos);
+    };
+
+    const removeContent = (sectionIndex) => {
+        const newTodos = [...userTodos];
+        const newSection = newTodos[sectionIndex];
+        newSection.content.splice(0);
+        newTodos.splice(sectionIndex, 1, newSection);
+        setUserTodos(newTodos);
+    };
 
     return (
         <S.Container>
@@ -35,7 +64,7 @@ const TodosSection = ({ title, content, sectionIndex }) => {
                         >
                         <TodoForm 
                             sectionIndex={sectionIndex}
-                            onSubmit={() => setFormOpen(false)} 
+                            onSubmit={(data) => onSubmitTodo(data)}
                             />
                     </Popup>
                     :

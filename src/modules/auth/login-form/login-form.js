@@ -1,69 +1,52 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { useNavigate } from "react-router-dom";
-
 import SignForm from '../../../ui/sign-form/sign-form';
-import TextInput from '../../../ui/text-input/text-input'
 import SignButton from '../../../ui/sign-button/sign-button';
-
-import { useCurrentUser } from '../../../hooks/use-current-user'
+import LoginFormConfig from '../../../config/login-form-config';
+import TextInput from '../../../ui/text-input/text-input';
+import { useForm } from '../../../hooks/use-form';
+import { useAuth } from '../../../hooks/use-auth';
+import getUser from '../../../utils//get-user'
 
 const LoginForm = () => {
-    const [usernameError, setUsernameError] = useState('')
-    const [passwordError, setPasswordError] = useState('')
-
-    const { user, login } = useCurrentUser()
-
-    const navigate = useNavigate()
-
-    const userRef = useRef()
-    const passwordRef = useRef()
-
-    useEffect(() => {
-        if(user) navigate('/user')
-    }, [user])
-
-    const handleLogin = (e) => {
-        e.preventDefault()
-
-        const username = userRef.current.value
-        const password = passwordRef.current.value
-
-        setUsernameError('')
-        setPasswordError('')
-
-        if (!username) setUsernameError('Não pode ser vazio')
-        if (!password) setPasswordError('Não pode ser vazio')
-        if(!password || !username) return
-
-        const error = login(username, password)
-
-        if(error) {
-            setUsernameError(error);
-            return;
-        }
-        navigate('/user')
-    }
+    const navigate = useNavigate();
+    const { setCurrentUser } = useAuth();
+    const {
+        fields,
+        handleChange,
+        handleSubmit,
+    } = useForm(
+            LoginFormConfig, 
+            data => onSubmit(data)
+        );
+    const onSubmit = (data) => {
+        const user = getUser(data.username.value);
+        localStorage.setItem("userLoggedIn", JSON.stringify(user));
+        setCurrentUser(user);
+        navigate("/user");
+    };
+    const { username, password } = fields;
 
     return (
-        <SignForm onSubmit={(e) => handleLogin(e)}>
+        <SignForm onSubmit={(e) => handleSubmit(e)}>
             Entre na sua conta
-            <TextInput
-                inputRef={userRef} 
-                onChange={() => setUsernameError('')}
-                placeholder={'nome de usuário'}
-                isInvalid={!!usernameError}
-                type='username'
-                error={usernameError}
-            />
-            <TextInput
-                inputRef={passwordRef} 
-                onChange={() => setPasswordError('')}
-                placeholder={'senha'}
-                isInvalid={!!passwordError}
+            <TextInput 
+                label='username'
+                value={username.value}
+                type='text'
+                placeholder='Nome de usuário'
+                errorMessage={username.errorMessage}
+                onChange={handleChange}
+                />
+            <TextInput 
+                label='password'
+                value={password.value}
                 type='password'
-                error={passwordError}
+                placeholder='Senha'
+                errorMessage={password.errorMessage}
+                onChange={handleChange}
             />
-            <SignButton onClick={e => handleLogin(e)}>
+            <SignButton onClick={e => handleSubmit(e)}>
                 Entrar
             </SignButton>
         </SignForm>

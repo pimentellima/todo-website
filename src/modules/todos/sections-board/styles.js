@@ -30,7 +30,7 @@ export const Content = styled.div`
     }
 `
 
-export const CreateSectionButton = styled.button`
+export const Button = styled.button`
     border: ${({theme}) => theme.colors.border.default};
     background-color: ${({theme}) => theme.colors.blue.default};
     color: ${({theme}) => theme.colors.white};
@@ -49,7 +49,7 @@ export const CreateSectionButton = styled.button`
     }   
 `
 
-export const TextInput = styled.input`
+export const Input = styled.input`
     color: ${({theme}) => theme.colors.textColor};
 
     background-color: #ecf1f8;
