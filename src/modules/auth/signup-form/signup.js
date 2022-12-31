@@ -1,4 +1,4 @@
-const addUser = (username, password) => {
+export const signup = (username, password) => {
     const usersStorage = JSON.parse(localStorage.getItem("users")) ? 
         JSON.parse(localStorage.getItem("users")) : [];
 
@@ -19,5 +19,3 @@ const addUser = (username, password) => {
 
     localStorage.setItem("users", JSON.stringify([...usersStorage, newUser]));
 };
-
-export default addUser;

@@ -2,19 +2,19 @@ const TodoFormConfig = {
     fields: {
         title: {
             value: '',
-            error: '',
+            errorMessage: '',
         },
         description: {
             value: '',
-            error: null,
+            errorMessage: null,
         },
         deadline: {
             value: '',
-            error: null,
+            errorMessage: null,
         },
         priority: {
             value: '',
-            error: null,
+            errorMessage: null,
         }
     },
     validate: (fields) => {

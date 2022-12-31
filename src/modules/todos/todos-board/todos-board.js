@@ -1,22 +1,20 @@
 import React, { useState, useRef } from 'react';
-import { useUserTodos } from '../../../hooks/use-user-todos';
+import { useUserTodos } from '../hooks/use-user-todos';
 import TodosSection from '../todos-section/todos-section';
 import * as S from './styles';
+import { useAddSection } from './use-add-section';
 
 const TodosBoard = () => {
-    const { userTodos, setUserTodos } = useUserTodos();
+    const { userTodos } = useUserTodos();
     const [creating, setCreating] = useState(false);
     const titleRef = useRef();
+    const addSection = useAddSection();
     
     const handleAddSection = () => {
         if(titleRef.current.value === '') return
-        const newTodos = [...userTodos];
-        const newSection = {title: titleRef.current.value, content: []};
-        newTodos.push(newSection);
-        setUserTodos(newTodos);
-        titleRef.current.value = '';
+        addSection(titleRef.current.value);
         setCreating(false);
-
+        titleRef.current.value = '';
     };
 
     return (

@@ -5,12 +5,11 @@ import SignButton from '../../../components/sign-button/sign-button';
 import LoginFormConfig from '../../../config/login-form-config';
 import TextInput from '../../../components/text-input/text-input';
 import { useForm } from '../../../hooks/use-form';
-import { useCurrentUser } from '../../../hooks/use-current-user';
+import { useLogin } from '../hooks/use-login'
 
 const LoginForm = () => {
     const navigate = useNavigate();
-
-    const { setCurrentUser } = useCurrentUser();
+    const login = useLogin();
 
     const {
         fields,
@@ -22,11 +21,7 @@ const LoginForm = () => {
         );
         
     const onSubmit = (data) => {
-        const username = data.username.value;
-        const storage = JSON.parse(localStorage.getItem("users"));
-        const user = storage && storage.find((user) => user.name === username);
-        localStorage.setItem("userLoggedIn", JSON.stringify(user));
-        setCurrentUser(user);
+        login(data.username.value);
         navigate("/user");
     };
 

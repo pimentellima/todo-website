@@ -10,7 +10,7 @@ const UserPage = () => {
     
     const handleLogout = e => {
     e.preventDefault();
-        localStorage.removeItem('userLoggedIn');
+        localStorage.removeItem('userToken');
         navigate('/login');
     };
 

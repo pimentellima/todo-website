@@ -4,7 +4,7 @@ import SignForm from '../../../components/sign-form/sign-form';
 import TextInput from "../../../components/text-input/text-input";
 import SignButton from '../../../components/sign-button/sign-button';
 import { useForm } from "../../../hooks/use-form";
-import addUser from "../../../utils/add-user";
+import { signup } from "./signup";
 import SignupFormConfig from "../../../config/signup-form-config"; 
 
 const SignupForm = () => {
@@ -20,7 +20,7 @@ const SignupForm = () => {
         );
 
     const onSubmit = (data) => {
-        addUser(data.username.value, data.password.value);
+        signup(data.username.value, data.password.value);
         navigate('/login');
     };
 
