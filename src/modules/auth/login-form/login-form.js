@@ -1,30 +1,35 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import SignForm from '../../../ui/sign-form/sign-form';
-import SignButton from '../../../ui/sign-button/sign-button';
+import SignForm from '../../../components/sign-form/sign-form';
+import SignButton from '../../../components/sign-button/sign-button';
 import LoginFormConfig from '../../../config/login-form-config';
-import TextInput from '../../../ui/text-input/text-input';
+import TextInput from '../../../components/text-input/text-input';
 import { useForm } from '../../../hooks/use-form';
 import { useCurrentUser } from '../../../hooks/use-current-user';
-import getUser from '../../../utils//get-user'
 
 const LoginForm = () => {
     const navigate = useNavigate();
+
     const { setCurrentUser } = useCurrentUser();
+
     const {
         fields,
         handleChange,
         handleSubmit,
     } = useForm(
             LoginFormConfig, 
-            data => onSubmit(data)
+            (data) => onSubmit(data)
         );
+        
     const onSubmit = (data) => {
-        const user = getUser(data.username.value);
+        const username = data.username.value;
+        const storage = JSON.parse(localStorage.getItem("users"));
+        const user = storage && storage.find((user) => user.name === username);
         localStorage.setItem("userLoggedIn", JSON.stringify(user));
         setCurrentUser(user);
         navigate("/user");
     };
+
     const { username, password } = fields;
 
     return (

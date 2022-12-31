@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import PopupMenu from '../../../ui/popup-menu/popup-menu'
-import { useDragTodo } from '../use-drag-todo';
-import { useData } from '../../../hooks/use-data';
 import Popup from 'reactjs-popup';
+import { useDragTodo } from '../../../hooks/use-drag-todo';
+import PopupMenu from '../../../components/popup-menu/popup-menu';
 import TodoCard from '../todo-card/todo-card'
 import TodoForm from '../todo-form/todo-form'
 
 import * as S from './styles';
+import { useUserTodos } from '../../../hooks/use-user-todos';
 
 const TodosSection = (props) => {    
     const { title, content, sectionIndex } = props;
 
     const { onDragEnterSection, dragging } = useDragTodo();
-    const { userTodos, setUserTodos } = useData();
+    const { userTodos, setUserTodos } = useUserTodos();
     
     const [formOpen, setFormOpen] = useState(false);
 

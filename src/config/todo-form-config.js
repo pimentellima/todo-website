@@ -1,10 +1,4 @@
 const TodoFormConfig = {
-    validate: (fields) => {
-        const errors = {};
-        const title = fields.title;
-        if(title.value === '') errors.title = 'Requirido';
-        return errors;
-    },
     fields: {
         title: {
             value: '',
@@ -22,6 +16,12 @@ const TodoFormConfig = {
             value: '',
             error: null,
         }
-    }
+    },
+    validate: (fields) => {
+        const errors = {};
+        const title = fields.title;
+        if(title.value === '') errors.title = 'Requirido';
+        return errors;
+    },
 };
 export default TodoFormConfig;

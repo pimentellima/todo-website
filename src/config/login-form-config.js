@@ -1,5 +1,3 @@
-import getUser from '../utils/get-user'
-
 const LoginFormConfig = {
     fields: {
         username: {
@@ -14,7 +12,8 @@ const LoginFormConfig = {
     validate: (fields) => {
         const username = fields.username.value;
         const password = fields.password.value;
-        const user = getUser(username);
+        const storage = JSON.parse(localStorage.getItem("users"));
+        const user = storage && storage.find((user) => user.name === username);
         const errors = {};
         if(!username) errors.username = 'Requirido';
         if(!password) errors.password = 'Requirido';

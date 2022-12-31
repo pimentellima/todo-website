@@ -1,26 +1,29 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import SignForm from '../../../ui/sign-form/sign-form';
-import TextInput from '../../../ui/text-input/text-input'
-import SignButton from '../../../ui/sign-button/sign-button';
+import SignForm from '../../../components/sign-form/sign-form';
+import TextInput from "../../../components/text-input/text-input";
+import SignButton from '../../../components/sign-button/sign-button';
 import { useForm } from "../../../hooks/use-form";
 import addUser from "../../../utils/add-user";
 import SignupFormConfig from "../../../config/signup-form-config"; 
 
 const SignupForm = () => {
     const navigate = useNavigate();
+
     const { 
         fields, 
         handleChange, 
         handleSubmit 
     } = useForm(
             SignupFormConfig, 
-            data => onSubmit(data)
+            (data) => onSubmit(data)
         );
+
     const onSubmit = (data) => {
         addUser(data.username.value, data.password.value);
         navigate('/login');
     };
+
     const { username, password, confirmPassword } = fields;
 
     return (

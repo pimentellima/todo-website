@@ -1,5 +1,5 @@
 import React from "react";
-import PopupMenu from '../../ui/popup-menu/popup-menu'
+import PopupMenu from '../../../../components/popup-menu/popup-menu'
 import * as S from './styles'
 import Calendar from "react-calendar";
 

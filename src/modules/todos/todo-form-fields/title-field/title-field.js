@@ -1,6 +1,6 @@
 import React from "react";
 import * as S from './styles'
-import TextInput from '../../ui/text-input/text-input'
+import TextInput from "../../../../components/text-input/text-input";
 
 const TitleField = (props) => {
     const { value, errorMessage, onChange } = props;

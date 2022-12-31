@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from './styles'
-import PopupMenu from '../../ui/popup-menu/popup-menu'
-import TextInput from "../../ui/text-input/text-input";
+import PopupMenu from '../../../../components/popup-menu/popup-menu'
+import TextInput from "../../../../components/text-input/text-input";
 
 const DescriptionField = (props) => {
     const  { value, hidden, onChange, handleHide } = props;

@@ -1,6 +1,6 @@
 import { useCurrentUser } from "./use-current-user";
 
-export const useData = () => {
+export const useUserTodos = () => {
     const { currentUser, setCurrentUser } = useCurrentUser();
 
     const userTodos = currentUser ? currentUser.todos : [];

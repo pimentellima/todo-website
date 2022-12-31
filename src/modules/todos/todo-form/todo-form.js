@@ -1,10 +1,10 @@
 import React from 'react';
 import { useForm } from '../../../hooks/use-form'
 import TodoFormConfig from '../../../config/todo-form-config';
-import PriorityField from '../../../form-fields/priority-field/priority-field'
-import DeadlineField from '../../../form-fields/deadline-field/deadline-field'
-import DescriptionField from '../../../form-fields/description-field/description-field'
-import TitleField from '../../../form-fields/title-field/title-field';
+import PriorityField from '../todo-form-fields/priority-field/priority-field'
+import DeadlineField from '../todo-form-fields/deadline-field/deadline-field'
+import DescriptionField from '../todo-form-fields/description-field/description-field'
+import TitleField from '../todo-form-fields/title-field/title-field';
 
 import * as S from './styles'
 

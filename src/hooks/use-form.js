@@ -20,7 +20,8 @@ export const useForm = (initialConfig, onSubmit) => {
         if (Object.keys(errors).length > 0) {
             const newFields = {...form.fields};
             Object.keys(errors).forEach(key => {
-                newFields[key] = {...newFields[key], errorMessage: errors[key]};
+                newFields[key] = {
+                    ...newFields[key], errorMessage: errors[key]};
             })
             setForm(form => ({...form, fields: newFields}));
             return;

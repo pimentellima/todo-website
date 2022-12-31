@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { useData } from '../../../hooks/use-data';
+import { useUserTodos } from '../../../hooks/use-user-todos';
 import TodosSection from '../todos-section/todos-section';
 import * as S from './styles';
 
-const SectionsBoard = () => {
-    const { userTodos, setUserTodos } = useData();
+const TodosBoard = () => {
+    const { userTodos, setUserTodos } = useUserTodos();
     const [creating, setCreating] = useState(false);
     const titleRef = useRef();
     
@@ -16,6 +16,7 @@ const SectionsBoard = () => {
         setUserTodos(newTodos);
         titleRef.current.value = '';
         setCreating(false);
+
     };
 
     return (
@@ -49,4 +50,4 @@ const SectionsBoard = () => {
     )
 };
 
-export default SectionsBoard;
+export default TodosBoard;
