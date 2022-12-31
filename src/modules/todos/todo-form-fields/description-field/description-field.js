@@ -1,23 +1,16 @@
 import React from "react";
 import * as S from './styles'
-import PopupMenu from '../../../../components/popup-menu/popup-menu'
 import TextInput from "../../../../components/text-input/text-input";
+import { generateHideMenu } from "../generate-hide-menu";
 
 const DescriptionField = (props) => {
-    const  { value, hidden, onChange, handleHide } = props;
+    const { value, hidden, onChange, onHide } = props;
 
     return ( 
         <div hidden={hidden}>
             <S.Label htmlFor=''>
                 Descrição
-                <PopupMenu 
-                    position='bottom right'
-                    options={[
-                        {
-                            label: 'Remover campo', 
-                            handler: () => handleHide('description', true)
-                        }]}
-                    />
+                {generateHideMenu('description', onHide)}
             </S.Label>
             <TextInput    
                 label='description'

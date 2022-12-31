@@ -1,22 +1,15 @@
 import React from 'react';
-import PopupMenu from '../../../../components/popup-menu/popup-menu'
+import { generateHideMenu } from '../generate-hide-menu';
 import * as S from './styles'
 
 const PriorityField = (props) => {
-    const { value, hidden, onChange, handleHide } = props;
+    const { value, hidden, onChange, onHide } = props;
 
     return(
         <div hidden={hidden}>
             <S.Label htmlFor=''>
                 Prioridade
-                <PopupMenu 
-                    position='bottom right'
-                    options={[
-                        {
-                            label: 'Remover campo', 
-                            handler: () => handleHide('priority', true)
-                        }]}
-                    />
+                {generateHideMenu('priority', onHide)}
             </S.Label>
             <S.PrioritySelect 
                 value={value}

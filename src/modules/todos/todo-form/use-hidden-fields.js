@@ -15,5 +15,4 @@ export const useHiddenFields = () => {
     };
     
     return [hiddenFields, toggleHide];
-
 };

@@ -1,10 +1,10 @@
 import React from "react";
-import PopupMenu from '../../../../components/popup-menu/popup-menu'
-import * as S from './styles'
+import * as S from './styles';
 import Calendar from "react-calendar";
+import { generateHideMenu } from "../generate-hide-menu";
 
 const DeadlineField = (props) => {
-    const { value, hidden, onChange, handleHide } = props;
+    const { value, hidden, onChange, onHide } = props;
 
     const renderCalendarButton = () => {
         return (
@@ -12,20 +12,13 @@ const DeadlineField = (props) => {
                 {value ? value : 'Selecione o prazo'}
             </S.CalendarButton>
         )
-    }
+    };
 
     return ( 
         <div hidden={hidden}>
             <S.Label htmlFor=''>
                 Prazo
-                <PopupMenu 
-                    position='bottom right'
-                    options={[
-                        {
-                            label: 'Remover campo', 
-                            handler: () => handleHide('deadline', true)
-                        }]}
-                    />
+                {generateHideMenu('deadline', onHide)}
             </S.Label>
             <S.CalendarPopup 
                 nested 
