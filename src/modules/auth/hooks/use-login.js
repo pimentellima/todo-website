@@ -1,4 +1,4 @@
-import { useCurrentUser } from "../../../hooks/use-current-user";
+import { useCurrentUser } from '../../../shared-hooks/use-current-user'
 
 export const useLogin = () => {
     const { setCurrentUser } = useCurrentUser();

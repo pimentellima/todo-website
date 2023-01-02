@@ -1,5 +1,5 @@
-import { useContext } from 'react'
-import { DragTodoContext } from '../../../context/drag-todo-context'
+import { useContext } from 'react';
+import { DragTodoContext } from '../../../context/drag-todo-context';
 import { useUserTodos } from './use-user-todos';
 
 export const useDragTodo = () => {
@@ -17,7 +17,7 @@ export const useDragTodo = () => {
         setTimeout(() => {
             setDragging(true)
         }, 0);
-    }    
+    };
     
     const onDragEnterCard = (e, params) => {
         e.preventDefault();
@@ -44,7 +44,7 @@ export const useDragTodo = () => {
         setUserTodos(newTodos);
         
         dragItem.current = params;
-    }    
+    };    
 
     const onDragEnterSection = (e, toSectionIndex) => {
         e.preventDefault();
@@ -69,14 +69,14 @@ export const useDragTodo = () => {
         dragItem.current = {index: toSection.content.length - 1, sectionIndex: toSectionIndex}
 
         setUserTodos(newTodos)
-    } 
+    }; 
     
     const onDragEnd = () => {
         dragNode.current.removeEventListener('dragend', onDragEnd);
         dragNode.current = null;
         dragItem.current = null;
         setDragging(false);
-    }    
+    };    
 
     return { dragItem, dragging, onDragStart, onDragEnterCard, onDragEnterSection }
-}
+};
