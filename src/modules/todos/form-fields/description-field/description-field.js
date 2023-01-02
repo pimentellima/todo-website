@@ -1,7 +1,6 @@
 import React from "react";
 import * as S from './styles'
-import TextInput from "../../../../shared-components/text-input/text-input";
-import { HideFieldMenu } from "../../components/hide-field-menu";
+import PopupMenu from '../../components/popup-menu/popup-menu'
 
 const DescriptionField = (props) => {
     const { value, hidden, onChange, onHide } = props;
@@ -10,17 +9,20 @@ const DescriptionField = (props) => {
         <div hidden={hidden}>
             <S.Label htmlFor=''>
                 Descrição
-                <HideFieldMenu
-                    label='description'
-                    onHide={onHide}
+                <PopupMenu 
+                    position='bottom right'
+                    options={[
+                        {
+                            label: 'Remover campo', 
+                            handler: () => onHide(label, true)
+                        }]}
                     />
             </S.Label>
-            <TextInput    
-                label='description'
+            <S.Input    
                 type='text'
                 placeholder='Digite aqui ...'
                 value={value}
-                onChange={onChange}
+                onChange={e => onChange('description', e.target.value)}
                 />
         </div>
     )

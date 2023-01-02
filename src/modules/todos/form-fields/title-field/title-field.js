@@ -1,5 +1,4 @@
 import React from "react";
-import TextInput from "../../../../shared-components/text-input/text-input";
 import * as S from './styles'
 
 const TitleField = (props) => {
@@ -8,15 +7,14 @@ const TitleField = (props) => {
     return ( 
         <div>
             <S.Label htmlFor="">*Título da tarefa</S.Label>
-            <TextInput    
-                label='title'
+            <S.Input    
                 value={value}
                 type='text'
                 placeholder='Digite aqui ...'
                 isInvalid={!!errorMessage}
-                onChange={onChange}
-                errorMessage={errorMessage}
+                onChange={e => onChange('title', e.target.value)}
                 />
+            <S.Error>{errorMessage}</S.Error>
         </div>
     )
 }

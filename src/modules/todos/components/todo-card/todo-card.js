@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './styles';
 import { GrTextAlignLeft, GrCalendar } from "react-icons/gr";
 import { useDragTodo } from '../../hooks/use-drag-todo';
-import CardMenu from '../card-menu';
+import PopupMenu from '../popup-menu/popup-menu'
 
 const TodoCard = (props) => {
     const { todo, index, sectionIndex } = props;
@@ -24,10 +24,14 @@ const TodoCard = (props) => {
                 isBeingDragged={isBeingDragged}
                 >
                 <S.CardHeader>
-                    <CardMenu
-                        index={index}
-                        sectionIndex={sectionIndex}
-                    />
+                <PopupMenu 
+                    position='right bottom'
+                    options={[
+                        {
+                            label:'Remover tarefa', 
+                            handler: () => removeTodo(index, sectionIndex)
+                        }
+                    ]}/>
                     {todo.priority &&
                         <S.Priority priority={todo.priority}>
                             {todo.priority}

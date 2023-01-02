@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from './styles';
 import Calendar from "react-calendar";
-import { HideFieldMenu } from "../../components/hide-field-menu";
+import PopupMenu from '../../components/popup-menu/popup-menu'
 
 const DeadlineField = (props) => {
     const { value, hidden, onChange, onHide } = props;
@@ -18,9 +18,13 @@ const DeadlineField = (props) => {
         <div hidden={hidden}>
             <S.Label htmlFor=''>
                 Prazo
-                <HideFieldMenu
-                    label='deadline'
-                    onHide={onHide}
+                <PopupMenu 
+                    position='bottom right'
+                    options={[
+                        {
+                            label: 'Remover campo', 
+                            handler: () => onHide(label, true)
+                        }]}
                     />
             </S.Label>
             <S.CalendarPopup 
