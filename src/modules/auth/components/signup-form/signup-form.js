@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import SignForm from '../../ui/sign-form/sign-form';
 import SignButton from '../../ui/sign-button/sign-button';
-import SignupFormConfig from '../../../../config/signup-form-config'
+import SignupFormConfig from '../../signup-form-config'
 import TextInput from '../../../../shared-components/text-input/text-input';
 import { useForm } from '../../../../shared-hooks/use-form'
 import { signup } from "./signup";

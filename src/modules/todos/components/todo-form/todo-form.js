@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from '../../../../shared-hooks/use-form'
-import TodoFormConfig from '../../../../config/todo-form-config';
+import TodoFormConfig from '../../todo-form-config';
 import TitleField from '../../form-fields/title-field/title-field'
 import PriorityField from '../../form-fields/priority-field/priority-field'
 import DeadlineField from '../../form-fields/deadline-field/deadline-field'
