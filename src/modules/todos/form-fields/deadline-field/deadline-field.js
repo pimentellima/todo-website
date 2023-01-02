@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from './styles';
 import Calendar from "react-calendar";
-import { HideFieldMenu } from "../hide-field-menu";
+import { HideFieldMenu } from "../../components/hide-field-menu";
 
 const DeadlineField = (props) => {
     const { value, hidden, onChange, onHide } = props;

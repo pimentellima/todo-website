@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledForm = styled.form`
+export const Form = styled.form`
     border-radius: ${({theme}) => theme.borderRadius.normal}; 
     box-shadow: ${({theme}) => theme.boxShadow.form};
     color: ${({theme}) => theme.colors.textColor};

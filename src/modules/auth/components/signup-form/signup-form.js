@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import SignForm from '../../ui/sign-form/sign-form';
+import * as S from './styles';
 import SignButton from '../../ui/sign-button/sign-button';
 import SignupFormConfig from '../../signup-form-config'
 import TextInput from '../../../../shared-components/text-input/text-input';
 import { useForm } from '../../../../shared-hooks/use-form'
-import { signup } from "./signup";
+import signup from "../../signup";
 
 const SignupForm = () => {
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ const SignupForm = () => {
     const { username, password, confirmPassword } = fields;
 
     return (
-        <SignForm onSubmit={(e => handleSubmit(e))}>
+        <S.Form onSubmit={(e => handleSubmit(e))}>
             Criar conta
             <TextInput 
                 label='username'
@@ -56,7 +56,7 @@ const SignupForm = () => {
             <SignButton onClick={e => handleSubmit(e)}>
                 Cadastrar-se
             </SignButton>
-        </SignForm>
+        </S.Form>
     )
 };
 

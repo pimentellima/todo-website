@@ -1,15 +1,16 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import SignForm from '../../ui/sign-form/sign-form';
+import * as S from './styles';
 import SignButton from '../../ui/sign-button/sign-button';
 import LoginFormConfig from '../../login-form-config'
 import TextInput from '../../../../shared-components/text-input/text-input';
 import { useForm } from '../../../../shared-hooks/use-form'
-import { useLogin } from '../../hooks/use-login'
+import login from '../../login';
+import { useCurrentUser } from '../../../../shared-hooks/use-current-user'
 
 const LoginForm = () => {
     const navigate = useNavigate();
-    const login = useLogin();
+    const { setCurrentUser } = useCurrentUser();
 
     const {
         fields,
@@ -21,14 +22,20 @@ const LoginForm = () => {
         );
         
     const onSubmit = (data) => {
-        login(data.username.value);
+        const name = data.username.value;
+        const user = JSON.parse(
+            localStorage.getItem("users")).find(
+                user => user.name === name
+            );
+        login(name);
+        setCurrentUser(user)
         navigate("/user");
     };
 
     const { username, password } = fields;
 
     return (
-        <SignForm onSubmit={(e) => handleSubmit(e)}>
+        <S.Form onSubmit={(e) => handleSubmit(e)}>
             Entre na sua conta
             <TextInput 
                 label='username'
@@ -49,7 +56,7 @@ const LoginForm = () => {
             <SignButton onClick={e => handleSubmit(e)}>
                 Entrar
             </SignButton>
-        </SignForm>
+        </S.Form>
     );
 };
 

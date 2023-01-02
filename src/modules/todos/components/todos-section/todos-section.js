@@ -4,9 +4,9 @@ import PopupMenu from '../popup-menu/popup-menu';
 import TodoCard from '../todo-card/todo-card'
 import TodoForm from '../todo-form/todo-form'
 import { useDragTodo } from '../../hooks/use-drag-todo';
-import { useAddTodo } from './use-add-todo'
-import { useRemoveSection } from './use-remove-section'
-import { useRemoveContent } from './use-remove-content'
+import { useAddTodo } from '../../hooks/use-add-todo'
+import { useRemoveSection } from '../../hooks/use-remove-section'
+import { useRemoveContent } from '../../hooks/use-remove-content'
 import * as S from './styles';
 
 const TodosSection = (props) => {    

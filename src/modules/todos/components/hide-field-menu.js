@@ -1,5 +1,5 @@
 import React from 'react';
-import PopupMenu from '../components/popup-menu/popup-menu';
+import PopupMenu from './popup-menu/popup-menu';
 
 export const HideFieldMenu = ({ label, onHide }) => (
     <PopupMenu 

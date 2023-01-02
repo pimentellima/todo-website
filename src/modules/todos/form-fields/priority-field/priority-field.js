@@ -1,5 +1,5 @@
 import React from 'react';
-import { HideFieldMenu } from '../hide-field-menu';
+import { HideFieldMenu } from "../../components/hide-field-menu";
 import * as S from './styles'
 
 const PriorityField = (props) => {

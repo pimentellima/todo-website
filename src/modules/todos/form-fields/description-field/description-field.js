@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from './styles'
 import TextInput from "../../../../shared-components/text-input/text-input";
-import { HideFieldMenu } from "../hide-field-menu";
+import { HideFieldMenu } from "../../components/hide-field-menu";
 
 const DescriptionField = (props) => {
     const { value, hidden, onChange, onHide } = props;

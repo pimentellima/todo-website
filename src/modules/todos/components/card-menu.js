@@ -1,6 +1,6 @@
 import React from "react";
-import { useRemoveTodo } from "./use-remove-todo";
-import PopupMenu from "../popup-menu/popup-menu";
+import { useRemoveTodo } from "../hooks/use-remove-todo";
+import PopupMenu from "./popup-menu/popup-menu";
 
 const CardMenu = ({index, sectionIndex}) => {
     const removeTodo = useRemoveTodo();
