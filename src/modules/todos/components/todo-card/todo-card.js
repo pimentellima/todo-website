@@ -24,7 +24,10 @@ const TodoCard = (props) => {
                 isBeingDragged={isBeingDragged}
                 >
                 <S.CardHeader>
-                    <CardMenu/>
+                    <CardMenu
+                        index={index}
+                        sectionIndex={sectionIndex}
+                    />
                     {todo.priority &&
                         <S.Priority priority={todo.priority}>
                             {todo.priority}

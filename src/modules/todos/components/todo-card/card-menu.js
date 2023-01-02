@@ -2,7 +2,7 @@ import React from "react";
 import { useRemoveTodo } from "./use-remove-todo";
 import PopupMenu from "../popup-menu/popup-menu";
 
-const CardMenu = () => {
+const CardMenu = ({index, sectionIndex}) => {
     const removeTodo = useRemoveTodo();
     
     return (

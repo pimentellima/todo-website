@@ -10,7 +10,7 @@ export const CurrentUserProvider = ({ children }) => {
     useEffect(() => {
         const userToken = JSON.parse(localStorage.getItem("userToken"));
         const storage = JSON.parse(localStorage.getItem("users"));
-        const user = storage.find(user => user.name === userToken);
+        const user = storage && storage.find(user => user.name === userToken);
         if (userToken && storage && user) {
             setCurrentUser(user);
             navigate('/user')
