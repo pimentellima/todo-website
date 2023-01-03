@@ -8,8 +8,8 @@ export const Label = styled.label`
     justify-content: space-between;
     font-size: 15px;
     margin: 12px 0 8px 0;
-`
-
+    
+` 
 export const CalendarButton = styled.button`
     background-color: ${({theme}) => theme.colors.background};
     border: 1px solid ${({theme}) => theme.colors.background};

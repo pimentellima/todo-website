@@ -4,7 +4,7 @@ import PriorityField from '../../form-fields/priority-field/priority-field'
 import DeadlineField from '../../form-fields/deadline-field/deadline-field'
 import DescriptionField from '../../form-fields/description-field/description-field'
 import { useForm } from '../../../../shared-hooks/use-form'
-import { useHideFields } from '../../hooks/use-hide-field'
+import { useHideFields } from '../../hooks/use-show-fields';
 import TodoFormConfig from '../../todo-form-config';
 import * as S from './styles'
 
@@ -45,14 +45,14 @@ const TodoForm = ({ onSubmit }) => {
                 onChange={handleChange}
                 onHide={(field) => toggleHide(field)}
                 />
-            <S.AddFieldDiv>
-            <S.AddFieldButton 
+            <S.AddFieldsDiv>
+                <S.AddFieldButton 
                     hidden={!hideFields.description}
                     type='button'
                     onClick={() => toggleHide('description')}
                     >
                     + Adicionar descrição
-                </S.AddFieldButton>
+                    </S.AddFieldButton>
                 <S.AddFieldButton 
                     hidden={!hideFields.deadline}
                     type='button'
@@ -67,7 +67,7 @@ const TodoForm = ({ onSubmit }) => {
                     >
                     + Adicionar prioridade
                 </S.AddFieldButton>
-            </S.AddFieldDiv>
+            </S.AddFieldsDiv>
             <S.SubmitButton type='submit' onClick={(e) => handleSubmit(e)}>
                 Finalizar
             </S.SubmitButton>

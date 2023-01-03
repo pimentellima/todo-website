@@ -6,7 +6,7 @@ const PriorityField = (props) => {
     const { value, hidden, onChange, onHide } = props;
 
     return(
-        <div hidden={hidden}>
+        <div hidden={hidden}> 
             <S.Label htmlFor=''>
                 Prioridade
                 <PopupMenu 
@@ -14,7 +14,7 @@ const PriorityField = (props) => {
                     options={[
                         {
                             label: 'Remover campo', 
-                            handler: () => onHide(label, true)
+                            handler: () => onHide('priority')
                         }]}
                     />
             </S.Label>
@@ -22,9 +22,10 @@ const PriorityField = (props) => {
                 value={value}
                 onChange={(e) => onChange('priority', e.target.value)}
                 >
-                <option>Baixa</option>    
-                <option>Media</option>
-                <option>Alta</option>
+                <option value=''>Selecione uma opção</option>
+                <option value='Baixa'>Baixa</option>    
+                <option value='Media'>Media</option>
+                <option value='Alta'>Alta</option>
             </S.PrioritySelect>
         </div>
 

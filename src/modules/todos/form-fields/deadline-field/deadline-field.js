@@ -6,14 +6,6 @@ import PopupMenu from '../../components/popup-menu/popup-menu'
 const DeadlineField = (props) => {
     const { value, hidden, onChange, onHide } = props;
 
-    const renderCalendarButton = () => {
-        return (
-            <S.CalendarButton type='button'>
-                {value ? value : 'Selecione o prazo'}
-            </S.CalendarButton>
-        )
-    };
-
     return ( 
         <div hidden={hidden}>
             <S.Label htmlFor=''>
@@ -23,7 +15,7 @@ const DeadlineField = (props) => {
                     options={[
                         {
                             label: 'Remover campo', 
-                            handler: () => onHide(label, true)
+                            handler: () => onHide('deadline')
                         }]}
                     />
             </S.Label>
@@ -31,11 +23,16 @@ const DeadlineField = (props) => {
                 nested 
                 position="top" 
                 arrow={false}
-                trigger={renderCalendarButton()}
+                trigger={
+                    <S.CalendarButton type='button'>
+                        {value ? value : 'Selecione uma data'}
+                    </S.CalendarButton>
+                }
                 >
                 <Calendar 
                     defaultValue={new Date()} 
-                    onClickDay={date => onChange('deadline', date.toLocaleDateString())}
+                    onClickDay={date => onChange
+                        ('deadline', date.toLocaleDateString())}
                     />
             </S.CalendarPopup> 
         </div>

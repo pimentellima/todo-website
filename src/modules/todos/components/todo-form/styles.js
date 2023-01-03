@@ -17,7 +17,7 @@ export const Title = styled.p`
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 `
 
-export const AddFieldDiv = styled.div`
+export const AddFieldsDiv = styled.div`
     display: flex;
     margin: 15px 0 15px 0;
     gap: 3px;

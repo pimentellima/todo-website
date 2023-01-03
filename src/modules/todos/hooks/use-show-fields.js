@@ -2,9 +2,9 @@ import { useState } from "react";
 
 export const useHideFields = () => {
     const [hideFields, setHideFields] = useState({
-        description: true,
-        deadline: true,
         priority: true,
+        deadline: true,
+        description: true,
     });
 
     const toggleHide = (fieldName) => {

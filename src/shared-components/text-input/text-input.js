@@ -8,7 +8,6 @@ const TextInput = (props) => {
     return(
         <>
             <S.Input
-                name={label}
                 value={value}
                 type={type}
                 placeholder={placeholder}

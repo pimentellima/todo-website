@@ -14,7 +14,7 @@ const DescriptionField = (props) => {
                     options={[
                         {
                             label: 'Remover campo', 
-                            handler: () => onHide(label, true)
+                            handler: () => onHide('description')
                         }]}
                     />
             </S.Label>

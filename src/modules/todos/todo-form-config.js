@@ -19,8 +19,8 @@ const TodoFormConfig = {
     },
     validate: (fields) => {
         const errors = {};
-        const title = fields.title;
-        if(title.value === '') errors.title = 'Requirido';
+        const title = fields.title.value;
+        if(title === '') errors.title = 'Requirido';
         return errors;
     },
 };

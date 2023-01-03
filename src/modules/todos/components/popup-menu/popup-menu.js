@@ -27,8 +27,9 @@ const PopupMenu = ({ position, options }) => {
                 {options.map((option, index) => 
                     <S.OptionButton 
                         onClick={() => handleClick(option)} 
-                        key={index}>
-                            {option.label}
+                        key={index}
+                        >
+                        {option.label}
                     </S.OptionButton>)
                 }
             </S.Content>

@@ -9,7 +9,6 @@ const TitleField = (props) => {
             <S.Label htmlFor="">*Título da tarefa</S.Label>
             <S.Input    
                 value={value}
-                type='text'
                 placeholder='Digite aqui ...'
                 isInvalid={!!errorMessage}
                 onChange={e => onChange('title', e.target.value)}
