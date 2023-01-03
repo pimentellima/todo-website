@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { useUserTodos } from '../hooks/use-user-todos';
 import TodosSection from '../todos-section/todos-section';
 import { useAddSection } from '../hooks/use-add-section';
@@ -6,17 +6,15 @@ import * as S from './styles';
 
 const TodosBoard = () => {
     const { userTodos } = useUserTodos();
-    const [creating, setCreating] = useState(false);
-    const titleRef = useRef();
-    const addSection = useAddSection();
-    
-    const handleAddSection = () => {
-        if(titleRef.current.value === '') return
-        addSection(titleRef.current.value);
-        setCreating(false);
-        titleRef.current.value = '';
-    };
 
+    const { 
+        value,
+        handleChange, 
+        adding, 
+        setAdding, 
+        addSection,
+    } = useAddSection();
+    
     return (
         <S.Content>
             {userTodos.map((section, index) =>
@@ -28,18 +26,20 @@ const TodosBoard = () => {
                     />
                 )
             }
-            {creating ? 
+            {adding ? 
                 <S.Input 
-                    ref={titleRef}
                     autoFocus
+                    value={value}
                     type='text'
                     placeholder='Digite aqui ...'
-                    onKeyDown={(e) => e.key === 'Enter' && handleAddSection()} 
+                    onChange={e => handleChange(e)} 
+                    onKeyDown={e => handleChange(e)}
+                    onBlur={() => addSection()}
                     />
                 :
                 <S.Button 
                     type='button'
-                    onClick={() => setCreating(true)}
+                    onClick={() => setAdding(true)}
                     >
                     Nova seção
                 </S.Button>
