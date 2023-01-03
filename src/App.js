@@ -1,16 +1,12 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
-
 import GlobalStyle from './styles/global-style';
 import theme from './styles/theme';
-
 import { ThemeProvider } from 'styled-components';
-
 import { CurrentUserProvider } from './context/current-user-context';
-
-import Login from './pages/login-page'
-import Signup from './pages/signup-page'
-import User from './pages/user-page'
+import Login from './pages/login-page/index'
+import Signup from './pages/signup-page/index'
+import User from './pages/user-page/index'
 
 const App = () => {
 
