@@ -1,16 +1,11 @@
 import React from 'react';
-import TitleField from '../form-fields/title-field/title-field'
-import PriorityField from '../form-fields/priority-field/priority-field'
-import DeadlineField from '../form-fields/deadline-field/deadline-field'
-import DescriptionField from '../form-fields/description-field/description-field'
 import { useForm } from '../../../shared-hooks/use-form'
-import { useHideFields } from '../hooks/use-show-fields';
 import TodoFormConfig from '../todo-form-config';
+import TextInput from '../../../shared-components/text-input/text-input';
+import Calendar from 'react-calendar';
 import * as S from './styles'
 
 const TodoForm = ({ onSubmit }) => {
-    const [hideFields, toggleHide] = useHideFields();
-
     const { 
         fields, 
         handleChange, 
@@ -22,52 +17,60 @@ const TodoForm = ({ onSubmit }) => {
     return (
         <S.Form autoComplete='off' onSubmit={e => handleSubmit(e)}>
             <S.Title>Nova tarefa</S.Title>
-            <TitleField 
+            <S.Label>*Título da tarefa</S.Label>
+            <TextInput    
+                label='title'
                 value={title.value}
+                type='text'
+                placeholder='Digite aqui ...'
+                onChange={e => handleChange(e)}
                 errorMessage={title.errorMessage}
-                onChange={handleChange}
                 />
-            <DescriptionField 
+            <S.Label>Descrição da tarefa</S.Label>
+            <TextInput    
+                label='description'
                 value={description.value}
-                hidden={hideFields.description}
-                onChange={handleChange}
-                onHide={(field) => toggleHide(field)}
+                type='text'
+                placeholder='Digite aqui ...'
+                onChange={e => handleChange(e)}
                 />
-            <DeadlineField
-                value={deadline.value}
-                hidden={hideFields.deadline}
-                onChange={handleChange}
-                onHide={(field) => toggleHide(field)}
-                />
-            <PriorityField
-                value={priority.value}  
-                hidden={hideFields.priority}
-                onChange={handleChange}
-                onHide={(field) => toggleHide(field)}
-                />
-            <S.AddFieldsDiv>
-                <S.AddFieldButton 
-                    hidden={!hideFields.description}
-                    type='button'
-                    onClick={() => toggleHide('description')}
-                    >
-                    + Adicionar descrição
-                    </S.AddFieldButton>
-                <S.AddFieldButton 
-                    hidden={!hideFields.deadline}
-                    type='button'
-                    onClick={() => toggleHide('deadline')}
-                    >
-                    + Adicionar prazo
-                </S.AddFieldButton>
-                <S.AddFieldButton 
-                    hidden={!hideFields.priority}
-                    type='button'
-                    onClick={() => toggleHide('priority')}
-                    >
-                    + Adicionar prioridade
-                </S.AddFieldButton>
-            </S.AddFieldsDiv>
+            <S.Label>Prazo de conclusão</S.Label>
+            <S.CalendarPopup 
+                nested 
+                position="top" 
+                arrow={false}
+                trigger={
+                    <S.PopupButton type='button'>
+                        {
+                            deadline.value ? 
+                                deadline.value 
+                                : 
+                                'Selecione uma data'
+                        }
+                    </S.PopupButton>}
+                >
+                <Calendar 
+                    defaultValue={new Date()} 
+                    onChange={e => { 
+                        e.target={
+                            name: 'deadline', 
+                            value: e.toLocaleDateString()
+                        };
+                        handleChange(e);
+                        }}
+                    />
+            </S.CalendarPopup> 
+            <S.Label>Prioridade</S.Label>
+            <S.Select 
+                name='priority'
+                value={priority.value}
+                onChange={e => handleChange(e)}
+                >
+                <option value=''>Selecione uma opção</option>
+                <option value='Baixa'>Baixa</option>    
+                <option value='Media'>Media</option>
+                <option value='Alta'>Alta</option>
+            </S.Select>
             <S.SubmitButton type='submit' onClick={(e) => handleSubmit(e)}>
                 Finalizar
             </S.SubmitButton>
