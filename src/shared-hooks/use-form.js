@@ -3,7 +3,8 @@ import { useState } from 'react';
 export const useForm = (initialConfig, onSubmit) => {
     const [form, setForm] = useState(initialConfig);
 
-    const handleChange = (name, value) => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
         setForm({...form, 
             fields: {...form.fields, 
                 [name]: {...form.fields[name], 

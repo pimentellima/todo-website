@@ -19,8 +19,9 @@ const PriorityField = (props) => {
                     />
             </S.Label>
             <S.PrioritySelect 
+                name='priority'
                 value={value}
-                onChange={(e) => onChange('priority', e.target.value)}
+                onChange={(e) => onChange(e)}
                 >
                 <option value=''>Selecione uma opção</option>
                 <option value='Baixa'>Baixa</option>    

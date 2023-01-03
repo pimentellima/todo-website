@@ -19,10 +19,11 @@ const DescriptionField = (props) => {
                     />
             </S.Label>
             <S.Input    
+                name='description'
                 type='text'
                 placeholder='Digite aqui ...'
                 value={value}
-                onChange={e => onChange('description', e.target.value)}
+                onChange={e => onChange(e)}
                 />
         </div>
     )

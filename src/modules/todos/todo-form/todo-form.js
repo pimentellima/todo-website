@@ -1,11 +1,11 @@
 import React from 'react';
-import TitleField from '../../form-fields/title-field/title-field'
-import PriorityField from '../../form-fields/priority-field/priority-field'
-import DeadlineField from '../../form-fields/deadline-field/deadline-field'
-import DescriptionField from '../../form-fields/description-field/description-field'
-import { useForm } from '../../../../shared-hooks/use-form'
-import { useHideFields } from '../../hooks/use-show-fields';
-import TodoFormConfig from '../../todo-form-config';
+import TitleField from '../form-fields/title-field/title-field'
+import PriorityField from '../form-fields/priority-field/priority-field'
+import DeadlineField from '../form-fields/deadline-field/deadline-field'
+import DescriptionField from '../form-fields/description-field/description-field'
+import { useForm } from '../../../shared-hooks/use-form'
+import { useHideFields } from '../hooks/use-show-fields';
+import TodoFormConfig from '../todo-form-config';
 import * as S from './styles'
 
 const TodoForm = ({ onSubmit }) => {

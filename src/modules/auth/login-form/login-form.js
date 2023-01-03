@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import SignButton from '../components/sign-button/sign-button';
+import TextInput from '../../../shared-components/text-input/text-input';
+import { useForm } from '../../../shared-hooks/use-form'
+import { useCurrentUser } from '../../../shared-hooks/use-current-user'
+import LoginFormConfig from '../login-form-config'
+import login from '../login';
 import * as S from './styles';
-import SignButton from '../../ui/sign-button/sign-button';
-import LoginFormConfig from '../../login-form-config'
-import TextInput from '../../../../shared-components/text-input/text-input';
-import { useForm } from '../../../../shared-hooks/use-form'
-import login from '../../login';
-import { useCurrentUser } from '../../../../shared-hooks/use-current-user'
 
 const LoginForm = () => {
     const navigate = useNavigate();

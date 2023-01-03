@@ -31,12 +31,17 @@ const DeadlineField = (props) => {
                 >
                 <Calendar 
                     defaultValue={new Date()} 
-                    onClickDay={date => onChange
-                        ('deadline', date.toLocaleDateString())}
+                    onChange={e => { 
+                        e.target={
+                            name: 'deadline', 
+                            value: e.toLocaleDateString()
+                        };
+                        onChange(e);
+                        }}
                     />
             </S.CalendarPopup> 
         </div>
     )
-}
+};
 
 export default DeadlineField;

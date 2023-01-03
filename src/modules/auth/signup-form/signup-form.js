@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import * as S from './styles';
-import SignButton from '../../ui/sign-button/sign-button';
-import SignupFormConfig from '../../signup-form-config'
-import TextInput from '../../../../shared-components/text-input/text-input';
-import { useForm } from '../../../../shared-hooks/use-form'
-import signup from "../../signup";
+import SignButton from '../components/sign-button/sign-button';
+import SignupFormConfig from '../signup-form-config'
+import TextInput from '../../../shared-components/text-input/text-input';
+import { useForm } from '../../../shared-hooks/use-form'
+import signup from "../signup";
 
 const SignupForm = () => {
     const navigate = useNavigate();

@@ -8,10 +8,11 @@ const TitleField = (props) => {
         <div>
             <S.Label htmlFor="">*Título da tarefa</S.Label>
             <S.Input    
+                name='title'
                 value={value}
                 placeholder='Digite aqui ...'
                 isInvalid={!!errorMessage}
-                onChange={e => onChange('title', e.target.value)}
+                onChange={e => onChange(e)}
                 />
             <S.Error>{errorMessage}</S.Error>
         </div>
