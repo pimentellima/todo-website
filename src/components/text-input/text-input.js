@@ -1,13 +1,19 @@
 import React from 'react';
-
-import * as S from './styles';
+import styled from 'styled-components';
 
 const TextInput = (props) => {
-    const { label, value, type, placeholder, errorMessage, onChange } = props;
+    const { 
+        label, 
+        value, 
+        type, 
+        placeholder, 
+        errorMessage, 
+        onChange 
+    } = props;
 
     return(
         <>
-            <S.Input
+            <StyledInput
                 name={label}
                 value={value}
                 type={type}
@@ -15,9 +21,48 @@ const TextInput = (props) => {
                 onChange={e => onChange(e)}
                 isInvalid={!!errorMessage}
             />
-            <S.Error>{errorMessage}</S.Error>
+            <StyledText>{errorMessage}</StyledText>
         </>
     )
-}
+};
+
+const StyledInput = styled.input`
+    font-size: ${({theme}) => theme.fontSizes.large};
+    border: 1px solid ${({theme}) => theme.colors.grey.light};
+    background-color: ${({theme}) => theme.colors.grey.light};
+    color: ${({theme}) => theme.colors.fontColors.secondary};
+    width: 100%;
+    padding: 13px 10px;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-out ;
+
+    ${props => props.isInvalid ? 
+        css`
+            border-color: ${({theme}) => theme.colors.red} ;
+        `
+        :
+        css`
+            :hover, :focus, :active {
+                border-color: ${({theme}) => theme.colors.blue.light};
+            }
+        `
+    }
+
+    :hover, :focus, :active {
+        background-color: white;
+    }
+    
+    ::placeholder {
+        font-size: 15px;
+        color: ${({theme}) => theme.colors.fontColors.placeholder};
+    }
+`
+
+const StyledText = styled.p`
+    font-size: ${({theme}) => theme.fontSizes.small};
+    color: ${({theme}) => theme.colors.red};
+    display: flex;
+    text-align: start;
+`
 
 export default TextInput;
