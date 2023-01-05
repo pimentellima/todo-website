@@ -1,20 +1,9 @@
-import React from "react";
-import { useNavigate } from "react-router";
+import React from "react"
 import styled from "styled-components";
 
-const LogoutButton = () => {
-    const navigate = useNavigate();
-    
-    const handleLogout = e => {
-        e.preventDefault();
-        localStorage.removeItem('userToken');
-        navigate('/login');
-    };
-
+const LogoutButton = ({ onClick }) => {
     return(
-        <StyledButton 
-            onClick={(e) => handleLogout(e)}
-            >
+        <StyledButton onClick={(e) => onClick(e)}>
             Sair
         </StyledButton>
     )
