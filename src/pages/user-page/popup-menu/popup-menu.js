@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as S from './styles'
 import { HiDotsVertical } from 'react-icons/hi';''
-import Popup from "reactjs-popup";
 
 const PopupMenu = ({ position, options }) => {
     const [open, setOpen] = useState(false);
@@ -12,28 +11,26 @@ const PopupMenu = ({ position, options }) => {
     };
 
     return (
-        <Popup 
+        <S.MenuPopup 
             nested 
             open={open}
             onOpen={() => setOpen(true)}
             arrow={false}
             position={position}
             trigger=
-                <S.PopupButton active={open} type='button'>
+                <S.OpenPopupButton active={open} type='button'>
                     <HiDotsVertical/>
-                </S.PopupButton>
+                </S.OpenPopupButton>
             >
-            <S.Content>
-                {options.map((option, index) => 
-                    <S.OptionButton 
-                        onClick={() => handleClick(option)} 
-                        key={index}
-                        >
-                        {option.label}
-                    </S.OptionButton>)
-                }
-            </S.Content>
-        </Popup>
+            {options.map((option, index) => 
+                <S.OptionButton 
+                    onClick={() => handleClick(option)} 
+                    key={index}
+                    >
+                    {option.label}
+                </S.OptionButton>)
+            }
+        </S.MenuPopup>
     )
 };
 

@@ -4,7 +4,7 @@ export const Container = styled.div`
     border-right: 1px solid ${({ theme }) => theme.colors.border.dark};
     display: flex;
     flex-direction: column;
-    flex: 0 0 300px;
+    width: 300px;
     padding: 0 15px;
 `
 
@@ -41,6 +41,10 @@ export const Content = styled.div`
         background: rgba(0,0,0,0.2);
     }
 `
+export const ButtonsDiv = styled.div`
+    display: flex;
+    gap: 10px;
+`
 
 export const ModalButton = styled.button`
     background-color: ${({ theme }) => theme.colors.blue.default};
@@ -68,6 +72,12 @@ export const Header = styled.header`
     font-size: 16px;
     padding: 0 10px;
     margin-bottom: 10px;
+`
+
+export const Title = styled.p`
+    width: 65%;
+    text-overflow: ellipsis;
+    overflow: hidden;
 `
 
 

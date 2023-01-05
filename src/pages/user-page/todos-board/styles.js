@@ -51,7 +51,6 @@ export const Button = styled.button`
 
 export const Input = styled.input`
     color: ${({theme}) => theme.colors.textColor};
-
     background-color: #ecf1f8;
     font-size: 16px;
     border: none;

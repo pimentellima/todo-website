@@ -2,7 +2,8 @@ import React from 'react';
 import { useForm } from '../../../hooks/use-form'
 import TodoFormConfig from './todo-form-config';
 import TextInput from '../../../components/text-input/text-input';
-import Calendar from 'react-calendar';
+import DeadlineInput from '../../../components/deadline-input/deadline-input';
+import PriorityInput from '../../../components/priority-input/priority-input';
 import * as S from './styles'
 
 const TodoForm = ({ onSubmit }) => {
@@ -35,42 +36,15 @@ const TodoForm = ({ onSubmit }) => {
                 onChange={e => handleChange(e)}
                 />
             <S.Label>Prazo de conclusão</S.Label>
-            <S.CalendarPopup 
-                nested 
-                position="top" 
-                arrow={false}
-                trigger={
-                    <S.PopupButton type='button'>
-                        {
-                            deadline.value ? 
-                                deadline.value 
-                                : 
-                                'Selecione uma data'
-                        }
-                    </S.PopupButton>}
-                >
-                <Calendar 
-                    defaultValue={new Date()} 
-                    onChange={e => { 
-                        e.target={
-                            name: 'deadline', 
-                            value: e.toLocaleDateString()
-                        };
-                        handleChange(e);
-                        }}
-                    />
-            </S.CalendarPopup> 
+            <DeadlineInput
+                value={deadline.value}
+                onChange={e => handleChange(e)}
+                />
             <S.Label>Prioridade</S.Label>
-            <S.Select 
-                name='priority'
+            <PriorityInput
                 value={priority.value}
                 onChange={e => handleChange(e)}
-                >
-                <option value=''>Selecione uma opção</option>
-                <option value='Baixa'>Baixa</option>    
-                <option value='Media'>Media</option>
-                <option value='Alta'>Alta</option>
-            </S.Select>
+                />
             <S.SubmitButton type='submit' onClick={(e) => handleSubmit(e)}>
                 Finalizar
             </S.SubmitButton>

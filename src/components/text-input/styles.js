@@ -5,10 +5,10 @@ export const Input = styled.input`
     border: 1px solid ${({theme}) => theme.colors.grey.light};
     background-color: ${({theme}) => theme.colors.grey.light};
     color: ${({theme}) => theme.colors.fontColors.secondary};
-    transition: border-color 0.15s ease-out ;
     width: 100%;
     padding: 13px 10px;
     border-radius: 4px;
+    transition: border-color 0.15s ease-out ;
 
     ${props => props.isInvalid ? 
         css`

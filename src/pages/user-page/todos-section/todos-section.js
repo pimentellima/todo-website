@@ -25,22 +25,23 @@ const TodosSection = (props) => {
     return (
         <S.Container>
             <S.Header>
-                {title} {'(' + content.length + ')'} 
-                {sectionIndex === 0 ?
-                    <Popup 
-                        nested
-                        open={formOpen}
-                        position='right top'
-                        trigger=<S.ModalButton>+</S.ModalButton>
-                        onOpen={() => setFormOpen(true)}
-                        arrow={false}
-                        >
-                        <TodoForm 
-                            sectionIndex={sectionIndex}
-                            onSubmit={(data) => onSubmitTodo(data)}
-                            />
-                    </Popup>
-                    :
+                    <S.Title>{title}</S.Title> {'(' + content.length + ')'}
+                <S.ButtonsDiv>
+                    {sectionIndex === 0 &&
+                        <Popup 
+                            nested
+                            open={formOpen}
+                            position='right top'
+                            trigger=<S.ModalButton>+</S.ModalButton>
+                            onOpen={() => setFormOpen(true)}
+                            arrow={false}
+                            >
+                            <TodoForm 
+                                sectionIndex={sectionIndex}
+                                onSubmit={(data) => onSubmitTodo(data)}
+                                />
+                        </Popup>
+                    }
                     <PopupMenu 
                         position='bottom right'
                         options={[ 
@@ -52,8 +53,8 @@ const TodosSection = (props) => {
                                 label: 'Remover tarefas', 
                                 handler: () => removeContent(sectionIndex)
                             }
-                            ]}/>
-                }
+                        ]}/>
+                </S.ButtonsDiv>
             </S.Header>
             <S.Content 
                 draggable={dragging.toString()}

@@ -17,18 +17,18 @@ export const useForm = (initialConfig, onSubmit) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const errors = form.validate(form.fields);
-        
-        if (Object.keys(errors).length > 0) {
-            const newFields = {...form.fields};
-            Object.keys(errors).forEach(key => {
-                newFields[key] = {
-                    ...newFields[key], errorMessage: errors[key]};
-            })
-            setForm(form => ({...form, fields: newFields}));
+        if(Object.keys(errors).length === 0) {
+            onSubmit(form.fields);
+            setForm(initialConfig);
             return;
         };
-        onSubmit(form.fields);
-        setForm(initialConfig);
+        
+        const newFields = {...form.fields};
+        Object.keys(errors).forEach(key => {
+            newFields[key] = {
+                ...newFields[key], errorMessage: errors[key]};
+        })
+        setForm(form => ({...form, fields: newFields}));
     };
 
     return ({ fields: form.fields, handleChange, handleSubmit })

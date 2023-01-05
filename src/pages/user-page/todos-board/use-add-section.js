@@ -7,7 +7,10 @@ export const useAddSection = () => {
     const [value, setValue] = useState('');
 
     const addSection = () => {
-        if(value === '') return
+        if(value === '') {
+            setAdding(false);
+            return;
+        };
         const newTodos = [...userTodos];
         const newSection = {title: value, content: []};
         newTodos.push(newSection);

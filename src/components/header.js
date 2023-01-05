@@ -1,6 +1,16 @@
+import React from "react";
 import styled from "styled-components";
 
-export const Header = styled.header`
+const Header = ({ children }) => {
+
+    return(
+        <StyledHeader>
+            {children}
+        </StyledHeader>
+    )
+};
+
+const StyledHeader = styled.header`
     display: flex;
     width: 100%;
     height: 76px;
@@ -11,5 +21,6 @@ export const Header = styled.header`
     color: #101820;
     font-weight: 600;
     background-color: white;
-
 `
+
+export default Header;

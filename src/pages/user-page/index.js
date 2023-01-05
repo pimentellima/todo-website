@@ -1,8 +1,8 @@
 import React from 'react';
-import { DragTodoProvider } from '../../context/drag-todo-context';
+import { DragTodoProvider } from './drag-todo-context';
 import TodosBoard from './todos-board/todos-board'
-import LogoutButton from '../../components/logout-button/logout-button';
-import Header from '../../components/header/header';
+import LogoutButton from '../../components/logout-button';
+import Header from '../../components/header';
 
 const UserPage = () => {
     return (
