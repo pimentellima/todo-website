@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import Popup from 'reactjs-popup';
 import { useAddTodo } from './use-add-todo';
-import { useDragTodo } from '../hooks/use-drag-todo';
+import { useDragTodo } from '../use-drag-todo';
 import { useRemoveContent } from './use-remove-content';
 import { useRemoveSection } from './use-remove-section';
 import PopupMenu from '../popup-menu';

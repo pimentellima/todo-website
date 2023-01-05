@@ -1,4 +1,4 @@
-import { useCurrentUser } from "../containers/user-page/hooks/use-current-user";
+import { useCurrentUser } from "../containers/user-page/use-current-user";
 
 export const useUserTodos = () => {
     const { currentUser, setCurrentUser } = useCurrentUser();
