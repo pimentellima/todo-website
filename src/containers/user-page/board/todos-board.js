@@ -1,10 +1,10 @@
 import React from 'react';
-import { useAddSection } from '../../hooks/use-add-section';
-import { useUserTodos } from '../../hooks/use-user-todos';
+import { useAddSection } from '../hooks/use-add-section';
+import { useUserTodos } from '../../../hooks/use-user-todos';
 import TodosSection from '../todos-section/todos-section';
 import * as S from './styles';
 
-const TodosBoard = () => {
+const Board = () => {
     const { userTodos } = useUserTodos();
 
     const { 
@@ -48,4 +48,4 @@ const TodosBoard = () => {
     )
 };
 
-export default TodosBoard;
+export default Board;

@@ -2,9 +2,9 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import TextInput from '../../components/text-input';
 import { useForm } from '../../hooks/use-form';
-import { useCurrentUser } from '../../hooks/use-current-user'
-import LoginFormConfig from '../../utils/login-form-config'
-import login from '../../utils/login';
+import { useCurrentUser } from '../user-page/hooks/use-current-user'
+import LoginFormConfig from './login-form-config'
+import login from './login';
 import * as S from './styles';
 
 const LoginForm = () => {

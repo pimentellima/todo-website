@@ -1,8 +1,8 @@
 import React from 'react';
-import { DragTodoProvider } from '../context/drag-todo-context';
-import TodosBoard from '../containers/todos-board/todos-board'
-import LogoutButton from '../components/logout-button';
-import Header from '../components/header';
+import { DragTodoProvider } from '../../context/drag-todo-context';
+import Board from './board/todos-board'
+import LogoutButton from '../../components/logout-button';
+import Header from '../../components/header';
 import { useNavigate } from 'react-router';
 
 const UserPage = () => {
@@ -22,7 +22,7 @@ const UserPage = () => {
                     Sair
                 </LogoutButton>
             </Header>
-            <TodosBoard/>
+            <Board/>
         </DragTodoProvider>
     );
 };

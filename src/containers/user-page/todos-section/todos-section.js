@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import Popup from 'reactjs-popup';
-import { useAddTodo } from '../../hooks/use-add-todo';
-import { useDragTodo } from '../../hooks/use-drag-todo';
-import { useRemoveContent } from '../../hooks/use-remove-content';
-import { useRemoveSection } from '../../hooks/use-remove-section';
-import PopupMenu from '../popup-menu/popup-menu';
+import { useAddTodo } from '../hooks/use-add-todo';
+import { useDragTodo } from '../hooks/use-drag-todo';
+import { useRemoveContent } from '../hooks/use-remove-content';
+import { useRemoveSection } from '../hooks/use-remove-section';
+import PopupMenu from '../popup-menu';
 import TodoCard from '../todo-card/todo-card';
 import TodoForm from '../todo-form/todo-form';
 import * as S from './styles';

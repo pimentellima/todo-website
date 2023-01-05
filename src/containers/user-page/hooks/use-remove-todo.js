@@ -1,15 +1,15 @@
-import { useUserTodos } from "./use-user-todos";
+import { useUserTodos } from "../../../hooks/use-user-todos";
 
-export const useRemoveContent = () => {
+export const useRemoveTodo = () => {
     const { userTodos, setUserTodos } = useUserTodos();
 
-    const removeContent = (sectionIndex) => {
+    const removeTodo = (index, sectionIndex) => {
         const newTodos = [...userTodos];
         const newSection = newTodos[sectionIndex];
-        newSection.content.splice(0);
+        newSection.content.splice(index, 1);
         newTodos.splice(sectionIndex, 1, newSection);
         setUserTodos(newTodos);
     };
 
-    return removeContent;
+    return removeTodo;
 };

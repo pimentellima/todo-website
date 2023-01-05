@@ -1,9 +1,9 @@
 import React from 'react';
-import { useForm } from '../../hooks/use-form'
-import TodoFormConfig from '../../utils/todo-form-config';
-import TextInput from '../../components/text-input'
-import DeadlineInput from '../../components/deadline-input/deadline-input'
-import PriorityInput from '../../components/priority-input/priority-input'
+import { useForm } from '../../../hooks/use-form'
+import TodoFormConfig from './todo-form-config';
+import TextInput from '../../../components/text-input'
+import DeadlineInput from '../form-fields/deadline-input/deadline-input'
+import PriorityInput from '../form-fields/priority-input/priority-input'
 import * as S from './styles'
 
 const TodoForm = ({ onSubmit }) => {

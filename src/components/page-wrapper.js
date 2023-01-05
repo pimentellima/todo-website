@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const SignContainer = ({ children }) => {
+const PageWrapper = ({ children }) => {
     return(
         <Content>
             {children}
@@ -19,5 +19,5 @@ const Content = styled.div`
     width: 100%;
 `
 
-export default SignContainer;
+export default PageWrapper;
 

@@ -1,12 +1,12 @@
 import React from "react";
-import LoginForm from '../containers/login-form/login-form'
-import Header from '../components/header'
-import FooterLink from '../components/footer-link'
-import SignContainer from '../components/sign-container'
+import LoginForm from './login-form'
+import Header from '../../components/header'
+import FooterLink from '../../components/footer-link'
+import PageWrapper from '../../components/page-wrapper'
 
 const LoginPage = () => {
     return (
-        <SignContainer>
+        <PageWrapper>
             <Header>
                 To do app
             </Header>
@@ -14,7 +14,7 @@ const LoginPage = () => {
             <FooterLink link='/signup' label={'Cadastrar-se'}>
                 Ainda não tem uma conta?
             </FooterLink>
-        </SignContainer>
+        </PageWrapper>
     )
 };
 

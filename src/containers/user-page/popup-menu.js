@@ -1,7 +1,42 @@
-import styled from "styled-components";
+import React from "react";
+import { useState } from "react";
+import { HiDotsVertical } from 'react-icons/hi';
 import Popup from "reactjs-popup";
+import styled from "styled-components";
 
-export const MenuPopup = styled(Popup)`
+const PopupMenu = ({ position, options }) => {
+    const [open, setOpen] = useState(false);
+
+    const handleClick = (option) => {
+        option.handler();
+        setOpen(false);
+    };
+
+    return (
+        <MenuPopup 
+            nested 
+            open={open}
+            onOpen={() => setOpen(true)}
+            arrow={false}
+            position={position}
+            trigger=
+                <OpenPopupButton active={open} type='button'>
+                    <HiDotsVertical/>
+                </OpenPopupButton>
+            >
+            {options.map((option, index) => 
+                <OptionButton 
+                    onClick={() => handleClick(option)} 
+                    key={index}
+                    >
+                    {option.label}
+                </OptionButton>)
+            }
+        </MenuPopup>
+    )
+};
+
+const MenuPopup = styled(Popup)`
     &-content {
         border: 1px solid ${({theme}) => theme.colors.border.default};
         background-color: ${({theme}) => theme.colors.white};
@@ -14,7 +49,7 @@ export const MenuPopup = styled(Popup)`
     }
 `
 
-export const OpenPopupButton = styled.button`
+const OpenPopupButton = styled.button`
     color:${({theme}) => theme.colors.grey.dark};
     border: none;
     background: inherit;
@@ -25,7 +60,7 @@ export const OpenPopupButton = styled.button`
     }
 `
 
-export const OptionButton = styled.button`
+const OptionButton = styled.button`
     font-size: ${({theme}) => theme.fontSizes.smallMedium};
     border-radius: ${({theme}) => theme.borderRadius.small};
     color: ${({theme}) => theme.colors.fontColors.primary};
@@ -42,3 +77,4 @@ export const OptionButton = styled.button`
     }
 `
 
+export default PopupMenu;
