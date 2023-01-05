@@ -2,8 +2,8 @@ import React from 'react';
 import * as S from './styles';
 import { GrTextAlignLeft, GrCalendar } from "react-icons/gr";
 import PopupMenu from '../popup-menu/popup-menu'
-import { useDragTodo } from '../../hooks/use-drag-todo'
-import { useRemoveTodo } from '../../hooks/use-remove-todo'
+import { useDragTodo } from '../../hooks/use-drag-todo';
+import { useRemoveTodo } from '../../hooks/use-remove-todo';
 
 const TodoCard = (props) => {
     const { todo, index, sectionIndex } = props;

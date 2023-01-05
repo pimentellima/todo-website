@@ -4,9 +4,9 @@ import GlobalStyle from './styles/global-style';
 import theme from './styles/theme';
 import { ThemeProvider } from 'styled-components';
 import { CurrentUserProvider } from './context/current-user-context';
-import Login from './pages/login-page/index'
-import Signup from './pages/signup-page/index'
-import User from './pages/user-page/index'
+import Login from './pages/login-page'
+import Signup from './pages/signup-page'
+import User from './pages/user-page'
 
 const App = () => {
 

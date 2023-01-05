@@ -1,6 +1,6 @@
 import React from 'react';
-import { useUserTodos } from '../../hooks/use-user-todos';
 import { useAddSection } from '../../hooks/use-add-section';
+import { useUserTodos } from '../../hooks/use-user-todos';
 import TodosSection from '../todos-section/todos-section';
 import * as S from './styles';
 

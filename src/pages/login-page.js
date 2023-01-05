@@ -1,8 +1,8 @@
 import React from "react";
-import LoginForm from './components/login-form/login-form'
-import Header from '../../components/header'
-import FooterLink from '../../components/footer-link'
-import SignContainer from '../../components/sign-container'
+import LoginForm from '../containers/login-form/login-form'
+import Header from '../components/header'
+import FooterLink from '../components/footer-link'
+import SignContainer from '../components/sign-container'
 
 const LoginPage = () => {
     return (

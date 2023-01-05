@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import SignupFormConfig from '../../signup-form-config';
-import TextInput from '../../../../components/text-input';
-import { useForm } from '../../../../hooks/use-form';
-import signup from "../../signup";
+import SignupFormConfig from '../../utils/signup-form-config';
+import TextInput from '../../components/text-input';
+import { useForm } from '../../hooks/use-form';
+import signup from "../../utils/signup";
 import * as S from './styles';
 
 const SignupForm = () => {

@@ -25,7 +25,6 @@ export const OpenPopupButton = styled.button`
     }
 `
 
-
 export const OptionButton = styled.button`
     font-size: ${({theme}) => theme.fontSizes.smallMedium};
     border-radius: ${({theme}) => theme.borderRadius.small};

@@ -1,8 +1,8 @@
 import React from "react";
-import SignupForm from "./components/signup-form/signup-form";
-import Header from '../../components/header'
-import FooterLink from '../../components/footer-link'
-import SignContainer from '../../components/sign-container'
+import SignupForm from "../containers/signup-form/signup-form";
+import Header from '../components/header'
+import FooterLink from '../components/footer-link'
+import SignContainer from '../components/sign-container'
 
 const SignupPage = () => {
 
