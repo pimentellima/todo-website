@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAddSection } from './use-add-section';
 import { useUserTodos } from '../../../hooks/use-user-todos';
-import TodosSection from '../todos-section/todos-section';
+import TodosSection from '../todos-section';
 import * as S from './styles';
 
 const Board = () => {

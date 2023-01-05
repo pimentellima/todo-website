@@ -6,8 +6,8 @@ import { useDragTodo } from '../hooks/use-drag-todo';
 import { useRemoveContent } from './use-remove-content';
 import { useRemoveSection } from './use-remove-section';
 import PopupMenu from '../popup-menu';
-import TodoCard from '../todo-card/todo-card';
-import TodoForm from '../todo-form/todo-form';
+import TodoCard from '../todo-card';
+import TodoForm from '../todo-form';
 import * as S from './styles';
 
 const TodosSection = (props) => {    
