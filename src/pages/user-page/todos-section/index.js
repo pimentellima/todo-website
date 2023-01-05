@@ -26,7 +26,7 @@ const TodosSection = (props) => {
     return (
         <S.Container>
             <S.Header>
-                    <S.Title>{title}</S.Title> {'(' + content.length + ')'}
+                <S.Title>{title}</S.Title> {'(' + content.length + ')'}
                 <S.ButtonsDiv>
                     {sectionIndex === 0 &&
                         <Popup 
