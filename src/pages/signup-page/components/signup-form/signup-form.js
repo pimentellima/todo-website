@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import SignupFormConfig from '../../signup-form-config';
+import TextInput from '../../../../components/text-input';
+import { useForm } from '../../../../hooks/use-form';
+import signup from "../../signup";
 import * as S from './styles';
-import SignupFormConfig from '../signup-form-config';
-import TextInput from '../../../components/text-input';
-import { useForm } from '../../../hooks/use-form';
-import signup from "../signup";
 
 const SignupForm = () => {
     const navigate = useNavigate();

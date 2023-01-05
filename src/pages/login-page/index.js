@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from './login-form/login-form'
+import LoginForm from './components/login-form/login-form'
 import Header from '../../components/header'
 import FooterLink from '../../components/footer-link'
 import SignContainer from '../../components/sign-container'

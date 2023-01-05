@@ -1,5 +1,5 @@
 import React from "react";
-import SignupForm from './signup-form/signup-form'
+import SignupForm from "./components/signup-form/signup-form";
 import Header from '../../components/header'
 import FooterLink from '../../components/footer-link'
 import SignContainer from '../../components/sign-container'
