@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from '../../../../hooks/use-form'
 import TodoFormConfig from '../../todo-form-config';
-import TextInput from '../../../../components/text-input/text-input'
+import TextInput from '../../../../components/text-input'
 import DeadlineInput from '../deadline-input/deadline-input'
 import PriorityInput from '../priority-input/priority-input'
 import * as S from './styles'

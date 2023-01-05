@@ -1,6 +1,32 @@
-import styled, { css } from "styled-components";
+import React from 'react';
+import styled, { css } from 'styled-components';
 
-export const Input = styled.input`
+const TextInput = (props) => {
+    const { 
+        label, 
+        value, 
+        type, 
+        placeholder, 
+        errorMessage, 
+        onChange 
+    } = props;
+
+    return(
+        <>
+            <StyledInput
+                name={label}
+                value={value}
+                type={type}
+                placeholder={placeholder}
+                onChange={e => onChange(e)}
+                isInvalid={!!errorMessage}
+            />
+            <StyledText>{errorMessage}</StyledText>
+        </>
+    )
+};
+
+const StyledInput = styled.input`
     font-size: ${({theme}) => theme.fontSizes.large};
     border: 1px solid ${({theme}) => theme.colors.grey.light};
     background-color: ${({theme}) => theme.colors.grey.light};
@@ -31,9 +57,12 @@ export const Input = styled.input`
         color: ${({theme}) => theme.colors.fontColors.placeholder};
     }
 `
-export const Error = styled.p`
+
+const StyledText = styled.p`
     font-size: ${({theme}) => theme.fontSizes.small};
     color: ${({theme}) => theme.colors.red};
     display: flex;
     text-align: start;
 `
+
+export default TextInput;

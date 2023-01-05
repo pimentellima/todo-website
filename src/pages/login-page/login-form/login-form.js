@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import TextInput from '../../../components/text-input/text-input';
+import TextInput from '../../../components/text-input';
 import { useForm } from '../../../hooks/use-form';
 import { useCurrentUser } from '../../../hooks/use-current-user'
 import LoginFormConfig from '../login-form-config'
