@@ -1,15 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 
-const PageWrapper = ({ children }) => {
-    return(
-        <Content>
-            {children}
-        </Content>
-    )
-};
-
-const Content = styled.div`
+const PageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;

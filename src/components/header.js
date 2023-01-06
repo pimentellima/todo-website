@@ -1,15 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 
-const Header = ({ children }) => {
-    return(
-        <StyledHeader>
-            {children}
-        </StyledHeader>
-    )
-};
-
-const StyledHeader = styled.header`
+const Header = styled.header`
     display: flex;
     width: 100%;
     height: 76px;

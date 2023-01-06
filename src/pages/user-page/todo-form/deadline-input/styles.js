@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Popup from 'reactjs-popup';
 
-export const OpenDatepickerButton = styled.button`
+export const PopupButton = styled.button`
     background-color: ${({theme}) => theme.colors.background};
     border: 1px solid ${({theme}) => theme.colors.background};
     border-radius: ${({theme}) => theme.borderRadius.medium};
@@ -41,7 +41,7 @@ export const RemoveDeadlineButton = styled.button`
     }
 `
 
-export const DatepickerPopup = styled(Popup)`
+export const StyledPopup = styled(Popup)`
     &-content {
         display: flex;
         flex-direction: column;

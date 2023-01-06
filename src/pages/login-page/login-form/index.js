@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import BlueButton from '../../../components/blue-button';
 import TextInput from '../../../components/text-input';
 import { useForm } from '../../../hooks/use-form';
 import { useCurrentUser } from '../../user-page/use-current-user';
@@ -52,9 +53,9 @@ const LoginForm = () => {
                 errorMessage={password.errorMessage}
                 onChange={handleChange}
             />
-            <S.Button onClick={e => handleSubmit(e)}>
+            <BlueButton onClick={e => handleSubmit(e)}>
                 Entrar
-            </S.Button>
+            </BlueButton>
         </S.Form>
     );
 };

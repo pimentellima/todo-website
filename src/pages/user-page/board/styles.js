@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import BlueButton from '../../../components/blue-button';
 
 export const Content = styled.div`
     display: flex;
@@ -30,23 +31,8 @@ export const Content = styled.div`
     }
 `
 
-export const Button = styled.button`
-    border: ${({theme}) => theme.colors.border.default};
-    background-color: ${({theme}) => theme.colors.blue.default};
-    color: ${({theme}) => theme.colors.white};
-    font-size: ${({theme}) => theme.fontSizes.large};
-    border-radius: ${({theme}) => theme.borderRadius.medium};
-    min-width: 200px;
-    height: 40px;
-    padding: 0 20px 0 20px;
-    text-align: center;
-    margin-left: 25px;
-    transition: ${({theme}) => theme.transitions.buttonHover};
-
-    :hover {
-        background-color: ${({theme}) => theme.colors.blue.dark};
-        cursor: pointer;
-    }   
+export const Button = styled(BlueButton)`
+    margin-left: 15px; 
 `
 
 export const Input = styled.input`

@@ -37,7 +37,7 @@ const Board = () => {
                     onBlur={() => addSection()}
                     />
                 :
-                <S.Button 
+                <S.Button
                     type='button'
                     onClick={() => setAdding(true)}
                     >
