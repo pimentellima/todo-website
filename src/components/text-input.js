@@ -11,7 +11,7 @@ const TextInput = (props) => {
         onChange 
     } = props;
 
-    return(
+    return (
         <>
             <StyledInput
                 name={label}

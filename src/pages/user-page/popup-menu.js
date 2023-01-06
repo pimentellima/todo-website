@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { useState } from "react";
 import { HiDotsVertical } from 'react-icons/hi';
 import Popup from "reactjs-popup";
@@ -13,16 +13,16 @@ const PopupMenu = ({ position, options }) => {
     };
 
     return (
-        <MenuPopup 
+        <StyledPopup 
             nested 
             open={open}
             onOpen={() => setOpen(true)}
             arrow={false}
             position={position}
             trigger=
-                <OpenPopupButton active={open} type='button'>
+                <PopupButton active={open} type='button'>
                     <HiDotsVertical/>
-                </OpenPopupButton>
+                </PopupButton>
             >
             {options.map((option, index) => 
                 <OptionButton 
@@ -32,11 +32,11 @@ const PopupMenu = ({ position, options }) => {
                     {option.label}
                 </OptionButton>)
             }
-        </MenuPopup>
+        </StyledPopup>
     )
 };
 
-const MenuPopup = styled(Popup)`
+const StyledPopup = styled(Popup)`
     &-content {
         border: 1px solid ${({theme}) => theme.colors.border.default};
         background-color: ${({theme}) => theme.colors.white};
@@ -49,7 +49,7 @@ const MenuPopup = styled(Popup)`
     }
 `
 
-const OpenPopupButton = styled.button`
+const PopupButton = styled.button`
     color:${({theme}) => theme.colors.grey.dark};
     border: none;
     background: inherit;
@@ -71,7 +71,7 @@ const OptionButton = styled.button`
     transition: ${({theme}) => theme.transitions.buttonHover};
 
     :hover {
-        background-color: ${({theme}) => theme.colors.blue.default};;
+        background-color: ${({theme}) => theme.colors.blue.default};
         color: ${({theme}) => theme.colors.white};
         cursor: pointer;
     }

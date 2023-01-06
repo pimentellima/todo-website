@@ -9,7 +9,13 @@ export const DragTodoProvider = ({ children }) => {
     const dragNode = useRef();
 
     return(
-        <DragTodoContext.Provider value={{dragging, setDragging, dragItem, dragNode}}>
+        <DragTodoContext.Provider 
+            value={{
+                dragging, 
+                setDragging, 
+                dragItem, 
+                dragNode}}
+            >
             {children}
         </DragTodoContext.Provider>
     )

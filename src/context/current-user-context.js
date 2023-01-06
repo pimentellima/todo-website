@@ -8,9 +8,15 @@ export const CurrentUserProvider = ({ children }) => {
     const navigate = useNavigate();
     
     useEffect(() => {
-        const userToken = JSON.parse(localStorage.getItem("userToken"));
-        const storage = JSON.parse(localStorage.getItem("users"));
-        const user = storage && storage.find(user => user.name === userToken);
+        const userToken = JSON.parse(
+            localStorage.getItem("userToken")
+            );
+        const storage = JSON.parse(
+            localStorage.getItem("users")
+            );
+        const user = storage && storage.find(
+            user => user.name === userToken
+            );
         if (userToken && storage && user) {
             setCurrentUser(user);
             navigate('/user')
@@ -18,7 +24,12 @@ export const CurrentUserProvider = ({ children }) => {
     }, []);
 
     return(
-        <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <CurrentUserContext.Provider 
+            value={{ 
+                currentUser, 
+                setCurrentUser 
+                }}
+            >
             {children}
         </CurrentUserContext.Provider>
     );

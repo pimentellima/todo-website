@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom"
-import styled from "styled-components"
+import React from 'react';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const FooterLink = ({ children, link, label }) => {
-    return(
+    return (
         <Wrapper>
             {children}
             <StyledLink to={link}>

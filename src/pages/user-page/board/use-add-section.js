@@ -27,7 +27,13 @@ export const useAddSection = () => {
         };
         
         setValue(e.target.value);
-    }
+    };
 
-    return { value, handleChange, adding, setAdding, addSection };
+    return { 
+        value, 
+        handleChange, 
+        adding, 
+        setAdding, 
+        addSection 
+    };
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-import { DragTodoProvider } from './drag-todo-context';
-import Board from './board'
-import LogoutButton from '../../components/logout-button';
-import Header from '../../components/header';
 import { useNavigate } from 'react-router';
+import Header from '../../components/header';
+import LogoutButton from '../../components/logout-button';
+import Board from './board';
+import { DragTodoProvider } from './drag-todo-context';
 
 const UserPage = () => {
     const navigate = useNavigate();

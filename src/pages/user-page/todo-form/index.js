@@ -1,10 +1,10 @@
 import React from 'react';
-import { useForm } from '../../../hooks/use-form'
+import TextInput from '../../../components/text-input';
+import { useForm } from '../../../hooks/use-form';
+import DeadlineInput from './deadline-input';
+import PriorityInput from './priority-input';
+import * as S from './styles';
 import TodoFormConfig from './todo-form-config';
-import TextInput from '../../../components/text-input'
-import DeadlineInput from './deadline-input'
-import PriorityInput from './priority-input'
-import * as S from './styles'
 
 const TodoForm = ({ onSubmit }) => {
     const { 
@@ -13,10 +13,18 @@ const TodoForm = ({ onSubmit }) => {
         handleSubmit 
     } = useForm(TodoFormConfig, onSubmit);
 
-    const { title, description, deadline, priority } = fields;
+    const { 
+        title, 
+        description, 
+        deadline, 
+        priority 
+    } = fields;
     
     return (
-        <S.Form autoComplete='off' onSubmit={e => handleSubmit(e)}>
+        <S.Form 
+            autoComplete='off' 
+            onSubmit={e => handleSubmit(e)}
+            >
             <S.Title>Nova tarefa</S.Title>
             <S.Label>*Título da tarefa</S.Label>
             <TextInput    
@@ -45,7 +53,10 @@ const TodoForm = ({ onSubmit }) => {
                 value={priority.value}
                 onChange={e => handleChange(e)}
                 />
-            <S.SubmitButton type='submit' onClick={(e) => handleSubmit(e)}>
+            <S.SubmitButton 
+                type='submit' 
+                onClick={(e) => handleSubmit(e)}
+                >
                 Finalizar
             </S.SubmitButton>
         </S.Form>

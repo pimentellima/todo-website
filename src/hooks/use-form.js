@@ -31,5 +31,9 @@ export const useForm = (initialConfig, onSubmit) => {
         setForm(form => ({...form, fields: newFields}));
     };
 
-    return ({ fields: form.fields, handleChange, handleSubmit })
+    return { 
+        fields: form.fields, 
+        handleChange, 
+        handleSubmit 
+    };
 };

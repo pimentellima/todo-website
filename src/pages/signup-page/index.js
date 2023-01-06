@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react';
+import FooterLink from '../../components/footer-link';
+import Header from '../../components/header';
+import PageWrapper from '../../components/page-wrapper';
 import SignupForm from "./signup-form";
-import Header from '../../components/header'
-import FooterLink from '../../components/footer-link'
-import PageWrapper from '../../components/page-wrapper'
 
 const SignupPage = () => {
-
     return (
         <PageWrapper>
             <Header>

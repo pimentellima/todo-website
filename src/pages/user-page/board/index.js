@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAddSection } from './use-add-section';
 import { useUserTodos } from '../../../hooks/use-user-todos';
-import TodosSection from '../todos-section';
+import Section from '../section';
 import * as S from './styles';
+import { useAddSection } from './use-add-section';
 
 const Board = () => {
     const { userTodos } = useUserTodos();
@@ -18,7 +18,7 @@ const Board = () => {
     return (
         <S.Content>
             {userTodos.map((section, index) =>
-                <TodosSection  
+                <Section  
                     title={section.title} 
                     content={section.content} 
                     sectionIndex={index} 

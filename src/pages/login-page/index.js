@@ -1,8 +1,8 @@
-import React from "react";
-import LoginForm from './login-form'
-import Header from '../../components/header'
-import FooterLink from '../../components/footer-link'
-import PageWrapper from '../../components/page-wrapper'
+import React from 'react';
+import FooterLink from '../../components/footer-link';
+import Header from '../../components/header';
+import PageWrapper from '../../components/page-wrapper';
+import LoginForm from './login-form';
 
 const LoginPage = () => {
     return (

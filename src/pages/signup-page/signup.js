@@ -1,5 +1,6 @@
 const signup = (username, password) => {
-    const usersStorage = JSON.parse(localStorage.getItem("users")) ? 
+    const usersStorage = JSON.parse(
+        localStorage.getItem("users")) ? 
         JSON.parse(localStorage.getItem("users")) : [];
 
     const newUser = { 

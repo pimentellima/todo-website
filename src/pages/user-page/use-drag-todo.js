@@ -5,14 +5,21 @@ import { useUserTodos } from '../../hooks/use-user-todos';
 export const useDragTodo = () => {
     const { userTodos, setUserTodos } = useUserTodos();
 
-    const { dragItem, dragNode, dragging, setDragging } = useContext(DragTodoContext)
+    const { 
+        dragItem, 
+        dragNode, 
+        dragging, 
+        setDragging 
+    } = useContext(DragTodoContext)
 
     const onDragStart = (e, params) => {  
         dragNode.current = e.target;
         
         dragItem.current = params;
         
-        dragNode.current.addEventListener('dragend', onDragEnd);
+        dragNode.current.addEventListener(
+            'dragend', onDragEnd
+            );
         
         setTimeout(() => {
             setDragging(true)
@@ -28,7 +35,8 @@ export const useDragTodo = () => {
         const toIndex = params.index
         const toSectionIndex = params.sectionIndex 
 
-        if(toIndex === fromIndex && toSectionIndex === fromSectionIndex) return
+        if(toIndex === fromIndex && 
+            toSectionIndex === fromSectionIndex) return
 
         const newTodos = [...userTodos];
         const fromSection = newTodos[fromSectionIndex];
@@ -66,17 +74,28 @@ export const useDragTodo = () => {
         newTodos.splice(fromSectionIndex, 1, fromSection);
         newTodos.splice(toSectionIndex, 1, toSection);
 
-        dragItem.current = {index: toSection.content.length - 1, sectionIndex: toSectionIndex}
+        dragItem.current = {
+            index: toSection.content.length - 1, 
+            sectionIndex: toSectionIndex
+        }
 
         setUserTodos(newTodos)
     }; 
     
     const onDragEnd = () => {
-        dragNode.current.removeEventListener('dragend', onDragEnd);
+        dragNode.current.removeEventListener(
+            'dragend', onDragEnd
+            );
         dragNode.current = null;
         dragItem.current = null;
         setDragging(false);
     };    
 
-    return { dragItem, dragging, onDragStart, onDragEnterCard, onDragEnterSection }
+    return { 
+        dragItem, 
+        dragging, 
+        onDragStart, 
+        onDragEnterCard, 
+        onDragEnterSection 
+    };
 };
