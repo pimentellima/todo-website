@@ -1,47 +1,7 @@
-import styled from 'styled-components';
-import Popup from 'reactjs-popup';
+import Popup from "reactjs-popup";
+import styled from "styled-components";
 
-export const PopupButton = styled.button`
-    background-color: ${({theme}) => theme.colors.background};
-    border: 1px solid ${({theme}) => theme.colors.background};
-    border-radius: ${({theme}) => theme.borderRadius.medium};
-    font-size: ${({theme}) => theme.fontSizes.medium};
-    transition: ${({theme}) => theme.transitions.buttonHover};
-    display: flex;
-    align-items: center;
-    height: 50px;
-    text-indent: 10px;
-    width: 100%;
-    color: ${({theme, selected}) => 
-        selected ? 
-        theme.colors.fontColors.primary :
-        theme.colors.fontColors.placeholder
-    };
-    
-    :hover, :active {
-        background-color: ${({theme}) => theme.colors.white};
-        border-color: ${({theme}) => theme.colors.blue.light};
-        cursor: pointer;
-    }
-`
-export const RemoveDeadlineButton = styled.button`
-    align-self: center;
-    font-size: ${({theme}) => theme.fontSizes.smallMedium};
-    border-radius: ${({theme}) => theme.borderRadius.small};
-    color: ${({theme}) => theme.colors.fontColors.primary};
-    background-color: ${({theme}) => theme.colors.white};
-    transition: ${({theme}) => theme.transitions.buttonHover};
-    padding: 7px 20px;
-    border: none;
-
-    :hover {
-        background-color: ${({theme}) => theme.colors.blue.default};;
-        color: ${({theme}) => theme.colors.white};
-        cursor: pointer;
-    }
-`
-
-export const StyledPopup = styled(Popup)`
+const CalendarPopup = styled(Popup)`
     &-content {
         display: flex;
         flex-direction: column;
@@ -92,7 +52,6 @@ export const StyledPopup = styled(Popup)`
                 text-decoration: none;
             }
         }
-
     
       .react-calendar__month-view__days {
             display: grid !important;
@@ -126,3 +85,5 @@ export const StyledPopup = styled(Popup)`
     }
   }
 `
+
+export default CalendarPopup;

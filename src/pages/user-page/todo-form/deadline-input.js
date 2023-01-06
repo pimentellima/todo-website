@@ -1,20 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Calendar from 'react-calendar';
-import LightButton from '../../../../components/light-button';
-import * as S from './styles'
+import styled from 'styled-components';
+import LightButton from '../../../components/light-button';
+import CalendarPopup from './calendar-popup';
 
-const DeadlineInput = ({ value, onChange }) => {
-    const [open, setOpen] = useState(false);
+const DeadlineInput = (props) => {
+    const {
+        open,
+        setOpen,
+        value,
+        onChange
+    } = props;
     
     return (
-        <S.StyledPopup 
+        <CalendarPopup
                 nested 
                 position="top" 
                 arrow={false}
                 open={open}
                 onOpen={() => setOpen(true)}
                 trigger={
-                    <S.PopupButton 
+                    <PopupButton 
                         type='button'
                         selected={!!value}>
                         {
@@ -22,7 +28,7 @@ const DeadlineInput = ({ value, onChange }) => {
                                 value : 
                                 'Sem prazo'
                         }
-                    </S.PopupButton>}
+                    </PopupButton>}
                 >
                 <Calendar 
                     minDate={new Date()}
@@ -47,8 +53,33 @@ const DeadlineInput = ({ value, onChange }) => {
                         }}>
                         Deixar prazo em branco
                 </LightButton>
-            </S.StyledPopup> 
+            </CalendarPopup> 
     )
 };
+
+const PopupButton = styled.button`
+    background-color: ${({theme}) => theme.colors.background};
+    border: 1px solid ${({theme}) => theme.colors.background};
+    border-radius: ${({theme}) => theme.borderRadius.medium};
+    font-size: ${({theme}) => theme.fontSizes.medium};
+    transition: ${({theme}) => theme.transitions.buttonHover};
+    display: flex;
+    align-items: center;
+    height: 50px;
+    text-indent: 10px;
+    width: 100%;
+    color: ${({theme, selected}) => 
+        selected ? 
+        theme.colors.fontColors.primary :
+        theme.colors.fontColors.placeholder
+    };
+    
+    :hover, :active {
+        background-color: ${({theme}) => theme.colors.white};
+        border-color: ${({theme}) => theme.colors.blue.light};
+        cursor: pointer;
+    }
+`
+
 
 export default DeadlineInput;

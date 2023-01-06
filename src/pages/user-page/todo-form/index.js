@@ -7,6 +7,8 @@ import * as S from './styles';
 import TodoFormConfig from './todo-form-config';
 
 const TodoForm = ({ onSubmit }) => {
+    const [openDatepicker, setOpenDatepicker] = useState(false);
+
     const { 
         fields, 
         handleChange, 
@@ -47,6 +49,8 @@ const TodoForm = ({ onSubmit }) => {
             <DeadlineInput
                 value={deadline.value}
                 onChange={e => handleChange(e)}
+                open={openDatepicker}
+                setOpen={setOpenDatepicker}
                 />
             <S.Label>Prioridade</S.Label>
             <PriorityInput

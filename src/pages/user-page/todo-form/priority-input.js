@@ -1,6 +1,23 @@
-import styled from "styled-components"
+import React from 'react';
+import styled from 'styled-components';
 
-export const Select = styled.select`
+const PriorityInput = ({ value, onChange }) => {
+    return (
+        <Select 
+            name='priority'
+            value={value}
+            onChange={e => onChange(e)}
+            selected={!!value}
+            >
+            <option value=''>Sem prioridade</option>
+            <option value='Baixa'>Baixa</option>    
+            <option value='Media'>Media</option>
+            <option value='Alta'>Alta</option>
+        </Select>
+    )
+};
+
+const Select = styled.select`
     background-color: ${({theme}) => theme.colors.background};
     border: 1px solid ${({theme}) => theme.colors.background};
     border-radius: ${({theme}) => theme.borderRadius.medium};
@@ -29,3 +46,5 @@ export const Select = styled.select`
         cursor: pointer;
     }
 `
+
+export default PriorityInput;

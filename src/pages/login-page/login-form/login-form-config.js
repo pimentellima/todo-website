@@ -21,8 +21,10 @@ const LoginFormConfig = {
         const errors = {};
         if(!username) errors.username = 'Requirido';
         if(!password) errors.password = 'Requirido';
-        else if(!user) errors.username = 'Usuário não encontrado';
-        else if(password != user.password) {
+        if(username && password && !user) {
+            errors.username = 'Usuário não encontrado';
+        }
+        if(username && user && password && password != user.password) {
             errors.password = 'Senha incorreta';
         };
         return errors; 
