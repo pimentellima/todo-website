@@ -2,7 +2,7 @@ import React from 'react';
 import FooterLink from '../../components/footer-link';
 import Header from '../../components/header';
 import PageWrapper from '../../components/page-wrapper';
-import SignupForm from "./signup-form";
+import SignupForm from './signup-form/index';
 
 const SignupPage = () => {
     return (

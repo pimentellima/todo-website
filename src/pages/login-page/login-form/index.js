@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import TextInput from '../../components/text-input';
-import { useForm } from '../../hooks/use-form';
-import { useCurrentUser } from '../user-page/use-current-user';
+import TextInput from '../../../components/text-input';
+import { useForm } from '../../../hooks/use-form';
+import { useCurrentUser } from '../../user-page/use-current-user';
 import login from './login';
 import LoginFormConfig from './login-form-config';
 import * as S from './styles';
